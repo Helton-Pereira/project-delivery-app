@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       type: DataTypes.DECIMAL(4,2),
     },
-    url_image: {
+    urlImage: {
       allowNull: false,
       type: DataTypes.STRING(200),
     },
@@ -22,14 +22,14 @@ module.exports = (sequelize, DataTypes) => {
     {
       timestamps: false,
       tableName: 'products',
-      underscored: false,
+      underscored: true,
     }
   );
 
   Product.associate = (models) => {
 
     Product.hasMany(models.SaleProduct,
-      { foreignKey: 'product_id', as: 'sales_products' });
+      { foreignKey: 'productId', as: 'sales_products' });
   };
 
   return Sale;
