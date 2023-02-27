@@ -9,9 +9,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
-      user_id: {
+      userId: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        field: 'user_id',
         references: {
           model: 'users',
           key: 'id',
@@ -19,9 +20,10 @@ module.exports = {
         // onDelete: 'CASCADE',
         // onUpdate: 'CASCADE',
       },
-      seller_id: {
+      sellerId: {
         allowNull: false,
         type: Sequelize.INTEGER,
+        field: 'seller_id',
         references: {
           model: 'users',
           key: 'id',
@@ -29,20 +31,24 @@ module.exports = {
         // onDelete: 'CASCADE',
         // onUpdate: 'CASCADE',
       },
-      total_price: {
+      totalPrice: {
         allowNull: false,
+        field: 'total_price',
         type: Sequelize.DECIMAL(9,2),
       },
-      delivery_address: {
+      deliveryAddress: {
         allowNull: false,
+        field: 'delivery_address',
         type: Sequelize.STRING(100),
       },
-      delivery_number: {
+      deliveryNumber: {
         allowNull: false,
+        field: 'delivery_number',
         type: Sequelize.STRING(50),
       },
-      sale_date: {
+      saleDate: {
         allowNull: false,
+        field: 'sale_date',
         type: Sequelize.DATE,
         defaultValue: Sequelize.literal('CURRENT_TIMESTAMP'),
       },
