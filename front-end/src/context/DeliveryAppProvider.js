@@ -20,7 +20,7 @@ export default function DeliveryAppProvider({ children }) {
   //   userDispatch,
   // };
   return (
-    <DeliveryAppContext.Provider value={ contextValue }>
+    <DeliveryAppContext.Provider value={ 0 }>
       {children}
     </DeliveryAppContext.Provider>
   );
