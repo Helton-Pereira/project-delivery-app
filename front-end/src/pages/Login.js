@@ -49,36 +49,45 @@ function Login() {
       <div className="login-container">
         <form onSubmit={ () => console.log('clicou') } className="login-form">
           <img src="../images/rockGlass.svg" alt="logo_app" />
-          <h1 className="hero-title">
-            {'<Recipes App />'}
-            {' '}
-          </h1>
-          <input
-            type="email"
-            name="email"
-            value={ user.email }
-            data-testid="email-input"
-            onChange={ handleChanges }
-            className="form-control input-group mb-2"
-            placeholder="email"
-          />
-          <input
-            type="password"
-            name="password"
-            value={ user.password }
-            data-testid="password-input"
-            onChange={ handleChanges }
-            className="form-control input-group mb-2"
-            placeholder="password"
-          />
+          <label htmlFor="email">
+            Login
+            <input
+              id="email"
+              type="email"
+              name="email"
+              value={ user.email }
+              data-testid="common_login__input-email"
+              onChange={ handleChanges }
+              placeholder="email"
+            />
+          </label>
+          <label htmlFor="password">
+            Senha
+            <input
+              id="password"
+              type="password"
+              name="password"
+              value={ user.password }
+              data-testid="common_login__input-password"
+              onChange={ handleChanges }
+              placeholder="password"
+            />
+          </label>
           <button
             type="submit"
             disabled={ isLoginButtonDisabled }
-            data-testid="login-submit-btn"
-            className="login-button"
+            data-testid="common_login__button-login"
           >
-            Entrar
+            Login
           </button>
+          <button
+            type="submit"
+            disabled={ isLoginButtonDisabled }
+            data-testid="common_login__button-register"
+          >
+            Ainda não tenho conta
+          </button>
+          <span>Elemento oculto (Mensagens de erro)</span>
         </form>
       </div>
     </main>
@@ -93,8 +102,8 @@ Login.propTypes = {
 
 export default Login;
 
-// - 1: common_login__input-email
-// - 2: common_login__input-password
-// - 3: common_login__button-login
-// - 4: common_login__button-register
-// - 5: common_login__element-invalid-email [Elemento oculto (Mensagens de erro)]
+// // - 1: common_login__input-email
+// // - 2: common_login__input-password
+// // - 3: common_login__button-login
+// // - 4: common_login__button-register
+// // - 5: common_login__element-invalid-email [Elemento oculto (Mensagens de erro)]
