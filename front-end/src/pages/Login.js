@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 // import DeliveryAppContext from '../context/DeliveryAppContext';
+// import { requestLogin } from '../services/requests';
+import isValidEmail from '../utils/validations';
 
-const MIN_PASSWORD_LENGTH = 7;
+const MIN_PASSWORD_LENGTH = 6;
 
 function Login() {
   const INITIAL_STATE = {
@@ -11,9 +13,8 @@ function Login() {
   };
   const [user, setUser] = useState(INITIAL_STATE);
   const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(true);
+  const [errorMessage, setErrorMessage] = useState('');
   // const { userDispatch } = useContext(DeliveryAppContext);
-
-  const isValidEmail = (inputEmail) => String(inputEmail).toLowerCase().match(/^[^ ]+@[^ ]+\.[a-z]{2,3}$/);
 
   const handleChanges = ({ target }) => {
     const { name, value } = target;
@@ -23,13 +24,17 @@ function Login() {
     }));
   };
 
-  // const handleLoginClickButton = (event) => {
-  //   event.preventDefault();
-  //   // const { history } = props;
-  //   const { email } = user;
-  //   userDispatch({ type: 'LOGIN', payload: email });
-  //   // history.push('/meals');
-  // };
+  const handleLogin = async (event) => {
+    event.preventDefault();
+    try {
+      const { message, token } = await requestLogin('/login', user);
+      if (message) console.log(message);
+      if (token) console.log(token);
+      userDispatch({ type: 'LOGIN', payload: email });
+    } catch (error) {
+      setErrorMessage(message);
+    }
+  };
 
   useEffect(() => {
     const verifyLoginRequest = () => {
@@ -47,7 +52,7 @@ function Login() {
     <main>
       <h1>login</h1>
       <div className="login-container">
-        <form onSubmit={ () => console.log('clicou') } className="login-form">
+        <form onSubmit={ handleLogin } className="login-form">
           <img src="../images/rockGlass.svg" alt="logo_app" />
           <label htmlFor="email">
             Login
@@ -81,13 +86,12 @@ function Login() {
             Login
           </button>
           <button
-            type="submit"
-            disabled={ isLoginButtonDisabled }
+            type="button"
             data-testid="common_login__button-register"
           >
             Ainda não tenho conta
           </button>
-          <span>Elemento oculto (Mensagens de erro)</span>
+          { errorMessage.length > 0 && <span>{ errorMessage }</span> }
         </form>
       </div>
     </main>
@@ -101,9 +105,3 @@ Login.propTypes = {
 };
 
 export default Login;
-
-// // - 1: common_login__input-email
-// // - 2: common_login__input-password
-// // - 3: common_login__button-login
-// // - 4: common_login__button-register
-// // - 5: common_login__element-invalid-email [Elemento oculto (Mensagens de erro)]
