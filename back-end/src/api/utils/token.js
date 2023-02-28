@@ -1,10 +1,15 @@
 const Jwt = require('jsonwebtoken');
 const fs = require('fs');
 
-const secret = fs.readFileSync('./jwt.evaluation.key');
+const secret = fs.readFileSync('jwt.evaluation.key');
 
 function generateToken(data) {
-  const token = Jwt.sign(data, secret, { algorithm: 'HS256', expiresIn: '12h' });
+  const jwtConfig = {
+    expiresIn: '12h',
+    algorithm: 'HS256',
+  };
+
+  const token = Jwt.sign({ data }, secret, jwtConfig);
   return token;
 }
 
@@ -13,4 +18,4 @@ function verifyToken(token) {
   return tokenDecoded;
 }
 
-export default { generateToken, verifyToken };
+module.exports = { generateToken, verifyToken };

@@ -26,11 +26,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
 
-  Product.associate = (models) => {
+/*   Product.associate = (models) => {
 
     Product.hasMany(models.SaleProduct,
       { foreignKey: 'productId', as: 'sales_products' });
-  };
+  }; */
 
   return Product;
 };
