@@ -26,15 +26,24 @@ function Login() {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    try {
-      const { message, token } = await requestLogin('/login', user);
-      if (message) console.log(message);
-      if (token) console.log(token);
-      userDispatch({ type: 'LOGIN', payload: email });
-    } catch (error) {
-      setErrorMessage(message);
-    }
+    setErrorMessage('teste');
+    // const { message } = await requestLogin('/login', user);
+    // if (message.length) setErrorMessage(message)
+    // userDispatch({ type: 'LOGIN', payload: email });
+    // history.push('/meals');
   };
+
+  // const handleLogin = async (event) => {
+  //   event.preventDefault();
+  //   try {
+  //     const { message, token } = await requestLogin('/login', user);
+  //     if (message) console.log(message);
+  //     if (token) console.log(token);
+  //     userDispatch({ type: 'LOGIN', payload: email });
+  //   } catch (error) {
+  //     setErrorMessage(message);
+  //   }
+  // };
 
   useEffect(() => {
     const verifyLoginRequest = () => {
