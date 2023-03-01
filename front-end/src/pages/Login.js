@@ -40,6 +40,12 @@ function Login(props) {
     }
   };
 
+  const handleRegisterButton = async (event) => {
+    event.preventDefault();
+    const { history } = props;
+    history.push('/register');
+  };
+
   useEffect(() => {
     const verifyLoginRequest = () => {
       const { email, password } = user;
@@ -92,6 +98,7 @@ function Login(props) {
           <button
             type="button"
             data-testid="common_login__button-register"
+            onClick={ handleRegisterButton }
           >
             Ainda não tenho conta
           </button>

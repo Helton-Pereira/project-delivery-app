@@ -122,3 +122,5 @@ Register.propTypes = {
     push: PropTypes.func.isRequired,
   }).isRequired,
 };
+
+export default Register;
