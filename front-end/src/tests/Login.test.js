@@ -101,3 +101,4 @@ describe('Test the Login page', () => {
   //   expect(history.location.pathname).toBe('/customer/products');
   // });
 });
+//
