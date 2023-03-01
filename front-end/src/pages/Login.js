@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 // import DeliveryAppContext from '../context/DeliveryAppContext';
-// import { requestLogin } from '../services/requests';
+import { requestLogin, setToken } from '../services/requests';
 import isValidEmail from '../utils/validations';
 
 const MIN_PASSWORD_LENGTH = 6;
 
-function Login() {
+function Login(props) {
   const INITIAL_STATE = {
     email: '',
     password: '',
@@ -26,24 +26,19 @@ function Login() {
 
   const handleLogin = async (event) => {
     event.preventDefault();
-    setErrorMessage('teste');
-    // const { message } = await requestLogin('/login', user);
-    // if (message.length) setErrorMessage(message)
-    // userDispatch({ type: 'LOGIN', payload: email });
-    // history.push('/meals');
-  };
+    const { history } = props;
 
-  // const handleLogin = async (event) => {
-  //   event.preventDefault();
-  //   try {
-  //     const { message, token } = await requestLogin('/login', user);
-  //     if (message) console.log(message);
-  //     if (token) console.log(token);
-  //     userDispatch({ type: 'LOGIN', payload: email });
-  //   } catch (error) {
-  //     setErrorMessage(message);
-  //   }
-  // };
+    try {
+      const { token } = await requestLogin('/login', user);
+      setToken(token);
+      // userDispatch({ type: 'LOGIN', payload: email });
+      setErrorMessage('');
+      history.push('/customer/products');
+    } catch (error) {
+      console.log(error.response.data.message);
+      setErrorMessage(error.response.data.message);
+    }
+  };
 
   useEffect(() => {
     const verifyLoginRequest = () => {
@@ -61,7 +56,7 @@ function Login() {
     <main>
       <h1>login</h1>
       <div className="login-container">
-        <form onSubmit={ handleLogin } className="login-form">
+        <form onSubmit={ (event) => handleLogin(event) } className="login-form">
           <img src="../images/rockGlass.svg" alt="logo_app" />
           <label htmlFor="email">
             Login
@@ -100,7 +95,10 @@ function Login() {
           >
             Ainda não tenho conta
           </button>
-          { errorMessage.length > 0 && <span>{ errorMessage }</span> }
+          { errorMessage.length > 0
+          && (
+            <span data-testid="common_login__element-invalid-email">{errorMessage}</span>
+          ) }
         </form>
       </div>
     </main>

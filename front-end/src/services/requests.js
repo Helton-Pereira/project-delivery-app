@@ -4,9 +4,9 @@ const api = axios.create({
   baseURL: `http://${process.env.REACT_APP_HOSTNAME || 'localhost'}:${process.env.API_PORT || '3001'}`,
 });
 
-// export const setToken = (token) => {
-//   api.defaults.headers.common.Authorization = token;
-// };
+export const setToken = (token) => {
+  api.defaults.headers.common.Authorization = token;
+};
 
 export const requestData = async (endpoint) => {
   const { data } = await api.get(endpoint);
