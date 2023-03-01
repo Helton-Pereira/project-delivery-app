@@ -12,16 +12,16 @@ const testButtonRegister = 'common_login__button-register';
 const testUserEmail = 'test@test.com';
 const testUserPassword = '1234567';
 
-describe('Test the Login page', () => {  
+describe('Test the Login page', () => {
   test('Checks if route is correct (/login), if the email, password and login button exists', () => {
     const { history } = renderWithRouter(<App />);
     const { pathname } = history.location;
-    expect(pathname).toBe('/login');   
+    expect(pathname).toBe('/login');
   });
 
   test('Checks if the email, password and login button exists', () => {
     renderWithRouter(<App />);
-    
+
     const inputEmail = screen.getByTestId(testUserInputEmail);
     const inputPassword = screen.getByTestId(testUserInputPassword);
     const buttonLogin = screen.getByTestId(testButtonLogin);
@@ -84,3 +84,4 @@ describe('Test the Login page', () => {
   //   expect(drinksTokenLocalStorage).toBe('1');
   // });
 });
+//
