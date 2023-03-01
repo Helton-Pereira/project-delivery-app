@@ -4,6 +4,7 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import Login from '../pages/Login';
 import renderWithRouter from './helpers/renderWithRouter';
+import { requestLogin } from '../services/requests';
 
 const testUserInputEmail = 'common_login__input-email';
 const testUserInputPassword = 'common_login__input-password';
@@ -13,7 +14,7 @@ const testUserEmail = 'test@test.com';
 const testUserPassword = '1234567';
 
 describe('Test the Login page', () => {  
-  test('Checks if route is correct (/login), if the email, password and login button exists', () => {
+  test('Checks if route is correct (/login), if the email, password and login button exists', () => {    
     const { history } = renderWithRouter(<App />);
     const { pathname } = history.location;
     expect(pathname).toBe('/login');   

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 // import DeliveryAppContext from '../context/DeliveryAppContext';
-import { requestLogin, setToken } from '../services/requests';
+import { requestLogin } from '../services/requests';
 import isValidEmail from '../utils/validations';
 
 const MIN_PASSWORD_LENGTH = 6;
@@ -30,7 +30,7 @@ function Login(props) {
 
     try {
       const { token } = await requestLogin('/login', user);
-      setToken(token);
+      console.log(token);
       // userDispatch({ type: 'LOGIN', payload: email });
       setErrorMessage('');
       history.push('/customer/products');

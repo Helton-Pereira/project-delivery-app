@@ -1,30 +1,29 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import App from '../App';
+// import userEvent from '@testing-library/user-event';
+// import App from '../App';
 import Register from '../pages/Register';
 import renderWithRouter from './helpers/renderWithRouter';
 import mock from './helpers/mocks/register.mock';
 
-
-describe('Test the Register page', () => {  
+describe('Test the Register page', () => {
   test('Checks if route is correct /Register', () => {
     const { history } = renderWithRouter(<Register />);
     const { pathname } = history.location;
-    expect(pathname).toBe('/register');   
+    expect(pathname).toBe('/register');
   });
 
   test('Checks if the name, email, password and register button exists', () => {
     renderWithRouter(<Register />);
-    
+
     const inputName = screen.getByTestId(mock.nameInput);
     const inputEmail = screen.getByTestId(mock.emailInput);
     const inputPassword = screen.getByTestId(mock.passwordInput);
     const buttonRegister = screen.getByTestId(mock.registerButton);
 
-    expect(inputName).toBeInTheDocument();    
+    expect(inputName).toBeInTheDocument();
     expect(inputEmail).toBeInTheDocument();
-    expect(inputPassword).toBeInTheDocument();    
+    expect(inputPassword).toBeInTheDocument();
     expect(buttonRegister).toBeInTheDocument();
   });
 

@@ -65,6 +65,9 @@
       "./services/renderWithRouter",
       "./services/history",
       "src/tests"
-    ]
+    ],
+    "moduleNameMapper": {
+      "^axios$": "axios/dist/axios.js"
+    }
   }
 }
