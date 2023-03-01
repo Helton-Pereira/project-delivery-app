@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 // import DeliveryAppContext from '../context/DeliveryAppContext';
-import { requestLogin, setToken } from '../services/requests';
+import { requestLogin } from '../services/requests';
 import isValidEmail from '../utils/validations';
 
 const MIN_PASSWORD_LENGTH = 6;
@@ -26,14 +26,13 @@ function Register(props) {
     }));
   };
 
-  const handleLogin = async (event) => {
+  const handleRegister = async (event) => {
     event.preventDefault();
     const { history } = props;
 
     try {
-      const { token } = await requestLogin('/login', user);
-      setToken(token);
-      // userDispatch({ type: 'LOGIN', payload: email });
+      const response = await requestLogin('/register', user);
+      console.log(response);
       setErrorMessage('');
       history.push('/customer/products');
     } catch (error) {
@@ -43,7 +42,7 @@ function Register(props) {
   };
 
   useEffect(() => {
-    const verifyLoginRequest = () => {
+    const verifyRegisterRequest = () => {
       const { name, email, password } = user;
       if (isValidEmail(email)
       && password.length >= MIN_PASSWORD_LENGTH
@@ -53,14 +52,14 @@ function Register(props) {
         setIsLoginButtonDisabled(true);
       }
     };
-    verifyLoginRequest();
+    verifyRegisterRequest();
   }, [user]);
 
   return (
     <main>
       <h1>Cadastro</h1>
-      <div className="login-container">
-        <form onSubmit={ (event) => handleLogin(event) } className="login-form">
+      <div className="register-container">
+        <form onSubmit={ (event) => handleRegister(event) } className="login-form">
           <label htmlFor="name">
             Nome
             <input
