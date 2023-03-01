@@ -39,7 +39,7 @@ describe('Test the Login page', () => {
     expect(inputPassword).toHaveValue(mocks.validPassword);
   });
 
-  test('Checks if the user is able to click the login button after inserting a valid email and password', () => {
+  test('Checks if login button can be clicked with valid email and password', () => {
     renderWithRouter(<App />);
 
     const emailInput = screen.getByTestId(mocks.emailInput);
