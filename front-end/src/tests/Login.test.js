@@ -1,7 +1,9 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './helpers/renderWithRouter';
+import mocks from './helpers/mocks/login.mocks';
 
 describe('Test the Login page', () => {
   test('Checks if the route is correct (/login)', () => {
