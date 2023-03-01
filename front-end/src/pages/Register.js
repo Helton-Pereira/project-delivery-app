@@ -5,9 +5,11 @@ import { requestLogin } from '../services/requests';
 import isValidEmail from '../utils/validations';
 
 const MIN_PASSWORD_LENGTH = 6;
+const MIN_NAME_LENGTH = 12;
 
-function Login(props) {
+function Register(props) {
   const INITIAL_STATE = {
+    name: '',
     email: '',
     password: '',
   };
@@ -24,14 +26,13 @@ function Login(props) {
     }));
   };
 
-  const handleLogin = async (event) => {
+  const handleRegister = async (event) => {
     event.preventDefault();
     const { history } = props;
 
     try {
-      const { token } = await requestLogin('/login', user);
-      console.log(token);
-      // userDispatch({ type: 'LOGIN', payload: email });
+      const response = await requestLogin('/register', user);
+      console.log(response);
       setErrorMessage('');
       history.push('/customer/products');
     } catch (error) {
@@ -40,38 +41,45 @@ function Login(props) {
     }
   };
 
-  const handleRegisterButton = async (event) => {
-    event.preventDefault();
-    const { history } = props;
-    history.push('/register');
-  };
-
   useEffect(() => {
-    const verifyLoginRequest = () => {
-      const { email, password } = user;
-      if (isValidEmail(email) && password.length >= MIN_PASSWORD_LENGTH) {
+    const verifyRegisterRequest = () => {
+      const { name, email, password } = user;
+      if (isValidEmail(email)
+      && password.length >= MIN_PASSWORD_LENGTH
+      && name.length >= MIN_NAME_LENGTH) {
         setIsLoginButtonDisabled(false);
       } else {
         setIsLoginButtonDisabled(true);
       }
     };
-    verifyLoginRequest();
+    verifyRegisterRequest();
   }, [user]);
 
   return (
     <main>
-      <h1>login</h1>
-      <div className="login-container">
-        <form onSubmit={ (event) => handleLogin(event) } className="login-form">
-          <img src="../images/rockGlass.svg" alt="logo_app" />
+      <h1>Cadastro</h1>
+      <div className="register-container">
+        <form onSubmit={ (event) => handleRegister(event) } className="login-form">
+          <label htmlFor="name">
+            Nome
+            <input
+              id="name"
+              type="name"
+              name="name"
+              value={ user.name }
+              data-testid="common_register__input-name"
+              onChange={ handleChanges }
+              placeholder="name"
+            />
+          </label>
           <label htmlFor="email">
-            Login
+            Email
             <input
               id="email"
               type="email"
               name="email"
               value={ user.email }
-              data-testid="common_login__input-email"
+              data-testid="common_register__input-email"
               onChange={ handleChanges }
               placeholder="email"
             />
@@ -83,7 +91,7 @@ function Login(props) {
               type="password"
               name="password"
               value={ user.password }
-              data-testid="common_login__input-password"
+              data-testid="common_register__input-password"
               onChange={ handleChanges }
               placeholder="password"
             />
@@ -91,20 +99,16 @@ function Login(props) {
           <button
             type="submit"
             disabled={ isLoginButtonDisabled }
-            data-testid="common_login__button-login"
+            data-testid="common_register__button-register"
           >
-            Login
+            Cadastrar
           </button>
-          <button
-            type="button"
-            data-testid="common_login__button-register"
-            onClick={ handleRegisterButton }
-          >
-            Ainda não tenho conta
-          </button>
+
           { errorMessage.length > 0
           && (
-            <span data-testid="common_login__element-invalid-email">{errorMessage}</span>
+            <span data-testid="common_register__element-invalid_register">
+              {errorMessage}
+            </span>
           ) }
         </form>
       </div>
@@ -112,10 +116,10 @@ function Login(props) {
   );
 }
 
-Login.propTypes = {
+Register.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
 };
 
-export default Login;
+export default Register;
