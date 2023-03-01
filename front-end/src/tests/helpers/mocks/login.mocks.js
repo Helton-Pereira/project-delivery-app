@@ -10,7 +10,7 @@ const validPassword = '$#zebirita#$';
 const invalidEmail = 'xxxxxxx';
 const invalidPassword = '123';
 
-export {
+export default {
   emailInput,
   passwordInput,
   loginButton,

@@ -1,36 +1,30 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import App from '../App';
-import Login from '../pages/Login';
 import renderWithRouter from './helpers/renderWithRouter';
-
-const testUserInputEmail = 'common_login__input-email';
-const testUserInputPassword = 'common_login__input-password';
-const testButtonLogin = 'common_login__button-login';
-const testButtonRegister = 'common_login__button-register';
-const testUserEmail = 'test@test.com';
-const testUserPassword = '1234567';
+import mocks from './helpers/mocks/login.mocks';
+// import userEvent from '@testing-library/user-event';
+// import Login from '../pages/Login';
 
 describe('Test the Login page', () => {
-  test('Checks if route is correct (/login), if the email, password and login button exists', () => {
+  test('Checks if the route is correct (/login)', () => {
     const { history } = renderWithRouter(<App />);
     const { pathname } = history.location;
     expect(pathname).toBe('/login');
   });
 
-  test('Checks if the email, password and login button exists', () => {
+  test('Checks if the main elements exist', () => {
     renderWithRouter(<App />);
 
-    const inputEmail = screen.getByTestId(testUserInputEmail);
-    const inputPassword = screen.getByTestId(testUserInputPassword);
-    const buttonLogin = screen.getByTestId(testButtonLogin);
-    const buttonRegister = screen.getByTestId(testButtonRegister);
+    const emailInput = screen.getByTestId(mocks.emailInput);
+    const passwordInput = screen.getByTestId(mocks.passwordInput);
+    const loginButton = screen.getByTestId(mocks.loginButton);
+    const registerButton = screen.getByTestId(mocks.registerButton);
 
-    expect(inputEmail).toBeInTheDocument();
-    expect(inputPassword).toBeInTheDocument();
-    expect(buttonLogin).toBeInTheDocument();
-    expect(buttonRegister).toBeInTheDocument();
+    expect(emailInput).toBeInTheDocument();
+    expect(passwordInput).toBeInTheDocument();
+    expect(loginButton).toBeInTheDocument();
+    expect(registerButton).toBeInTheDocument();
   });
 
   // test('Checks if the user can type in the email and password inputs', () => {
