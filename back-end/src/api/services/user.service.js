@@ -20,4 +20,19 @@ const login = async (email, password) => {
   return { status: 404, message: 'Invalid password' };
 };
 
-module.exports = { login };
+const createUser = async ({ name, email, newPassword }) => {
+  const userExistsEmail = await User.findOne({ where: { email } });
+
+  const userExistsName = await User.findOne({ where: { name } });
+
+  if (userExistsEmail || userExistsName) {
+    return { status: 409, message: 'User already registered' };
+  }
+
+  const password = md5(newPassword);
+
+  await User.create({ name, email, password });
+  return login(email, newPassword);
+};
+
+module.exports = { login, createUser };
