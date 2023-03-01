@@ -1,86 +1,106 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import App from '../App';
-import Login from '../pages/Login';
 import renderWithRouter from './helpers/renderWithRouter';
+import mocks from './helpers/mocks/login.mocks';
+import userEvent from '@testing-library/user-event';
+import Login from '../pages/Login';
 
-const testUserInputEmail = 'common_login__input-email';
-const testUserInputPassword = 'common_login__input-password';
-const testButtonLogin = 'common_login__button-login';
-const testButtonRegister = 'common_login__button-register';
-const testUserEmail = 'test@test.com';
-const testUserPassword = '1234567';
-
-describe('Test the Login page', () => {  
-  test('Checks if route is correct (/login), if the email, password and login button exists', () => {
+describe('Test the Login page', () => {
+  test('Checks if the route is correct (/login)', () => {
     const { history } = renderWithRouter(<App />);
     const { pathname } = history.location;
-    expect(pathname).toBe('/login');   
+    expect(pathname).toBe('/login');
   });
 
-  test('Checks if the email, password and login button exists', () => {
+  test('Checks if the main elements exist', () => {
     renderWithRouter(<App />);
-    
-    const inputEmail = screen.getByTestId(testUserInputEmail);
-    const inputPassword = screen.getByTestId(testUserInputPassword);
-    const buttonLogin = screen.getByTestId(testButtonLogin);
-    const buttonRegister = screen.getByTestId(testButtonRegister);
 
-    expect(inputEmail).toBeInTheDocument();
-    expect(inputPassword).toBeInTheDocument();
-    expect(buttonLogin).toBeInTheDocument();
-    expect(buttonRegister).toBeInTheDocument();
+    const emailInput = screen.getByTestId(mocks.emailInput);
+    const passwordInput = screen.getByTestId(mocks.passwordInput);
+    const loginButton = screen.getByTestId(mocks.loginButton);
+    const registerButton = screen.getByTestId(mocks.registerButton);
+
+    expect(emailInput).toBeInTheDocument();
+    expect(passwordInput).toBeInTheDocument();
+    expect(loginButton).toBeInTheDocument();
+    expect(registerButton).toBeInTheDocument();
   });
 
-  // test('Checks if the user can type in the email and password inputs', () => {
-  //   renderWithRouter(<Login />);
+  test('Checks if the user can type in the email and password inputs', () => {
+    renderWithRouter(<App />);
 
-  //   const inputEmail = screen.getByTestId(testUserInputEmail);
-  //   const inputPassword = screen.getByTestId(testUserInputPassword);
+    const emailInput = screen.getByTestId(mocks.emailInput);
+    const inputPassword = screen.getByTestId(mocks.passwordInput);
 
-  //   userEvent.type(inputEmail, testUserEmail);
-  //   userEvent.type(inputPassword, testUserPassword);
+    userEvent.type(emailInput, mocks.validEmail);
+    userEvent.type(inputPassword, mocks.validPassword);
 
-  //   expect(inputEmail).toHaveValue(testUserEmail);
-  //   expect(inputPassword).toHaveValue(testUserPassword);
+    expect(emailInput).toHaveValue(mocks.validEmail);
+    expect(inputPassword).toHaveValue(mocks.validPassword);
+  });
+
+  test('Checks if the user is able to click the login button after inserting a valid email and password', () => {
+    renderWithRouter(<App />);
+
+    const emailInput = screen.getByTestId(mocks.emailInput);
+    const passwordInput = screen.getByTestId(mocks.passwordInput);
+    const loginButton = screen.getByTestId(mocks.loginButton);
+
+    userEvent.type(emailInput, mocks.invalidEmail);
+    expect(loginButton).toBeDisabled();
+
+    userEvent.type(passwordInput, mocks.invalidPassword);
+    expect(loginButton).toBeDisabled();
+
+    userEvent.type(emailInput, mocks.validEmail);
+    expect(loginButton).toBeDisabled();
+
+    userEvent.type(passwordInput, mocks.validPassword);
+    expect(loginButton).toBeEnabled(); // Both email and password must be valid to enable the button
+  });
+
+  // test('Checks if the invalid message element appears when a non-existent e-mail is inserted', () => {
+  //   renderWithRouter(<App />);
+
+  //   const emailInput = screen.getByTestId(mocks.emailInput);
+  //   const passwordInput = screen.getByTestId(mocks.passwordInput);
+  //   const loginButton = screen.getByTestId(mocks.loginButton);
+
+  //   userEvent.type(emailInput, 'test@test.com');
+  //   userEvent.type(passwordInput, mocks.validPassword);
+  //   userEvent.click(loginButton)
+
+  //   expect(screen.getByTestId(mocks.invalidMessageElement)).toBeInTheDocument();
+  //   expect(screen.getByTestId(mocks.invalidMessageElement)).toHaveValue('Invalid Email');
   // });
 
-  // test('Checks if the user is able to click the sign in button after a valid email address and password of 6 or more characters', () => {
-  //   renderWithRouter(<Login />);
+  // test('Checks if the invalid message element appears when a non-existent password is inserted', () => {
+  //   renderWithRouter(<App />);
 
-  //   const inputEmail = screen.getByTestId(testUserInputEmail);
-  //   const inputPassword = screen.getByTestId(testUserInputPassword);
-  //   const button = screen.getByTestId(testButtonEnter);
+  //   const emailInput = screen.getByTestId(mocks.emailInput);
+  //   const passwordInput = screen.getByTestId(mocks.passwordInput);
+  //   const loginButton = screen.getByTestId(mocks.loginButton);
 
-  //   userEvent.type(inputEmail, 'incorrectEmail');
-  //   expect(button).toBeDisabled();
+  //   userEvent.type(emailInput, mocks.validEmail);
+  //   userEvent.type(passwordInput, '123456');
+  //   userEvent.click(loginButton)
 
-  //   userEvent.type(inputPassword, '12345');
-  //   expect(button).toBeDisabled();
-
-  //   userEvent.type(inputEmail, testUserEmail);
-  //   userEvent.type(inputPassword, testUserPassword);
-  //   expect(button).toBeEnabled();
+  //   expect(screen.getByTestId(mocks.invalidMessageElement)).toBeInTheDocument();
+  //   expect(screen.getByTestId(mocks.invalidMessageElement)).toHaveValue('Invalid Password');
   // });
 
-  // test('Checks if the user is redirected to the food page after clicking the enter button', () => {
+  // test('Checks if the user is redirected to products page after clicking the login button', () => {
   //   const { history } = renderWithRouter(<App />);
 
-  //   const inputEmail = screen.getByTestId(testUserInputEmail);
-  //   const inputPassword = screen.getByTestId(testUserInputPassword);
-  //   const button = screen.getByTestId(testButtonEnter);
+  //   const emailInput = screen.getByTestId(mocks.emailInput);
+  //   const passwordInput = screen.getByTestId(mocks.passwordInput);
+  //   const loginButton = screen.getByTestId(mocks.loginButton);
 
-  //   userEvent.type(inputEmail, testUserEmail);
-  //   userEvent.type(inputPassword, testUserPassword);
-  //   userEvent.click(button);
+  //   userEvent.type(emailInput, mocks.validEmail);
+  //   userEvent.type(passwordInput, mocks.validPassword);
+  //   userEvent.click(loginButton);
 
-  //   expect(history.location.pathname).toBe('/meals');
-
-  //   const mealsTokenLocalStorage = localStorage.getItem('mealsToken');
-  //   const drinksTokenLocalStorage = localStorage.getItem('drinksToken');
-
-  //   expect(mealsTokenLocalStorage).toBe('1');
-  //   expect(drinksTokenLocalStorage).toBe('1');
+  //   expect(history.location.pathname).toBe('/customer/products');
   // });
 });
