@@ -1,5 +1,6 @@
 const userRes = {
   name: 'Cliente Zé Birita',
+  email: 'zebirita@email.com',
   role: 'customer'
 }
 
@@ -7,7 +8,6 @@ const user = {
   dataValues: {
     ...userRes,
     id: 3,
-    email: 'zebirita@email.com',
     password: '1c37466c159755ce1fa181bd247cb925',
   },
 }
