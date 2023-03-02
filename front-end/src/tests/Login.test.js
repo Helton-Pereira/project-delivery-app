@@ -119,4 +119,19 @@ describe('Test the Login page', () => {
       });
     },
   );
+
+  test(
+    'Checks user redirection to register page after clicking register button',
+    async () => {
+      const { history } = renderWithRouter(<App />);
+
+      const registerButton = screen.getByTestId(mocks.registerButton);
+
+      userEvent.click(registerButton);
+
+      await waitFor(() => {
+        expect(history.location.pathname).toBe('/register');
+      });
+    },
+  );
 });
