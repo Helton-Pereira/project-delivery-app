@@ -1,10 +1,10 @@
 import React from 'react';
-// import { screen, waitFor } from '@testing-library/react';
-import { screen } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './helpers/renderWithRouter';
 import mocks from './helpers/mocks/register.mock';
+import api from '../services/requests';
 
 describe('Test the Register page', () => {
   test('Checks if all elements exist', () => {
@@ -64,24 +64,31 @@ describe('Test the Register page', () => {
     expect(buttonRegister).toBeEnabled();
   });
 
-  // test(
-  //   'Checks user redirection to products page after clicking register button',
-  //   async () => {
-  //     const { history } = renderWithRouter(<App />, { initialEntries: ['/register'] });
+  test(
+    'Checks user redirection to products page after clicking register button',
+    async () => {
+      jest.spyOn(api, 'requestLogin')
+        .mockImplementation(() => (
+          {
+            status: 201,
+            data: { name: mocks.validName, role: 'customer', token: 'mockedToken123' } }
+        ));
 
-  //     const inputName = screen.getByTestId(mocks.nameInput);
-  //     const inputEmail = screen.getByTestId(mocks.emailInput);
-  //     const inputPassword = screen.getByTestId(mocks.passwordInput);
-  //     const buttonRegister = screen.getByTestId(mocks.registerButton);
+      const { history } = renderWithRouter(<App />, { initialEntries: ['/register'] });
 
-  //     userEvent.type(inputName, mocks.validName);
-  //     userEvent.type(inputEmail, mocks.validEmail);
-  //     userEvent.type(inputPassword, mocks.validPassword);
-  //     userEvent.click(buttonRegister);
+      const inputName = screen.getByTestId(mocks.nameInput);
+      const inputEmail = screen.getByTestId(mocks.emailInput);
+      const inputPassword = screen.getByTestId(mocks.passwordInput);
+      const buttonRegister = screen.getByTestId(mocks.registerButton);
 
-  //     await waitFor(() => {
-  //       expect(history.location.pathname).toBe('/customer/products');
-  //     });
-  //   },
-  // );
+      userEvent.type(inputName, mocks.validName);
+      userEvent.type(inputEmail, mocks.validEmail);
+      userEvent.type(inputPassword, mocks.validPassword);
+      userEvent.click(buttonRegister);
+
+      await waitFor(() => {
+        expect(history.location.pathname).toBe('/customer/products');
+      });
+    },
+  );
 });
