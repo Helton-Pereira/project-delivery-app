@@ -1,18 +1,19 @@
 import React from 'react';
+// import { screen, waitFor } from '@testing-library/react';
 import { screen } from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
+import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './helpers/renderWithRouter';
-import mock from './helpers/mocks/register.mock';
+import mocks from './helpers/mocks/register.mock';
 
 describe('Test the Register page', () => {
   test('Checks if all elements exist', () => {
     renderWithRouter(<App />, { initialEntries: ['/register'] });
 
-    const inputName = screen.getByTestId(mock.nameInput);
-    const inputEmail = screen.getByTestId(mock.emailInput);
-    const inputPassword = screen.getByTestId(mock.passwordInput);
-    const buttonRegister = screen.getByTestId(mock.registerButton);
+    const inputName = screen.getByTestId(mocks.nameInput);
+    const inputEmail = screen.getByTestId(mocks.emailInput);
+    const inputPassword = screen.getByTestId(mocks.passwordInput);
+    const buttonRegister = screen.getByTestId(mocks.registerButton);
 
     expect(inputName).toBeInTheDocument();
     expect(inputEmail).toBeInTheDocument();
@@ -20,54 +21,67 @@ describe('Test the Register page', () => {
     expect(buttonRegister).toBeInTheDocument();
   });
 
-  // test('Checks if the user can type in the email and password inputs', () => {
-  //   renderWithRouter(<Login />);
+  test('Checks if the user can type in name, email and password inputs', () => {
+    renderWithRouter(<App />, { initialEntries: ['/register'] });
 
-  //   const inputEmail = screen.getByTestId(testUserInputEmail);
-  //   const inputPassword = screen.getByTestId(testUserInputPassword);
+    const inputName = screen.getByTestId(mocks.nameInput);
+    const inputEmail = screen.getByTestId(mocks.emailInput);
+    const inputPassword = screen.getByTestId(mocks.passwordInput);
 
-  //   userEvent.type(inputEmail, testUserEmail);
-  //   userEvent.type(inputPassword, testUserPassword);
+    userEvent.type(inputName, mocks.validName);
+    userEvent.type(inputEmail, mocks.validEmail);
+    userEvent.type(inputPassword, mocks.validPassword);
 
-  //   expect(inputEmail).toHaveValue(testUserEmail);
-  //   expect(inputPassword).toHaveValue(testUserPassword);
-  // });
+    expect(inputName).toHaveValue(mocks.validName);
+    expect(inputEmail).toHaveValue(mocks.validEmail);
+    expect(inputPassword).toHaveValue(mocks.validPassword);
+  });
 
-  // test('Checks if the user is able to click the sign in button after a valid email address and password of 6 or more characters', () => {
-  //   renderWithRouter(<Login />);
+  test('Checks if register button can be clicked with valid input values', () => {
+    renderWithRouter(<App />, { initialEntries: ['/register'] });
 
-  //   const inputEmail = screen.getByTestId(testUserInputEmail);
-  //   const inputPassword = screen.getByTestId(testUserInputPassword);
-  //   const button = screen.getByTestId(testButtonEnter);
+    const inputName = screen.getByTestId(mocks.nameInput);
+    const inputEmail = screen.getByTestId(mocks.emailInput);
+    const inputPassword = screen.getByTestId(mocks.passwordInput);
+    const buttonRegister = screen.getByTestId(mocks.registerButton);
 
-  //   userEvent.type(inputEmail, 'incorrectEmail');
-  //   expect(button).toBeDisabled();
+    userEvent.type(inputName, mocks.invalidName);
+    expect(buttonRegister).toBeDisabled();
 
-  //   userEvent.type(inputPassword, '12345');
-  //   expect(button).toBeDisabled();
+    userEvent.type(inputEmail, mocks.invalidEmail);
+    expect(buttonRegister).toBeDisabled();
 
-  //   userEvent.type(inputEmail, testUserEmail);
-  //   userEvent.type(inputPassword, testUserPassword);
-  //   expect(button).toBeEnabled();
-  // });
+    userEvent.type(inputPassword, mocks.invalidPassword);
+    expect(buttonRegister).toBeDisabled();
 
-  // test('Checks if the user is redirected to the food page after clicking the enter button', () => {
-  //   const { history } = renderWithRouter(<App />);
+    userEvent.type(inputName, mocks.validName);
+    expect(buttonRegister).toBeDisabled();
 
-  //   const inputEmail = screen.getByTestId(testUserInputEmail);
-  //   const inputPassword = screen.getByTestId(testUserInputPassword);
-  //   const button = screen.getByTestId(testButtonEnter);
+    userEvent.type(inputEmail, mocks.validEmail);
+    expect(buttonRegister).toBeDisabled();
 
-  //   userEvent.type(inputEmail, testUserEmail);
-  //   userEvent.type(inputPassword, testUserPassword);
-  //   userEvent.click(button);
+    userEvent.type(inputPassword, mocks.validPassword);
+    expect(buttonRegister).toBeEnabled();
+  });
 
-  //   expect(history.location.pathname).toBe('/meals');
+  // test(
+  //   'Checks user redirection to products page after clicking register button',
+  //   async () => {
+  //     const { history } = renderWithRouter(<App />, { initialEntries: ['/register'] });
 
-  //   const mealsTokenLocalStorage = localStorage.getItem('mealsToken');
-  //   const drinksTokenLocalStorage = localStorage.getItem('drinksToken');
+  //     const inputName = screen.getByTestId(mocks.nameInput);
+  //     const inputEmail = screen.getByTestId(mocks.emailInput);
+  //     const inputPassword = screen.getByTestId(mocks.passwordInput);
+  //     const buttonRegister = screen.getByTestId(mocks.registerButton);
 
-  //   expect(mealsTokenLocalStorage).toBe('1');
-  //   expect(drinksTokenLocalStorage).toBe('1');
-  // });
+  //     userEvent.type(inputName, mocks.validName);
+  //     userEvent.type(inputEmail, mocks.validEmail);
+  //     userEvent.type(inputPassword, mocks.validPassword);
+  //     userEvent.click(buttonRegister);
+
+  //     await waitFor(() => {
+  //       expect(history.location.pathname).toBe('/customer/products');
+  //     });
+  //   },
+  // );
 });
