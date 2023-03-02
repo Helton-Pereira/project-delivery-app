@@ -1,14 +1,13 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 // import userEvent from '@testing-library/user-event';
-// import App from '../App';
-import Register from '../pages/Register';
+import App from '../App';
 import renderWithRouter from './helpers/renderWithRouter';
 import mock from './helpers/mocks/register.mock';
 
 describe('Test the Register page', () => {
-  test('Checks if the name, email, password and register button exists', () => {
-    renderWithRouter(<Register />);
+  test('Checks if all elements exist', () => {
+    renderWithRouter(<App />, { initialEntries: ['/register'] });
 
     const inputName = screen.getByTestId(mock.nameInput);
     const inputEmail = screen.getByTestId(mock.emailInput);
