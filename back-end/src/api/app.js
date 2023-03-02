@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const loginRoute = require('./routes/loginRoute');
 const registerRoute = require('./routes/registerRoute');
+const checkoutRoute = require('./routes/checkoutRoute');
 
 const app = express();
 
@@ -14,5 +15,7 @@ app.get('/coffee', (_req, res) => res.status(418).end());
 app.use('/login', loginRoute);
 
 app.use('/register', registerRoute);
+
+app.use('/customer/checkout', checkoutRoute);
 
 module.exports = app;
