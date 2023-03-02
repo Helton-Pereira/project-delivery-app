@@ -29,17 +29,17 @@ function NavBarCustomer({ name }) {
           </Link>
         </div>
         <div>
-          <div
+          <span
             data-testid="customer_products__element-navbar-user-full-name"
           >
             Nome
             { name }
-          </div>
+          </span>
         </div>
         <div>
           <button
             type="submit"
-            data-testid="customer_products__element-navbar-button-logout"
+            data-testid="customer_products__element-navbar-link-logout"
             onClick={ handleLogout }
           >
             Sair
