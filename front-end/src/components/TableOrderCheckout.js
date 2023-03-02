@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 // import PropTypes from 'prop-types';
 
 const mockCart = [
@@ -19,11 +19,12 @@ const mockCart = [
   },
 ];
 
-function Table() {
+function FormOrderCheckout() {
   let totalCart = 0;
 
   const handleRemoveButton = (expenseId) => {
     console.log(`REMOVE: ${expenseId}`);
+    // filter para tirar o elemento com o name
   };
 
   const fillTableDescription = () => {
@@ -56,7 +57,7 @@ function Table() {
           <td>
             <button
               type="button"
-              onClick={ () => handleRemoveButton(id) }
+              onClick={ () => handleRemoveButton(name) }
               data-testid={ `customer_checkout__element-order-table-remove-${id}` }
             >
               Excluir
@@ -83,7 +84,7 @@ function Table() {
         </thead>
         <tbody>{fillTableDescription()}</tbody>
       </table>
-      <h1>
+      <h1 data-testid="customer_checkout__element-order-total-price">
         Total:
         { `${totalCart}` }
       </h1>
@@ -94,4 +95,4 @@ function Table() {
 // Table.propTypes = {
 // };
 
-export default Table;
+export default FormOrderCheckout;

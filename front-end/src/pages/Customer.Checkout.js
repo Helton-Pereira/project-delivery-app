@@ -1,5 +1,6 @@
 // import NavbarCustomer from '../components/Navbar.Custumer';
-import TableOrder from '../components/TableOrder';
+import FormOrderCheckout from '../components/FormOrderCheckout';
+import TableOrderCheckout from '../components/TableOrderCheckout';
 
 function CostumerCheckout() {
   // const INITIAL_STATE = {
@@ -60,9 +61,10 @@ function CostumerCheckout() {
       <h2>NavbarCustomer</h2>
       <div className="Checkout-container">
         <h2>Finalizar Pedido</h2>
-        <TableOrder />
+        <TableOrderCheckout />
         <div>
           <h2>Detalhes e Endereço para Entrega</h2>
+          <FormOrderCheckout />
         </div>
       </div>
     </main>
