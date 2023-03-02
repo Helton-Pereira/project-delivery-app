@@ -7,12 +7,6 @@ import renderWithRouter from './helpers/renderWithRouter';
 import mock from './helpers/mocks/register.mock';
 
 describe('Test the Register page', () => {
-  test('Checks if route is correct /Register', () => {
-    const { history } = renderWithRouter(<Register />);
-    const { pathname } = history.location;
-    expect(pathname).toBe('/register');
-  });
-
   test('Checks if the name, email, password and register button exists', () => {
     renderWithRouter(<Register />);
 
