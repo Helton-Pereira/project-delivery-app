@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import PropTypes from 'prop-types';
 
 const mockCart = [
@@ -20,16 +20,13 @@ const mockCart = [
 ];
 
 function Table() {
-  const INITIAL_STATE = {
-    totalCart: 0,
-  };
-  const [totalCart, setTotalCart] = useState(INITIAL_STATE);
+  let totalCart = 0;
 
-  handleRemoveButton = (expenseId) => {
+  const handleRemoveButton = (expenseId) => {
     console.log(`REMOVE: ${expenseId}`);
   };
 
-  fillTableDescription = () => {
+  const fillTableDescription = () => {
     // const { products } = this.props;
     const products = mockCart;
     const tableElement = products.map((element, id) => {
@@ -38,7 +35,7 @@ function Table() {
         price,
         quantity,
       } = element;
-      setTotalCart((prevValue) => prevValue + (quantity * price));
+      totalCart += (quantity * price);
       return (
         <tr key={ id }>
           <td data-testid={ `customer_checkout__element-order-table-item-number-${id}` }>
@@ -85,11 +82,11 @@ function Table() {
           </tr>
         </thead>
         <tbody>{fillTableDescription()}</tbody>
-        <h1>
-          Total:
-          { totalCart }
-        </h1>
       </table>
+      <h1>
+        Total:
+        { `${totalCart}` }
+      </h1>
     </div>
   );
 }
