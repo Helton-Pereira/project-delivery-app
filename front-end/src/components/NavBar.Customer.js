@@ -1,6 +1,14 @@
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-function NavBarCustomer() {
+function NavBarCustomer({ name }) {
+  const history = useHistory();
+
+  const handleLogout = () => {
+    localStorage.removeItem('user');
+    history.push('/login');
+  };
+
   return (
     <main>
       <nav>
@@ -21,25 +29,29 @@ function NavBarCustomer() {
           </Link>
         </div>
         <div>
-          <Link
-            to="/produtos"
+          <div
             data-testid="customer_products__element-navbar-user-full-name"
           >
             Nome
-          </Link>
+            { name }
+          </div>
         </div>
         <div>
-          <Link
-            to="/login"
-            data-testid="customer_products__element-navbar-link-logout"
+          <button
+            type="submit"
+            data-testid="customer_products__element-navbar-button-logout"
+            onClick={ handleLogout }
           >
             Sair
-          </Link>
+          </button>
         </div>
-
       </nav>
     </main>
   );
 }
+
+NavBarCustomer.propTypes = {
+  name: PropTypes.string.isRequired,
+};
 
 export default NavBarCustomer;
