@@ -10,4 +10,3 @@ routers.use('/register', registerRouter);
 routers.use('/customer/products', productRouter);
 
 module.exports = routers;
-
