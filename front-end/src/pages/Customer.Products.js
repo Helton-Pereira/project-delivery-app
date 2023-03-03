@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import CardProducts from '../components/Card.Products';
 import NavBarCustomer from '../components/NavBar.Customer';
-// import { requestData } from '../services/requests';
+import api from '../services/requests';
 import mockProducts from './mockProducts';
 import useValidateAuth from '../hooks/useValidateAuth';
 import usePersistState from '../hooks/usePersistState';
 import initialStates from '../utils/initialStates';
 
 function CustomerProducts(props) {
-  // const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
   const [user, setUser] = usePersistState('user', initialStates.userData);
   const [auth, setAuth] = useState(false);
 
@@ -34,24 +34,23 @@ function CustomerProducts(props) {
     history.push('/customer/checkout');
   };
 
-  // useEffect(() => {
-  //   const getProducts = async () => {
-  //     const { data } = await requestData('/customer/products');
-  //     console.log(data);
-  //     setProducts(data);
-  //   };
-  //   getProducts();
-  // }, []);
+  useEffect(() => {
+    const getProducts = async () => {
+      const data = await api.requestData('/customer/products');
+      setProducts(data);
+    };
+    getProducts();
+  }, []);
 
   return (
     <main>
       <NavBarCustomer />
 
-      {mockProducts.map((product) => (
+      {products.map((product) => (
         <CardProducts
           key={ product.id }
           name={ product.name }
-          price={ product.price }
+          price={ Number(product.price) }
           image={ product.urlImage }
           id={ product.id }
         />
