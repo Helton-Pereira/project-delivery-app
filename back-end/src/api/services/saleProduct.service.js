@@ -1,8 +1,6 @@
 const { SaleProduct } = require('../../database/models');
-// const { Product } = require('../../database/models/product.model');
 
-const createSaleProduct = async ({id, productsId, quantities}) => {
-
+const createSaleProduct = async ({ id, productsId, quantities }) => {
   const saleOrder = productsId.map((e, i) => {
     const obj = {
       saleId: id,
@@ -13,8 +11,8 @@ const createSaleProduct = async ({id, productsId, quantities}) => {
   });
 
   await Promise.all(
-    saleOrder.map((product) => SaleProduct.create(product))
+    saleOrder.map((product) => SaleProduct.create(product)),
   );
-}
+};
 
 module.exports = { createSaleProduct };
