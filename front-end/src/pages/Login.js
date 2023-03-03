@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 // import DeliveryAppContext from '../context/DeliveryAppContext';
-import { requestLogin } from '../services/requests';
+import api from '../services/requests';
 import isValidEmail from '../utils/validations';
 import usePersistState from '../hooks/usePersistState';
 import initialStates from '../utils/initialStates';
@@ -28,8 +28,7 @@ function Login(props) {
     const { history } = props;
 
     try {
-      const { name, email, role, token } = await requestLogin('/login', loginData);
-
+      const { name, email, role, token } = await api.requestLogin('/login', loginData);
       setErrorMessage('');
       setUserData({ name, email, role, token });
       console.log(userData);
