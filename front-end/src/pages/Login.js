@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 // import DeliveryAppContext from '../context/DeliveryAppContext';
-import { requestLogin } from '../services/requests';
+import api from '../services/requests';
 import isValidEmail from '../utils/validations';
 
 const MIN_PASSWORD_LENGTH = 6;
@@ -29,7 +29,7 @@ function Login(props) {
     const { history } = props;
 
     try {
-      const { token } = await requestLogin('/login', user);
+      const { token } = await api.requestLogin('/login', user);
       console.log(token);
       // userDispatch({ type: 'LOGIN', payload: email });
       setErrorMessage('');
