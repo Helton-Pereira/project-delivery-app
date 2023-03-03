@@ -59,7 +59,7 @@ function Register(props) {
     <main>
       <h1>Cadastro</h1>
       <div className="register-container">
-        <form onSubmit={ (event) => handleRegister(event) } className="login-form">
+        <form onSubmit={ (event) => handleRegister(event) }>
           <label htmlFor="name">
             Nome
             <input

@@ -14,6 +14,7 @@ function App() {
         <Redirect exact from="/" to="/login" />
         <Route exact path="/register" component={ Register } />
         <Route exact path="/customer/checkout" component={ CostumerCheckout } />
+        <Route exact path="/customer/orders/:id" />
       </Switch>
     </DeliveryAppProvider>
   );

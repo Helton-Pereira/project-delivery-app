@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 const mockSellers = [
   {
@@ -13,21 +13,21 @@ const mockSellers = [
   },
 ];
 
-const creatSelerSelect = () => {
-  const option = mockSellers.map((seller) => (
-    <option key={ seller.name } value={ seller.name }>{seller.name}</option>
-  ));
-  return option;
-};
-
-function TableOrderCheckout() {
+function FormOrderCheckout({ handleSubmitOrder, setNewOrder }) {
   const INITIAL_STATE = {
     seller: '',
-    adressCostumer: '',
-    numberAdress: 0,
+    deliveyAddress: '',
+    deliveyNumber: 0,
   };
 
   const [orderDetails, setOrderDetails] = useState(INITIAL_STATE);
+
+  const creatSelerSelect = () => {
+    const option = mockSellers.map((seller) => (
+      <option key={ seller.name } value={ seller.name }>{seller.name}</option>
+    ));
+    return option;
+  };
 
   const handleChanges = ({ target }) => {
     const { name, value } = target;
@@ -35,12 +35,24 @@ function TableOrderCheckout() {
       ...prevOrderDetails,
       [name]: value,
     }));
+    setNewOrder((prevOrderDetails) => ({
+      ...prevOrderDetails,
+      [name]: value,
+    }));
   };
+
+  // const makePostObject = () => {
+  //   return ({
+  //     name: 'cliente',
+  //     seller,
+
+  //   });
+  // };
 
   return (
     <div>
       Form:
-      <form>
+      <form onSubmit={ (event) => handleSubmitOrder(event) }>
         <label htmlFor="seller">
           P. Vendedora Responsável:
           <select
@@ -52,32 +64,43 @@ function TableOrderCheckout() {
             { creatSelerSelect() }
           </select>
         </label>
-        <label htmlFor="adressCostumer">
+        <label htmlFor="deliveyAddress">
           Endereço
           <input
             type="text"
-            name="adressCostumer"
+            name="deliveyAddress"
             data-testid="customer_checkout__input-address"
             onChange={ handleChanges }
-            value={ orderDetails.adressCostumer }
+            value={ orderDetails.deliveyAddress }
           />
         </label>
-        <label htmlFor="numberAdress">
+        <label htmlFor="deliveyNumber">
           Numero
           <input
             type="number"
-            name="numberAdress"
+            name="deliveyNumber"
             data-testid="customer_checkout__input-address-number"
             onChange={ handleChanges }
-            value={ orderDetails.numberAdress }
+            value={ orderDetails.deliveyNumber }
           />
         </label>
+        <button
+          type="submit"
+          data-testid="customer_checkout__button-submit-order"
+        >
+          FINALIZAR PEDIDO
+        </button>
       </form>
     </div>
   );
 }
 
-// Table.propTypes = {
-// };
+FormOrderCheckout.propTypes = {
+  // history: PropTypes.shape({
+  //   push: PropTypes.func.isRequired,
+  // }).isRequired,
+  handleSubmitOrder: PropTypes.func.isRequired,
+  setNewOrder: PropTypes.func.isRequired,
+};
 
-export default TableOrderCheckout;
+export default FormOrderCheckout;
