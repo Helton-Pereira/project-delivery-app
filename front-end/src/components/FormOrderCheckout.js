@@ -16,8 +16,8 @@ const mockSellers = [
 function FormOrderCheckout({ handleSubmitOrder, setNewOrder }) {
   const INITIAL_STATE = {
     seller: '',
-    deliveyAddress: '',
-    deliveyNumber: 0,
+    deliveryAddress: '',
+    deliveryNumber: 0,
   };
 
   const [orderDetails, setOrderDetails] = useState(INITIAL_STATE);
@@ -64,24 +64,24 @@ function FormOrderCheckout({ handleSubmitOrder, setNewOrder }) {
             { creatSelerSelect() }
           </select>
         </label>
-        <label htmlFor="deliveyAddress">
+        <label htmlFor="deliveryAddress">
           Endereço
           <input
             type="text"
-            name="deliveyAddress"
+            name="deliveryAddress"
             data-testid="customer_checkout__input-address"
             onChange={ handleChanges }
-            value={ orderDetails.deliveyAddress }
+            value={ orderDetails.deliveryAddress }
           />
         </label>
-        <label htmlFor="deliveyNumber">
+        <label htmlFor="deliveryNumber">
           Numero
           <input
             type="number"
-            name="deliveyNumber"
+            name="deliveryNumber"
             data-testid="customer_checkout__input-address-number"
             onChange={ handleChanges }
-            value={ orderDetails.deliveyNumber }
+            value={ orderDetails.deliveryNumber }
           />
         </label>
         <button

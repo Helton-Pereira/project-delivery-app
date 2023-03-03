@@ -1,5 +1,5 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 const mockCart = [
   {
@@ -19,27 +19,12 @@ const mockCart = [
   },
 ];
 
-function TableOrderCheckout({ setNewOrder }) {
+function TableOrderCheckout() {
   let totalCart = 0;
 
   const handleRemoveButton = (expensei) => {
     console.log(`REMOVE: ${expensei}`);
     // filter para tirar o elemento com o name
-  };
-
-  const updateNewOrderArrays = (productId, quantity) => {
-    setNewOrder((prevNewOrderDetails) => ({
-      ...prevNewOrderDetails,
-      productsId: [...prevNewOrderDetails.productsId, productId],
-      quantities: [...prevNewOrderDetails.quantities, quantity],
-    }));
-  };
-
-  const updateNewOrderTotalPrice = (totalPrice) => {
-    setNewOrder((prevNewOrderDetails) => ({
-      ...prevNewOrderDetails,
-      totalPrice,
-    }));
   };
 
   const fillTableDescription = () => {
@@ -52,7 +37,6 @@ function TableOrderCheckout({ setNewOrder }) {
         quantity,
       } = element;
       totalCart += (quantity * price);
-      updateNewOrderArrays(id, quantity);
       return (
         <tr key={ i }>
           <td data-testi={ `customer_checkout__element-order-table-item-number-${i}` }>
@@ -83,8 +67,6 @@ function TableOrderCheckout({ setNewOrder }) {
       );
     });
 
-    updateNewOrderTotalPrice(totalCart);
-
     return tableElement;
   };
 
@@ -111,8 +93,8 @@ function TableOrderCheckout({ setNewOrder }) {
   );
 }
 
-TableOrderCheckout.propTypes = {
-  setNewOrder: PropTypes.func.isRequired,
-};
+// TableOrderCheckout.propTypes = {
+//   setNewOrder: PropTypes.func.isRequired,
+// };
 
 export default TableOrderCheckout;

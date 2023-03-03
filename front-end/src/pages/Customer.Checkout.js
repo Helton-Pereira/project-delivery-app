@@ -18,11 +18,21 @@ function CostumerCheckout(props) {
 
   const { history } = props;
 
+  const makeObjPost = () => ({
+    name: '',
+    seller: newOrder.seller,
+    totalPrice: 0,
+    deliveryAddress: newOrder.deliveryAddress,
+    deliveryNumber: newOrder.deliveryNumber,
+    productsId: [],
+    quantities: [],
+  });
+
   const handleSubmitOrder = async (event) => {
     event.preventDefault();
     try {
       const id = '0011177778888';
-      console.log(newOrder);
+      console.log(makeObjPost());
       /* await requestSale(newOrder); */
       history.push(`/customer/orders/${id}`);
     } catch (error) {
