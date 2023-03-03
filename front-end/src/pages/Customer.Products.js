@@ -19,7 +19,7 @@ function CustomerProducts(props) {
   const totalFloat = total.toFixed(Number(2));
   const totalString = totalFloat.toString();
   const totalProduct = totalString.replace(/\./, ',');
-  // ----------
+  // ---------
 
   const handleClickCart = (event) => {
     event.preventDefault();
