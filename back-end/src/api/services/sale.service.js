@@ -3,7 +3,7 @@ const { User } = require('../../database/models');
 const saleProductService = require('./saleProduct.service');
 
 
-const createSale = async ({ userName, sellerName, totalPrice, deliveryAddress, deliveryNumber, products, quantities }) => {
+const createSale = async ({ userName, sellerName, totalPrice, deliveryAddress, deliveryNumber, productsId, quantities }) => {
   const user = await User.findOne({ where: { name: userName }})
   const seller = await User.findOne({ where: { name: sellerName }})
 
@@ -14,7 +14,7 @@ const createSale = async ({ userName, sellerName, totalPrice, deliveryAddress, d
 
   const { id } = result.dataValues;
 
-  await saleProductService.createSaleProduct({id, products, quantities});
+  await saleProductService.createSaleProduct({id, productsId, quantities});
   
   return id;
 };
