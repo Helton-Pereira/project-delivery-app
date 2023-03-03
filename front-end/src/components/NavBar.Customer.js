@@ -1,15 +1,19 @@
+import { useEffect, useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import browserStorage from 'store';
 
 function NavBarCustomer() {
+  const [userName, setUserName] = useState('');
+
+  useEffect(() => {
+    const { name } = browserStorage.get('user');
+    setUserName(name);
+  }, []);
+
   const history = useHistory();
 
-  // const user = localStorage.getItem('user');
-  // const nameUser = JSON.parse(user).name;
-
-  const nameUser = 'Usuário'; // mock
-
   const handleLogout = () => {
-    localStorage.removeItem('user');
+    browserStorage.remove('user');
     history.push('/login');
   };
 
@@ -37,7 +41,7 @@ function NavBarCustomer() {
             data-testid="customer_products__element-navbar-user-full-name"
           >
             Nome
-            { nameUser }
+            { userName }
           </span>
         </div>
         <div>

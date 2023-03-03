@@ -1,12 +1,19 @@
-// import { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import CardProducts from '../components/Card.Products';
 import NavBarCustomer from '../components/NavBar.Customer';
 // import { requestData } from '../services/requests';
 import mockProducts from './mockProducts';
+import useValidateAuth from '../hooks/useValidateAuth';
+import usePersistState from '../hooks/usePersistState';
+import initialStates from '../utils/initialStates';
 
 function CustomerProducts(props) {
   // const [products, setProducts] = useState([]);
+  const [user, setUser] = usePersistState('user', initialStates.userData);
+  const [auth, setAuth] = useState(false);
+
+  useValidateAuth(props, setAuth, setUser);
 
   // Testando sem o localStorage
   const cartProducts = [{ price: 2.20, quantity: 2 }, { price: 2.49, quantity: 4 }]; // mock

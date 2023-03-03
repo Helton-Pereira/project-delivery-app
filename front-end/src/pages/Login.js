@@ -10,7 +10,7 @@ const MIN_PASSWORD_LENGTH = 6;
 
 function Login(props) {
   const [loginData, setLoginData] = useState(initialStates.login);
-  const [userData, setUserData] = usePersistState('userData', initialStates.userData);
+  const [user, setUser] = usePersistState('user', initialStates.userData);
   const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
   // const { userDispatch } = useContext(DeliveryAppContext);
@@ -30,8 +30,8 @@ function Login(props) {
     try {
       const { name, email, role, token } = await api.requestLogin('/login', loginData);
       setErrorMessage('');
-      setUserData({ name, email, role, token });
-      console.log(userData);
+      setUser({ name, email, role, token });
+      console.log(user);
 
       // userDispatch({ type: 'LOGIN', payload: email });
       history.push('/customer/products');
