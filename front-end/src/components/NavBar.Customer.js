@@ -1,8 +1,12 @@
 import { Link, useHistory } from 'react-router-dom';
-import PropTypes from 'prop-types';
 
-function NavBarCustomer({ name }) {
+function NavBarCustomer() {
   const history = useHistory();
+
+  // const user = localStorage.getItem('user');
+  // const nameUser = JSON.parse(user).name;
+
+  const nameUser = 'Usuário'; // mock
 
   const handleLogout = () => {
     localStorage.removeItem('user');
@@ -33,7 +37,7 @@ function NavBarCustomer({ name }) {
             data-testid="customer_products__element-navbar-user-full-name"
           >
             Nome
-            { name }
+            { nameUser }
           </span>
         </div>
         <div>
@@ -49,9 +53,5 @@ function NavBarCustomer({ name }) {
     </main>
   );
 }
-
-NavBarCustomer.propTypes = {
-  name: PropTypes.string.isRequired,
-};
 
 export default NavBarCustomer;

@@ -4,8 +4,22 @@ import { useState } from 'react';
 function CardProducts({ id, name, price, urlImage }) {
   const [quantity, setQuantity] = useState(0);
 
+  const priceFloat = price.toFixed(Number(2));
+  const priceString = priceFloat.toString();
+  const priceProduct = priceString.replace(/\./, ',');
+
+  //   localStorage.setItem("key","value");
+
   const increaseQuantity = () => { setQuantity(quantity + 1); };
-  const decreaseQuantity = () => { setQuantity(quantity + 1); };
+
+  const decreaseQuantity = () => {
+    if (quantity > 0) return setQuantity(quantity - 1);
+  };
+
+  const handleQuantityInput = ({ target }) => {
+    const { value } = target;
+    setQuantity(value);
+  };
 
   return (
     <div key={ id }>
@@ -14,8 +28,7 @@ function CardProducts({ id, name, price, urlImage }) {
         <span
           data-testid={ `customer_products__element-card-price-${id}` }
         >
-          Price
-          {`R$  ${price.replace('.', ',')}`}
+          {`R$  ${priceProduct}`}
         </span>
       </div>
 
@@ -23,7 +36,7 @@ function CardProducts({ id, name, price, urlImage }) {
         <img
           data-testid={ `customer_products__img-card-bg-image-${id}` }
           src={ urlImage }
-          alt={ name }
+          alt={ `Bebida:  ${name}` }
           style={ { width: '100px' } }
         />
       </div>
@@ -51,7 +64,7 @@ function CardProducts({ id, name, price, urlImage }) {
           type="number"
           data-testid={ `customer_products__input-card-quantity-${id}` }
           value={ quantity }
-          // onChange={ target }
+          onChange={ handleQuantityInput }
           min={ 0 }
         />
 
@@ -71,7 +84,7 @@ function CardProducts({ id, name, price, urlImage }) {
 CardProducts.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
   urlImage: PropTypes.string.isRequired,
 };
 
