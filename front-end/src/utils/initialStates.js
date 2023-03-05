@@ -1,13 +1,11 @@
-const login = {
+export const LOGIN_INITIAL_STATE = {
   email: '',
   password: '',
 };
 
-const userData = {
+export const USER_INITIAL_STATE = {
   email: '',
   name: '',
   role: '',
   token: '',
 };
-
-export default { login, userData };

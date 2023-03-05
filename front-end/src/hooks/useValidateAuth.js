@@ -1,18 +1,16 @@
 import { useEffect } from 'react';
 import browserStorage from 'store';
 
-export default (props, setAuthState, setUserState) => {
+export default (props, setAuthState) => {
   useEffect(() => {
-    (async () => {
-      const { history } = props;
-      const data = await browserStorage.get('userData');
+    const { history } = props;
+    const data = browserStorage.get('user');
 
-      if (!data.token) {
-        setUserState({ ...data, token: '' });
-        history.push('/login');
-      }
+    if (!data.token) {
+      browserStorage.remove('user');
+      history.push('/login');
+    }
 
-      setAuthState(true);
-    })();
+    setAuthState(true);
   }, []);
 };
