@@ -1,14 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useContext } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import browserStorage from 'store';
+import DeliveryAppContext from '../context/DeliveryAppContext';
 
 function NavBarCustomer() {
-  const [userName, setUserName] = useState('');
-
-  useEffect(() => {
-    const { name } = browserStorage.get('user');
-    setUserName(name);
-  }, []);
+  const { user: { name } } = useContext(DeliveryAppContext);
 
   const history = useHistory();
 
@@ -41,7 +37,7 @@ function NavBarCustomer() {
             data-testid="customer_products__element-navbar-user-full-name"
           >
             Nome
-            { userName }
+            { name }
           </span>
         </div>
         <div>
