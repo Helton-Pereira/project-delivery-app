@@ -1,26 +1,23 @@
-// import React, { useReducer } from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
+import { USER_INITIAL_STATE } from '../utils/initialStates';
+import usePersistState from '../hooks/usePersistState';
 
 import DeliveryAppContext from './DeliveryAppContext';
 
-// import {
-//   recipesReducer,
-//   RECIPES_INITIAL_STATE,
-//   USER_INITIAL_STATE,
-//   userReducer } from '../services/reducers';
-
 export default function DeliveryAppProvider({ children }) {
-  // const [recipes, recipesDispatch] = useReducer(recipesReducer, RECIPES_INITIAL_STATE);
-  // const [user, userDispatch] = useReducer(userReducer, USER_INITIAL_STATE);
+  const [user, setUser] = usePersistState('user', USER_INITIAL_STATE);
+  const [cart, setCart] = usePersistState('cart', []);
 
-  // const contextValue = {
-  //   recipes,
-  //   recipesDispatch,
-  //   user,
-  //   userDispatch,
-  // };
+  const contextValue = useMemo(() => ({
+    user,
+    setUser,
+    cart,
+    setCart,
+  }), [user, cart]);
+
   return (
-    <DeliveryAppContext.Provider value={ 0 }>
+    <DeliveryAppContext.Provider value={ contextValue }>
       {children}
     </DeliveryAppContext.Provider>
   );
