@@ -1,36 +1,33 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import PropTypes from 'prop-types';
 import CardProducts from '../components/Card.Products';
 import NavBarCustomer from '../components/NavBar.Customer';
 import api from '../services/requests';
-import mockProducts from './mockProducts';
 import useValidateAuth from '../hooks/useValidateAuth';
-import usePersistState from '../hooks/usePersistState';
-import initialStates from '../utils/initialStates';
+import DeliveryAppContext from '../context/DeliveryAppContext';
 
 function CustomerProducts(props) {
   const [products, setProducts] = useState([]);
-  const [user, setUser] = usePersistState('user', initialStates.userData);
+  const [totalValue, setTotalValue] = useState(0);
   const [auth, setAuth] = useState(false);
 
-  useValidateAuth(props, setAuth, setUser);
+  const { cart } = useContext(DeliveryAppContext);
 
-  // Testando sem o localStorage
-  const cartProducts = [{ price: 2.20, quantity: 2 }, { price: 2.49, quantity: 4 }]; // mock
-  const totalCalculate = cartProducts.map((prod) => prod.price * prod.quantity);
-  const initialValue = 0;
-  const total = totalCalculate.reduce(
-    (accumulator, currentValue) => accumulator + currentValue,
-    initialValue,
-  );
-  const totalFloat = total.toFixed(Number(2));
-  const totalString = totalFloat.toString();
-  const totalProduct = totalString.replace(/\./, ',');
-  // ---------
+  useValidateAuth(props, setAuth);
+
+  useEffect(() => {
+    const total = cart.reduce(
+      (acc, curr) => acc + (curr.price * curr.quantity),
+      0,
+    );
+    const convertedValue = total.toFixed(Number(2)).toString().replace(/\./, ',');
+    setTotalValue(convertedValue);
+  }, [cart]);
 
   const handleClickCart = (event) => {
     event.preventDefault();
     const { history } = props;
+    console.log(auth); // Provisório, só para não dar erro no linter | auth será utilizado na tela de Loading
     history.push('/customer/checkout');
   };
 
@@ -61,13 +58,13 @@ function CustomerProducts(props) {
           type="button"
           data-testid="customer_products__button-cart"
           className="button-cart"
-          disabled={ totalProduct < 1 }
+          disabled={ totalValue === '0,00' }
           onClick={ handleClickCart }
         >
           <span
             data-testid="customer_products__checkout-bottom-value"
           >
-            { `Ver carrinho: ${totalProduct}` }
+            { totalValue }
           </span>
         </button>
       </div>
