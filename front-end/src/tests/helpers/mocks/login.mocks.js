@@ -14,7 +14,7 @@ const loginData = {
   email: validEmail,
   name: 'Cliente Zé Birita',
   role: 'customer',
-  token: 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoiemViaXJpdGFAZW1haWwuY29tIiwiaWF0IjoxNjc4MDI5MzAyLCJleHAiOjE2NzgwNzI1MDJ9.jSxy6u8ZrllO5FN8NlCwP2yQftYheCFI_QbY_f7j4Z8',
+  token: 'mockedToken',
 };
 
 export default {

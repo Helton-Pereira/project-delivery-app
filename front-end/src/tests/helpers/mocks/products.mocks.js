@@ -1,3 +1,10 @@
+const priceElement = 'customer_products__element-card-price-';
+const imageElement = 'customer_products__img-card-bg-image-';
+const titleElement = 'customer_products__element-card-title-';
+const removeButton = 'customer_products__button-card-rm-item-';
+const addButton = 'customer_products__button-card-add-item-';
+const quantityInput = 'customer_products__input-card-quantity-';
+
 const allProducts = [
   {
     id: 1,
@@ -68,5 +75,11 @@ const allProducts = [
 ];
 
 export default {
+  priceElement,
+  imageElement,
+  titleElement,
+  removeButton,
+  addButton,
+  quantityInput,
   allProducts,
 };
