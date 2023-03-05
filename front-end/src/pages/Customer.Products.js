@@ -48,7 +48,7 @@ function CustomerProducts(props) {
           key={ product.id }
           name={ product.name }
           price={ Number(product.price) }
-          image={ product.urlImage }
+          urlImage={ product.urlImage }
           id={ product.id }
         />
       ))}
