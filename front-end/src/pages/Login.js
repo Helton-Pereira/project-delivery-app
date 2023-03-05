@@ -1,19 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-// import DeliveryAppContext from '../context/DeliveryAppContext';
+import DeliveryAppContext from '../context/DeliveryAppContext';
 import api from '../services/requests';
 import isValidEmail from '../utils/validations';
-import usePersistState from '../hooks/usePersistState';
-import initialStates from '../utils/initialStates';
+import { LOGIN_INITIAL_STATE } from '../utils/initialStates';
 
 const MIN_PASSWORD_LENGTH = 6;
 
 function Login(props) {
-  const [loginData, setLoginData] = useState(initialStates.login);
-  const [user, setUser] = usePersistState('user', initialStates.userData);
+  const [loginData, setLoginData] = useState(LOGIN_INITIAL_STATE);
   const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
-  // const { userDispatch } = useContext(DeliveryAppContext);
+
+  const { setUser, setCart } = useContext(DeliveryAppContext);
 
   const handleChanges = ({ target }) => {
     const { name, value } = target;
@@ -29,11 +28,11 @@ function Login(props) {
 
     try {
       const { name, email, role, token } = await api.requestLogin('/login', loginData);
+
       setErrorMessage('');
       setUser({ name, email, role, token });
-      console.log(user);
+      setCart([]);
 
-      // userDispatch({ type: 'LOGIN', payload: email });
       history.push('/customer/products');
     } catch (error) {
       console.log(error.response.data.message);
@@ -109,6 +108,8 @@ function Login(props) {
           ) }
         </form>
       </div>
+      {/* <p>zebirita@email.com</p>
+      <p>$#zebirita#$</p> */}
     </main>
   );
 }
