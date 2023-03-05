@@ -5,7 +5,7 @@ import App from '../App';
 import renderWithRouter from './helpers/renderWithRouter';
 import mocks from './helpers/mocks/register.mock';
 import api from '../services/requests';
-
+//
 describe('Test the Register page', () => {
   test('Checks if all elements exist', () => {
     renderWithRouter(<App />, { initialEntries: ['/register'] });
