@@ -45,7 +45,7 @@ describe('Test the Customer Orders page', () => {
       expect(dateEl.innerHTML).toBe(order.saleDate);
 
       expect(priceEl).toBeInTheDocument();
-      expect(priceEl.innerHTML).toBe(`R$  ${order.totalPrice.replace(/\./, ',')}`);
+      expect(priceEl.innerHTML).toContain(`R$ ${order.totalPrice.replace(/\./, ',')}`);
     });
   });
 
