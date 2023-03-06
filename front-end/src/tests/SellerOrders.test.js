@@ -33,7 +33,7 @@ describe('Test the Seller Orders page', () => {
       const statusEl = screen.getByTestId(`${ordersMocks.statusElement}${order.id}`);
       const dateEl = screen.getByTestId(`${ordersMocks.dateElement}${order.id}`);
       const priceEl = screen.getByTestId(`${ordersMocks.priceElement}${order.id}`);
-      const addressElement = screen.getByTestId(`${ordersMocks.priceElement}${order.id}`);;
+      const addressElement = screen.getByTestId(`${ordersMocks.addressElement}${order.id}`);;
 
       expect(idEl).toBeInTheDocument();
       expect(idEl.innerHTML).toBe(order.id.toString().padStart(ID_PAD_START, '0'));
@@ -48,7 +48,7 @@ describe('Test the Seller Orders page', () => {
       expect(priceEl.innerHTML).toBe(`R$ ${order.totalPrice.replace(/\./, ',')}`);
 
       expect(addressElement).toBeInTheDocument();
-      expect(addressElement.innerHTML).toBe(`${order.deliveryAddress},${order.deliveryNumber}`);
+      expect(addressElement.innerHTML).toBe(`${order.deliveryAddress}, ${order.deliveryNumber}`);
     });
   });
 
