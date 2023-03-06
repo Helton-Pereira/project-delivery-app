@@ -17,10 +17,11 @@ function App() {
         <Redirect exact from="/" to="/login" />
         <Route exact path="/register" component={ Register } />
         <Route exact path="/customer/checkout" component={ CostumerCheckout } />
-        <Route exact path="/customer/orders/:id" />
         <Route exact path="/customer/products" component={ CustomerProducts } />
         <Route exact path="/customer/orders" component={ CustomerOrders } />
+        <Route exact path="/customer/orders/:id" />
         <Route exact path="/seller/orders" component={ SellerOrders } />
+        <Route exact path="/seller/orders/:id" />
       </Switch>
     </DeliveryAppProvider>
   );
