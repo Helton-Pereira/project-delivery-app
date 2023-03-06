@@ -1,64 +1,52 @@
-import React from 'react';
-// import PropTypes from 'prop-types';
-
-const mockCart = [
-  {
-    id: 'produto_1',
-    price: 12.15,
-    quantity: 4,
-  },
-  {
-    id: 'produto_2',
-    price: 2.25,
-    quantity: 2,
-  },
-  {
-    id: 'produto_3',
-    price: 15.17,
-    quantity: 2,
-  },
-];
+import { useContext } from 'react';
+import DeliveryAppContext from '../context/DeliveryAppContext';
 
 function TableOrderCheckout() {
   let totalCart = 0;
 
-  const handleRemoveButton = (expensei) => {
-    console.log(`REMOVE: ${expensei}`);
-    // filter para tirar o elemento com o name
+  const { cart, setCart } = useContext(DeliveryAppContext);
+
+  const convertPrice = (price) => price.toFixed(Number(2)).toString().replace(/\./, ',');
+
+  const handleRemoveButton = (id) => {
+    console.log(`REMOVE: ${id}`);
+    const newCart = cart.filter((items) => items.id !== id);
+    setCart(newCart);
   };
 
   const fillTableDescription = () => {
     // const { products } = this.props;
-    const products = mockCart;
+    const products = cart;
     const tableElement = products.map((element, i) => {
       const {
         id,
+        name,
         price,
         quantity,
       } = element;
       totalCart += (quantity * price);
       return (
         <tr key={ i }>
-          <td data-testi={ `customer_checkout__element-order-table-item-number-${i}` }>
+          <td data-testid={ `customer_checkout__element-order-table-item-number-${i}` }>
             { (i + 1) }
           </td>
-          <td data-testi={ `customer_checkout__element-order-table-name-${i}` }>
-            { id }
+          <td data-testid={ `customer_checkout__element-order-table-name-${i}` }>
+            { name }
           </td>
-          <td data-testi={ `customer_checkout__element-order-table-quantity-${i}` }>
+          <td data-testid={ `customer_checkout__element-order-table-quantity-${i}` }>
             { quantity }
           </td>
-          <td data-testi={ `customer_checkout__element-order-table-unit-price-${i}` }>
-            { price }
+          <td data-testid={ `customer_checkout__element-order-table-unit-price-${i}` }>
+            { convertPrice(price) }
           </td>
-          <td data-testi={ `customer_checkout__element-order-table-sub-total-${i}` }>
-            { quantity * price }
+          <td data-testid={ `customer_checkout__element-order-table-sub-total-${i}` }>
+            { convertPrice(quantity * price) }
           </td>
           <td>
             <button
               type="button"
               onClick={ () => handleRemoveButton(id) }
-              data-testi={ `customer_checkout__element-order-table-remove-${i}` }
+              data-testid={ `customer_checkout__element-order-table-remove-${i}` }
             >
               Excluir
             </button>
@@ -66,7 +54,6 @@ function TableOrderCheckout() {
         </tr>
       );
     });
-
     return tableElement;
   };
 
@@ -87,7 +74,7 @@ function TableOrderCheckout() {
       </table>
       <h1 data-testid="customer_checkout__element-order-total-price">
         Total:
-        { `${totalCart}` }
+        { `${convertPrice(totalCart)}` }
       </h1>
     </div>
   );
