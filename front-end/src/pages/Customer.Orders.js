@@ -5,6 +5,7 @@ import NavBarCustomer from '../components/NavBar.Customer';
 // import api from '../services/requests';
 import useValidateAuth from '../hooks/useValidateAuth';
 import mockedOrders from '../utils/ordersMock';
+//
 
 function CustomerOrders(props) {
   const { history } = props;
