@@ -12,10 +12,10 @@ const login = async (_email, password) => {
 
   const token = generateToken(_email);
 
-  const { name, email, role } = user.dataValues;
+  const { name, email, role, id } = user.dataValues;
 
   if (hashPassword === user.dataValues.password) {
-    return { status: 200, name, email, role, token };
+    return { status: 200, id, name, email, role, token };
   }
   return { status: 404, message: 'Invalid password' };
 };
