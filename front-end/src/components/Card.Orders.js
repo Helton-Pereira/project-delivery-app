@@ -56,4 +56,4 @@ CardOrders.propTypes = {
   totalPrice: PropTypes.string.isRequired,
 };
 
-export default CardProducts;
+export default CardOrders;
