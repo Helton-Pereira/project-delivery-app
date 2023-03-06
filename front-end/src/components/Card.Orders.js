@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 
 function CardOrders({ history, id, status, saleDate, totalPrice }) {
   const { location: { pathname } } = history;
-  const FORMAT = { minimumFractionDigits: 2, style: 'currency', currency: 'BRL' };
+  const ID_PAD_START = 4;
+
+  const convertPrice = (price) => price.toFixed(Number(2)).toString().replace(/\./, ',');
 
   return (
     <div key={ id } className="order-card-container">
@@ -34,11 +36,14 @@ function CardOrders({ history, id, status, saleDate, totalPrice }) {
 
         <div className="order-price-container">
           <span data-testid={ `customer_orders__element-card-price-${id}` }>
-            {Number(totalPrice).toLocaleString('pt-BR', FORMAT)}
+            {`R$ ${convertPrice(totalPrice)}`}
           </span>
         </div>
 
       </Link>
+
+      <br />
+      {/* Elemento acima somente para facilitar a visualização. Apagamos ele durante a estilização. */}
 
     </div>
   );
@@ -53,7 +58,7 @@ CardOrders.propTypes = {
   id: PropTypes.number.isRequired,
   status: PropTypes.string.isRequired,
   saleDate: PropTypes.string.isRequired,
-  totalPrice: PropTypes.string.isRequired,
+  totalPrice: PropTypes.number.isRequired,
 };
 
 export default CardOrders;
