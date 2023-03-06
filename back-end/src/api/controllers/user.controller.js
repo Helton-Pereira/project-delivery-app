@@ -1,9 +1,26 @@
 const userService = require('../services/user.service');
 
+const getSellers = async (_req, res) => {
+  try {
+    const sellers = await userService.getSellers();
+    res.status(200).json(sellers);
+  } catch (error) {
+    res.status(500).json({ message: 'An error has occurred' });
+  }
+};
+
 const login = async (req, res) => {
   const { email: _email, password } = req.body;
 
-  const { id, status, email, name, role, token, message } = await userService.login(_email, password);
+  const {
+    id,
+    status,
+    email,
+    name,
+    role,
+    token,
+    message,
+  } = await userService.login(_email, password);
 
   if (status === 200) {
     return res.status(status).json({ id, name, email, role, token });
@@ -31,4 +48,4 @@ const createUser = async (req, res) => {
   return res.status(status).json({ message });
 };
 
-module.exports = { login, createUser };
+module.exports = { login, createUser, getSellers };

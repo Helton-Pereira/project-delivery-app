@@ -3,8 +3,8 @@ const { productService } = require('../services');
 
 const getAll = async (_req, res) => {
   try {
-    const productsAndSellers = await productService.getAll();
-    return res.status(200).json(productsAndSellers);
+    const products = await productService.getAll();
+    return res.status(200).json(products);
   } catch (error) {
     res.status(500).json({ message: 'An error has occurred' });
   }

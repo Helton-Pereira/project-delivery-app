@@ -2,6 +2,13 @@ const md5 = require('md5');
 const { User } = require('../../database/models');
 const { generateToken } = require('../utils/token');
 
+const getSellers = async () => {
+  const sellers = await User.findAll(
+    { where: { role: 'seller' }, attributes: { exclude: 'password' } },
+  );
+  return sellers;
+};
+
 const login = async (_email, password) => {
   const user = await User.findOne({ where: { email: _email } });
   if (!user) {
@@ -35,4 +42,4 @@ const createUser = async ({ name, email, newPassword }) => {
   return login(email, newPassword);
 };
 
-module.exports = { login, createUser };
+module.exports = { login, createUser, getSellers };
