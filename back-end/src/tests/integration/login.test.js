@@ -24,9 +24,9 @@ describe('POST /login integration tests', async () => {
               .post('/login')
               .send({
                 email: mocks.user.dataValues.email,
-                password: '$#zebirita#$'
+                password: mocks.unhashedPassword
               });
-
+      
       expect(response.status).to.be.equal(200);
       expect(response.body).to.be.deep.equal({ ...mocks.userRes, token: mocks.token });
     })
@@ -41,7 +41,7 @@ describe('POST /login integration tests', async () => {
               .post('/login')
               .send({
                 email: 'invalid',
-                password: '123456'
+                password: mocks.unhashedPassword
               });
 
       expect(response.status).to.be.equal(400);

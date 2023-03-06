@@ -5,6 +5,7 @@ import DeliveryAppProvider from './context/DeliveryAppProvider';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import CostumerCheckout from './pages/Customer.Checkout';
+import CustomerProducts from './pages/Customer.Products';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route exact path="/register" component={ Register } />
         <Route exact path="/customer/checkout" component={ CostumerCheckout } />
         <Route exact path="/customer/orders/:id" />
+        <Route exact path="/customer/products" component={ CustomerProducts } />
       </Switch>
     </DeliveryAppProvider>
   );

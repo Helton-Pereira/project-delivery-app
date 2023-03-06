@@ -1,0 +1,81 @@
+import { useEffect, useState, useContext } from 'react';
+import PropTypes from 'prop-types';
+import CardProducts from '../components/Card.Products';
+import NavBarCustomer from '../components/NavBar.Customer';
+import api from '../services/requests';
+import useValidateAuth from '../hooks/useValidateAuth';
+import DeliveryAppContext from '../context/DeliveryAppContext';
+
+function CustomerProducts(props) {
+  const [products, setProducts] = useState([]);
+  const [totalValue, setTotalValue] = useState(0);
+  const [auth, setAuth] = useState(false);
+
+  const { cart } = useContext(DeliveryAppContext);
+
+  useValidateAuth(props, setAuth);
+
+  useEffect(() => {
+    const total = cart.reduce(
+      (acc, curr) => acc + (curr.price * curr.quantity),
+      0,
+    );
+    const convertedValue = total.toFixed(Number(2)).toString().replace(/\./, ',');
+    setTotalValue(convertedValue);
+  }, [cart]);
+
+  const handleClickCart = (event) => {
+    event.preventDefault();
+    const { history } = props;
+    console.log(auth); // Provisório, só para não dar erro no linter | auth será utilizado na tela de Loading
+    history.push('/customer/checkout');
+  };
+
+  useEffect(() => {
+    const getProducts = async () => {
+      const data = await api.requestData('/customer/products');
+      setProducts(data);
+    };
+    getProducts();
+  }, []);
+
+  return (
+    <main>
+      <NavBarCustomer />
+
+      {products.map((product) => (
+        <CardProducts
+          key={ product.id }
+          name={ product.name }
+          price={ Number(product.price) }
+          urlImage={ product.urlImage }
+          id={ product.id }
+        />
+      ))}
+
+      <div>
+        <button
+          type="button"
+          data-testid="customer_products__button-cart"
+          className="button-cart"
+          disabled={ totalValue === '0,00' }
+          onClick={ handleClickCart }
+        >
+          <span
+            data-testid="customer_products__checkout-bottom-value"
+          >
+            { totalValue }
+          </span>
+        </button>
+      </div>
+    </main>
+  );
+}
+
+CustomerProducts.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
+
+export default CustomerProducts;

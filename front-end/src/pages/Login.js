@@ -1,25 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-// import DeliveryAppContext from '../context/DeliveryAppContext';
-import { requestLogin } from '../services/requests';
+import DeliveryAppContext from '../context/DeliveryAppContext';
+import api from '../services/requests';
 import isValidEmail from '../utils/validations';
+import { LOGIN_INITIAL_STATE } from '../utils/initialStates';
 
 const MIN_PASSWORD_LENGTH = 6;
 
 function Login(props) {
-  const INITIAL_STATE = {
-    email: '',
-    password: '',
-  };
-  const [user, setUser] = useState(INITIAL_STATE);
+  const [loginData, setLoginData] = useState(LOGIN_INITIAL_STATE);
   const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
-  // const { userDispatch } = useContext(DeliveryAppContext);
+
+  const { setUser, setCart } = useContext(DeliveryAppContext);
 
   const handleChanges = ({ target }) => {
     const { name, value } = target;
-    setUser((prevUser) => ({
-      ...prevUser,
+    setLoginData((prev) => ({
+      ...prev,
       [name]: value,
     }));
   };
@@ -29,10 +27,12 @@ function Login(props) {
     const { history } = props;
 
     try {
-      const { token } = await requestLogin('/login', user);
-      console.log(token);
-      // userDispatch({ type: 'LOGIN', payload: email });
+      const { name, email, role, token } = await api.requestLogin('/login', loginData);
+
       setErrorMessage('');
+      setUser({ name, email, role, token });
+      setCart([]);
+
       history.push('/customer/products');
     } catch (error) {
       console.log(error.response.data.message);
@@ -48,7 +48,7 @@ function Login(props) {
 
   useEffect(() => {
     const verifyLoginRequest = () => {
-      const { email, password } = user;
+      const { email, password } = loginData;
       if (isValidEmail(email) && password.length >= MIN_PASSWORD_LENGTH) {
         setIsLoginButtonDisabled(false);
       } else {
@@ -56,7 +56,7 @@ function Login(props) {
       }
     };
     verifyLoginRequest();
-  }, [user]);
+  }, [loginData]);
 
   return (
     <main>
@@ -70,7 +70,7 @@ function Login(props) {
               id="email"
               type="email"
               name="email"
-              value={ user.email }
+              value={ loginData.email }
               data-testid="common_login__input-email"
               onChange={ handleChanges }
               placeholder="email"
@@ -82,7 +82,7 @@ function Login(props) {
               id="password"
               type="password"
               name="password"
-              value={ user.password }
+              value={ loginData.password }
               data-testid="common_login__input-password"
               onChange={ handleChanges }
               placeholder="password"
@@ -108,6 +108,8 @@ function Login(props) {
           ) }
         </form>
       </div>
+      {/* <p>zebirita@email.com</p>
+      <p>$#zebirita#$</p> */}
     </main>
   );
 }

@@ -10,6 +10,13 @@ const validPassword = '$#zebirita#$';
 const invalidEmail = 'xxxxxxx';
 const invalidPassword = '123';
 
+const loginData = {
+  email: validEmail,
+  name: 'Cliente Zé Birita',
+  role: 'customer',
+  token: 'mockedToken',
+};
+
 export default {
   emailInput,
   passwordInput,
@@ -20,4 +27,5 @@ export default {
   validPassword,
   invalidEmail,
   invalidPassword,
+  loginData,
 };
