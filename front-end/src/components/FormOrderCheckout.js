@@ -17,12 +17,13 @@ function FormOrderCheckout({ handleSubmitOrder, setNewOrder }) {
   const INITIAL_STATE = {
     seller: '',
     deliveryAddress: '',
-    deliveryNumber: 0,
+    deliveryNumber: null,
   };
 
   const [orderDetails, setOrderDetails] = useState(INITIAL_STATE);
 
   const creatSelerSelect = () => {
+    // const sellers = await api.requestData('/seller');
     const option = mockSellers.map((seller) => (
       <option key={ seller.name } value={ seller.name }>{seller.name}</option>
     ));
