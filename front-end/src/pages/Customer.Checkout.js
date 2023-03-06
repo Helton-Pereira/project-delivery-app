@@ -2,6 +2,7 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import FormOrderCheckout from '../components/FormOrderCheckout';
+import NavBarCustomer from '../components/NavBar.Customer';
 import TableOrderCheckout from '../components/TableOrderCheckout';
 
 function CostumerCheckout(props) {
@@ -43,7 +44,7 @@ function CostumerCheckout(props) {
   return (
     <main>
       <h1>Checkout-Page</h1>
-      {/* <NavbarCustomer /> */}
+      <NavBarCustomer />
       <h2>NavbarCustomer</h2>
       <div className="Checkout-container">
         <h2>Finalizar Pedido</h2>
