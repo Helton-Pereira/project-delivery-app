@@ -20,6 +20,6 @@ const getSalesByUserId = async (email) => {
   const { id } = user.dataValues;
   const sale = await Sale.findAll({ where: { userId: id } });
   return sale;
-}
+};
 
 module.exports = { getSales, getSaleDetails, getSalesByUserId };
