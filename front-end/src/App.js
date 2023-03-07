@@ -9,6 +9,7 @@ import CustomerProducts from './pages/Customer.Products';
 import CustomerOrders from './pages/Customer.Orders';
 import CustomerOrderDatails from './pages/Customer.Order.Details';
 import SellerOrders from './pages/Seller.Orders';
+import AdminManage from './pages/Admin.Manage';
 
 function App() {
   return (
@@ -23,8 +24,7 @@ function App() {
         <Route exact path="/customer/orders/:id" component={ CustomerOrderDatails } />
         <Route exact path="/seller/orders" component={ SellerOrders } />
         <Route exact path="/seller/orders/:id" />
-        <Route exact path="/admin/manage" />
-
+        <Route exact path="/admin/manage" component={ AdminManage } />
       </Switch>
     </DeliveryAppProvider>
   );
