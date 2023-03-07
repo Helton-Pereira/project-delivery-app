@@ -1,11 +1,9 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import conversions from '../utils/conversions';
 
 function CardOrders({ history, id, status, saleDate, totalPrice }) {
   const { location: { pathname } } = history;
-  const ID_PAD_START = 4;
-
-  const convertPrice = (price) => price.toFixed(Number(2)).toString().replace(/\./, ',');
 
   return (
     <div key={ id } className="order-card-container">
@@ -18,7 +16,7 @@ function CardOrders({ history, id, status, saleDate, totalPrice }) {
         <div className="order-id-container">
           <span>Pedido</span>
           <span data-testid={ `customer_orders__element-order-id-${id}` }>
-            {id.toString().padStart(ID_PAD_START, '0')}
+            {conversions.convertId(id)}
           </span>
         </div>
 
@@ -30,13 +28,13 @@ function CardOrders({ history, id, status, saleDate, totalPrice }) {
 
         <div className="order-date-container">
           <span data-testid={ `customer_orders__element-order-date-${id}` }>
-            {saleDate}
+            {conversions.convertDate(saleDate)}
           </span>
         </div>
 
         <div className="order-price-container">
           <span data-testid={ `customer_orders__element-card-price-${id}` }>
-            {`R$ ${convertPrice(totalPrice)}`}
+            {`R$ ${conversions.convertPrice(totalPrice)}`}
           </span>
         </div>
 

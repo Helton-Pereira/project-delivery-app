@@ -6,6 +6,10 @@ import renderWithRouter from './helpers/renderWithRouter';
 import mocks from './helpers/mocks/login.mocks';
 
 describe('Test the Login page', () => {
+  beforeEach(() => {
+    localStorage.removeItem('user');
+  });
+
   test('Checks if the route is correct (/login)', () => {
     const { history } = renderWithRouter(<App />);
     const { pathname } = history.location;

@@ -8,6 +8,8 @@ import CostumerCheckout from './pages/Customer.Checkout';
 import CustomerProducts from './pages/Customer.Products';
 import CustomerOrders from './pages/Customer.Orders';
 import CustomerOrderDatails from './pages/Customer.Order.Details';
+import SellerOrders from './pages/Seller.Orders';
+
 
 function App() {
   return (
@@ -17,9 +19,11 @@ function App() {
         <Redirect exact from="/" to="/login" />
         <Route exact path="/register" component={ Register } />
         <Route exact path="/customer/checkout" component={ CostumerCheckout } />
-        <Route exact path="/customer/orders/:id" component={ CustomerOrderDatails } />
         <Route exact path="/customer/products" component={ CustomerProducts } />
         <Route exact path="/customer/orders" component={ CustomerOrders } />
+        <Route exact path="/customer/orders/:id" component={ CustomerOrderDatails } />
+        <Route exact path="/seller/orders" component={ SellerOrders } />
+        <Route exact path="/seller/orders/:id" />
       </Switch>
     </DeliveryAppProvider>
   );

@@ -1,11 +1,12 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import CardOrders from '../components/Card.Orders';
+import CardSellerOrder from '../components/Card.Seller.Order';
 import NavBarCustomer from '../components/NavBar.Customer';
-import api from '../services/requests';
+// import api from '../services/requests';
 import useValidateAuth from '../hooks/useValidateAuth';
+import mockedOrders from '../utils/sellerOrdersMocks';
 
-function CustomerOrders(props) {
+function SellerOrders(props) {
   const { history } = props;
   const [orders, setOrders] = useState([]);
   const [auth, setAuth] = useState(false);
@@ -14,8 +15,8 @@ function CustomerOrders(props) {
 
   useEffect(() => {
     const getOrders = async () => {
-      const data = await api.requestData('/customer/orders');
-      setOrders(data);
+      // const data = await api.requestData('/seller/orders'); // Aguardando implementação da rota. Após isso, não esquecer de apagar o mock.
+      setOrders(mockedOrders);
     };
     getOrders();
     console.log(auth); // Provisório, só para não dar erro no linter | auth será utilizado na tela de Loading
@@ -27,13 +28,15 @@ function CustomerOrders(props) {
       <NavBarCustomer />
 
       {orders.map((order) => (
-        <CardOrders
+        <CardSellerOrder
           history={ history }
           key={ order.id }
           id={ order.id }
           status={ order.status }
           saleDate={ order.saleDate }
           totalPrice={ Number(order.totalPrice) }
+          deliveryAddress={ order.deliveryAddress }
+          deliveryNumber={ order.deliveryNumber }
         />
       ))}
 
@@ -41,7 +44,7 @@ function CustomerOrders(props) {
   );
 }
 
-CustomerOrders.propTypes = {
+SellerOrders.propTypes = {
   history: PropTypes.shape({
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
@@ -49,4 +52,4 @@ CustomerOrders.propTypes = {
   }).isRequired,
 };
 
-export default CustomerOrders;
+export default SellerOrders;

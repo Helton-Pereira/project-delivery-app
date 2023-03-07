@@ -4,11 +4,10 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './helpers/renderWithRouter';
 import loginMocks from './helpers/mocks/login.mocks';
-import ordersMocks from './helpers/mocks/orders.mocks';
+import ordersMocks from './helpers/mocks/sellerOrders.mocks';
 import api from '../services/requests';
-import conversions from '../utils/conversions'
 
-describe('Test the Customer Orders page', () => {
+describe('Test the Seller Orders page', () => {
   let history;
 
   beforeEach(() => {
@@ -17,15 +16,16 @@ describe('Test the Customer Orders page', () => {
     history = renderWithRouter(<App />).history;
 
     localStorage.setItem('user', JSON.stringify(loginMocks.loginData));
+    // localStorage.setItem('cart', []);
 
-    history.push('/customer/orders');
+    history.push('/seller/orders');
   });
 
   afterEach(() => jest.clearAllMocks());
 
   const ID_PAD_START = 4;
 
-  test('Checks orders cards', async () => {
+  test('Checks seller orders cards', async () => {
     await waitFor(() => {});
 
     ordersMocks.allOrders.forEach((order) => {
@@ -33,6 +33,7 @@ describe('Test the Customer Orders page', () => {
       const statusEl = screen.getByTestId(`${ordersMocks.statusElement}${order.id}`);
       const dateEl = screen.getByTestId(`${ordersMocks.dateElement}${order.id}`);
       const priceEl = screen.getByTestId(`${ordersMocks.priceElement}${order.id}`);
+      const addressElement = screen.getByTestId(`${ordersMocks.addressElement}${order.id}`);;
 
       expect(idEl).toBeInTheDocument();
       expect(idEl.innerHTML).toBe(order.id.toString().padStart(ID_PAD_START, '0'));
@@ -41,24 +42,27 @@ describe('Test the Customer Orders page', () => {
       expect(statusEl.innerHTML).toBe(order.status);
 
       expect(dateEl).toBeInTheDocument();
-      expect(dateEl.innerHTML).toBe(conversions.convertDate(order.saleDate));
+      expect(dateEl.innerHTML).toBe(order.saleDate);
 
       expect(priceEl).toBeInTheDocument();
-      expect(priceEl.innerHTML).toContain(`R$ ${order.totalPrice.replace(/\./, ',')}`);
+      expect(priceEl.innerHTML).toBe(`R$ ${order.totalPrice.replace(/\./, ',')}`);
+
+      expect(addressElement).toBeInTheDocument();
+      expect(addressElement.innerHTML).toBe(`${order.deliveryAddress}, ${order.deliveryNumber}`);
     });
   });
 
   test(
-    'Checks user redirection to order details page after clicking order card',
+    'Checks user redirection to seller order details page after clicking order card',
     async () => {
       await waitFor(() => {});
 
-      const orderCard = screen.getByTestId(`${ordersMocks.idElement}1`);
+      const orderCard = screen.getByTestId(`${ordersMocks.idElement}${ordersMocks.allOrders[0].id}`);
 
       userEvent.click(orderCard);
 
       await waitFor(() => {
-        expect(history.location.pathname).toBe('/customer/orders/1');
+        expect(history.location.pathname).toBe(`/seller/orders/${ordersMocks.allOrders[0].id}`);
       });
     },
   );
