@@ -23,6 +23,8 @@ function App() {
         <Route exact path="/customer/orders/:id" component={ CustomerOrderDatails } />
         <Route exact path="/seller/orders" component={ SellerOrders } />
         <Route exact path="/seller/orders/:id" />
+        <Route exact path="/admin/manage" />
+
       </Switch>
     </DeliveryAppProvider>
   );
