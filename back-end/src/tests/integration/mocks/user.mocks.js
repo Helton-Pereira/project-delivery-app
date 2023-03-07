@@ -4,6 +4,7 @@ const unhashedPassword = "$#zebirita#$";
 const hashedPassword = md5(unhashedPassword);
 
 const userRes = {
+  id: 3,
   name: 'Cliente Zé Birita',
   email: 'zebirita@email.com',
   role: 'customer'
@@ -12,7 +13,6 @@ const userRes = {
 const user = {
   dataValues: {
     ...userRes,
-    id: 3,
     password: hashedPassword,
   },
 }

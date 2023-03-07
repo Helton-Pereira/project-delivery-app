@@ -1,49 +1,74 @@
 // import NavbarCustomer from '../components/Navbar.Custumer';
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import FormOrderCheckout from '../components/FormOrderCheckout';
+import NavBarCustomer from '../components/NavBar.Customer';
 import TableOrderCheckout from '../components/TableOrderCheckout';
+import DeliveryAppContext from '../context/DeliveryAppContext';
+import api from '../services/requests';
 
 function CostumerCheckout(props) {
   const INITIAL_STATE = {
-    name: '',
     seller: '',
-    totalPrice: 0,
     deliveryAddress: '',
     deliveryNumber: '',
-    productsId: [],
-    quantities: [],
   };
   const [newOrder, setNewOrder] = useState(INITIAL_STATE);
+  const { cart, user } = useContext(DeliveryAppContext);
 
   const { history } = props;
 
+  let totalPrice = 0;
+  const productsId = [];
+  const quantities = [];
+
   const makeObjPost = () => ({
-    name: '',
-    seller: newOrder.seller,
-    totalPrice: 0,
+    name: user.name,
+    seller: 'fulana pereira',
+    totalPrice,
     deliveryAddress: newOrder.deliveryAddress,
     deliveryNumber: newOrder.deliveryNumber,
-    productsId: [],
-    quantities: [],
+    productsId,
+    quantities,
   });
+
+  const handleCartData = () => {
+    // const { products } = this.props;
+    const products = cart;
+    products.forEach((product) => {
+      const {
+        id,
+        price,
+        quantity,
+      } = product;
+      totalPrice += (quantity * price);
+      productsId.push(id);
+      quantities.push(quantity);
+    });
+
+    totalPrice = totalPrice.toFixed(Number(2));
+  };
 
   const handleSubmitOrder = async (event) => {
     event.preventDefault();
     try {
-      const id = '0011177778888';
-      console.log(makeObjPost());
-      /* await requestSale(newOrder); */
+      handleCartData();
+      // const id = '0011177778888';
+      const body = makeObjPost();
+      const { id } = await api.requestNewOrder('/customer/checkout', body, user.token);
+      console.log(id);
       history.push(`/customer/orders/${id}`);
     } catch (error) {
-      console.log(error.response.data.message);
+      // handleCartData();
+      // console.log(makeObjPost());
+      console.log(error);
     }
   };
 
   return (
     <main>
       <h1>Checkout-Page</h1>
-      {/* <NavbarCustomer /> */}
+      <NavBarCustomer />
       <h2>NavbarCustomer</h2>
       <div className="Checkout-container">
         <h2>Finalizar Pedido</h2>
