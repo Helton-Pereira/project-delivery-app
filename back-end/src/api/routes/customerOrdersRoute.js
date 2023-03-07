@@ -1,9 +1,9 @@
 const express = require('express');
-const customerOrdersController = require('../controllers/customerOrders.controller');
+const customerOrdersController = require('../controllers/orders.controller');
 
 const router = express.Router();
 
-router.get('/', customerOrdersController.getSales);
+router.get('/', customerOrdersController.getSalesByUserId);
 
 router.get('/:id', customerOrdersController.getSaleDetails);
 
