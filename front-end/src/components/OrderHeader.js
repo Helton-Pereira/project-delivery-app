@@ -9,6 +9,11 @@ function orderHeader({ id, sellerName, status, saleDate }) {
     return date.toLocaleDateString('pt-br');
   }
 
+  const handleClickStatusOrder = async () => {
+    // console.log('update order' + id);
+    // await api.requestData('UPDATE / PATCH', 'Entregue');
+  };
+
   return (
     <div key={ id }>
 
@@ -53,8 +58,8 @@ function orderHeader({ id, sellerName, status, saleDate }) {
             name="finish-button"
             data-testid=" customer_order_details__button-delivery-check"
             type="button"
-            disabled={ status !== 'EM TRANSITO' }
-            // onClick={ handleClick }
+            disabled={ status !== /Em Trânsito/i }
+            onClick={ handleClickStatusOrder }
           >
             Marcar como entregue
           </button>
