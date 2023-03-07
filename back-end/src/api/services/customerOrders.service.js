@@ -14,4 +14,12 @@ const getSaleDetails = async (saleId) => {
   return sale;
 };
 
-module.exports = { getSales, getSaleDetails };
+const getSalesByUserId = async (email) => {
+  const user = await User.findOne({ where: { email } });
+  console.log(user);
+  const { id } = user.dataValues;
+  const sale = await Sale.findAll({ where: { userId: id } });
+  return sale;
+}
+
+module.exports = { getSales, getSaleDetails, getSalesByUserId };

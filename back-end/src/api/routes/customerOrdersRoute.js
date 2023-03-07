@@ -3,7 +3,7 @@ const customerOrdersController = require('../controllers/customerOrders.controll
 
 const router = express.Router();
 
-router.get('/', customerOrdersController.getSales);
+router.get('/', customerOrdersController.getSalesByUserId);
 
 router.get('/:id', customerOrdersController.getSaleDetails);
 
