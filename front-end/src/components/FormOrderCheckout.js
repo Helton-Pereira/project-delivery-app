@@ -1,30 +1,29 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-
-const mockSellers = [
-  {
-    name: 'vendedor_1',
-  },
-  {
-    name: 'vendedor_2',
-  },
-  {
-    name: 'vendedor_3',
-  },
-];
+import api from '../services/requests';
 
 function FormOrderCheckout({ handleSubmitOrder, setNewOrder }) {
   const INITIAL_STATE = {
     seller: '',
     deliveryAddress: '',
-    deliveryNumber: null,
+    deliveryNumber: '',
   };
 
   const [orderDetails, setOrderDetails] = useState(INITIAL_STATE);
 
+  const [sellers, setSellers] = useState([]);
+
+  useEffect(() => {
+    const getSellers = async () => {
+      const data = await api.requestData('/sellers');
+      setSellers(data);
+    };
+    getSellers();
+  }, []);
+
   const creatSelerSelect = () => {
     // const sellers = await api.requestData('/seller');
-    const option = mockSellers.map((seller) => (
+    const option = sellers.map((seller) => (
       <option key={ seller.name } value={ seller.name }>{seller.name}</option>
     ));
     return option;
@@ -41,14 +40,6 @@ function FormOrderCheckout({ handleSubmitOrder, setNewOrder }) {
       [name]: value,
     }));
   };
-
-  // const makePostObject = () => {
-  //   return ({
-  //     name: 'cliente',
-  //     seller,
-
-  //   });
-  // };
 
   return (
     <div>
@@ -73,6 +64,7 @@ function FormOrderCheckout({ handleSubmitOrder, setNewOrder }) {
             data-testid="customer_checkout__input-address"
             onChange={ handleChanges }
             value={ orderDetails.deliveryAddress }
+            required
           />
         </label>
         <label htmlFor="deliveryNumber">
@@ -83,6 +75,7 @@ function FormOrderCheckout({ handleSubmitOrder, setNewOrder }) {
             data-testid="customer_checkout__input-address-number"
             onChange={ handleChanges }
             value={ orderDetails.deliveryNumber }
+            required
           />
         </label>
         <button
@@ -97,9 +90,6 @@ function FormOrderCheckout({ handleSubmitOrder, setNewOrder }) {
 }
 
 FormOrderCheckout.propTypes = {
-  // history: PropTypes.shape({
-  //   push: PropTypes.func.isRequired,
-  // }).isRequired,
   handleSubmitOrder: PropTypes.func.isRequired,
   setNewOrder: PropTypes.func.isRequired,
 };
