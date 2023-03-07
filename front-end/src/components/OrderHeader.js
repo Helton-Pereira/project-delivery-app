@@ -11,7 +11,7 @@ function orderHeader({ id, sellerName, status, saleDate }) {
 
   const handleClickStatusOrder = async () => {
     // console.log('update order' + id);
-    // await api.requestData('UPDATE / PATCH', 'Entregue');
+    // await api.requestData('UPDATE / PATCH', '{ STATUS: Entregue }');
   };
 
   return (

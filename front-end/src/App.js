@@ -10,7 +10,6 @@ import CustomerOrders from './pages/Customer.Orders';
 import CustomerOrderDatails from './pages/Customer.Order.Details';
 import SellerOrders from './pages/Seller.Orders';
 
-
 function App() {
   return (
     <DeliveryAppProvider>
