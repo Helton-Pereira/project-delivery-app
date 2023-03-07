@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
+import browserStorage from 'store';
 import DeliveryAppContext from '../context/DeliveryAppContext';
 import api from '../services/requests';
 import isValidEmail from '../utils/validations';
+import redirects from '../utils/redirects';
 import { LOGIN_INITIAL_STATE } from '../utils/initialStates';
 
 const MIN_PASSWORD_LENGTH = 6;
@@ -13,6 +15,16 @@ function Login(props) {
   const [errorMessage, setErrorMessage] = useState('');
 
   const { setUser, setCart } = useContext(DeliveryAppContext);
+
+  useEffect(() => {
+    const { history } = props;
+    const isLogged = browserStorage.get('user');
+    if (isLogged) {
+      history.push(redirects[isLogged.role]);
+      // Como 'user' é limpo SOMENTE durante o LOGOUT, ele continua no local storage se o usuário retornar à tela de login sem querer.
+      // Dessa forma, o usuário é redirecionado para a tela de produtos automaticamente.
+    }
+  }, []);
 
   const handleChanges = ({ target }) => {
     const { name, value } = target;
@@ -60,6 +72,9 @@ function Login(props) {
 
   return (
     <main>
+      {/* <p>zebirita@email.com</p>
+      <p>$#zebirita#$</p> */}
+
       <h1>login</h1>
       <div className="login-container">
         <form onSubmit={ (event) => handleLogin(event) } className="login-form">
@@ -108,8 +123,6 @@ function Login(props) {
           ) }
         </form>
       </div>
-      {/* <p>zebirita@email.com</p>
-      <p>$#zebirita#$</p> */}
     </main>
   );
 }
