@@ -16,6 +16,7 @@ describe('Routes /customer/orders integration tests', async () => {
   afterEach(sinon.restore)
 
   describe('GET /customer/orders', () => {
+
     describe('Successful cases', () => {
       it('Returns all orders with HTTP status 200 according to the logged user', async () => {
         sinon.stub(User, "findOne").resolves(userMocks.user);
@@ -31,16 +32,46 @@ describe('Routes /customer/orders integration tests', async () => {
         expect(response.body).to.be.deep.equal(ordersMocks.allOrders);
       })
     });
+
     describe('Failure cases', () => {
       it('Returns an error with HTTP status 500 when the request fails', async () => {
-        sinon.stub(User, "findOne").throws(new Error);
-        sinon.stub(Sale, "findAll").resolves(ordersMocks.allOrders);
+        sinon.stub(User, "findOne").resolves(userMocks.user);
+        sinon.stub(Sale, "findAll").throws(new Error);
         sinon.stub(jsonwebtoken, 'verify').resolves(ordersMocks.tokenPayload);
 
         const response = await chai
                 .request(app)
                 .get('/customer/orders')
                 .set({ "Authorization": ordersMocks.token })
+
+        expect(response.status).to.be.equal(500);
+        expect(response.body).to.be.deep.equal({ message: 'An error has occurred' });
+      })
+    });
+  });
+
+  describe('GET /customer/orders/:id', () => {
+
+    describe('Successful cases', () => {
+      it('Returns a order with HTTP status 200 whose id was passed to URL', async () => {
+        sinon.stub(Sale, "findByPk").resolves(ordersMocks.allOrders[0]);
+
+        const response = await chai
+                .request(app)
+                .get(`/customer/orders/${ordersMocks.allOrders[0].id}`)
+        
+        expect(response.status).to.be.equal(200);
+        expect(response.body).to.be.deep.equal(ordersMocks.allOrders[0]);
+      })
+    });
+    
+    describe('Failure cases', () => {
+      it('Returns an error with HTTP status 500 when the request fails', async () => {
+        sinon.stub(Sale, "findByPk").throws(new Error);
+
+        const response = await chai
+                .request(app)
+                .get(`/customer/orders/${ordersMocks.allOrders[0].id}`)
 
         expect(response.status).to.be.equal(500);
         expect(response.body).to.be.deep.equal({ message: 'An error has occurred' });
