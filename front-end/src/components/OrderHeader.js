@@ -11,7 +11,7 @@ function orderHeader({ id, sellerName, status, saleDate }) {
 
   const handleClickStatusOrder = async () => {
     // console.log('update order' + id);
-    // await api.requestData('UPDATE / PATCH', '{ STATUS: Entregue }');
+    // await api.requestData('UPDATE / PATCH', '{ STATUS: Entregue }'); // FALTA APENAS A ROTA DE UPDATE DO STATUS DA ORDER.
   };
 
   return (
@@ -56,7 +56,7 @@ function orderHeader({ id, sellerName, status, saleDate }) {
         <div>
           <button
             name="finish-button"
-            data-testid=" customer_order_details__button-delivery-check"
+            data-testid="customer_order_details__button-delivery-check"
             type="button"
             disabled={ status !== /Em Trânsito/i }
             onClick={ handleClickStatusOrder }

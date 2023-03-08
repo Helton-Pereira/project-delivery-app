@@ -68,7 +68,7 @@ function TableOrderDatails({ productsArray }) {
         </thead>
         <tbody>{fillTableDescription()}</tbody>
       </table>
-      <h2 data-testid="customer_checkout__element-order-total-price">
+      <h2 data-testid="customer_order_details__element-order-total-price">
         Total:
         { `${convertPrice(totalCart)}` }
       </h2>
