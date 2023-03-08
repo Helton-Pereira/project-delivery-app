@@ -47,7 +47,8 @@ function Login(props) {
       setUser({ name, email, role, token });
       setCart([]);
       api.setToken(token);
-      console.log(role);
+
+      history.push(redirects[role]);
     } catch (error) {
       console.log(error.response.data.message);
       setErrorMessage(error.response.data.message);

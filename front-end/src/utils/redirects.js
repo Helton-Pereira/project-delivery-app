@@ -1,6 +1,7 @@
 const redirects = {
   customer: '/customer/products',
-  // Aqui podemos adicionar futuramente os redirecionamentos para sellers e admins.
+  seller: '/seller/orders',
+  admin: 'admin/manage',
 };
 
 export default redirects;

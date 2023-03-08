@@ -2,13 +2,6 @@ const md5 = require('md5');
 const { User } = require('../../database/models');
 const { generateToken } = require('../utils/token');
 
-const getSellers = async () => {
-  const sellers = await User.findAll(
-    { where: { role: 'seller' }, attributes: { exclude: 'password' } },
-  );
-  return sellers;
-};
-
 const login = async (_email, password) => {
   const user = await User.findOne({ where: { email: _email } });
   if (!user) {
@@ -27,7 +20,7 @@ const login = async (_email, password) => {
   return { status: 404, message: 'Invalid password' };
 };
 
-const createUser = async ({ name, email, newPassword }) => {
+const createUserByAdmin = async ({ name, email, newPassword, role }) => {
   const userExistsEmail = await User.findOne({ where: { email } });
 
   const userExistsName = await User.findOne({ where: { name } });
@@ -38,8 +31,8 @@ const createUser = async ({ name, email, newPassword }) => {
 
   const password = md5(newPassword);
 
-  await User.create({ name, email, password });
+  await User.create({ name, email, password, role });
   return login(email, newPassword);
 };
 
-module.exports = { login, createUser, getSellers };
+module.exports = { login, createUserByAdmin };
