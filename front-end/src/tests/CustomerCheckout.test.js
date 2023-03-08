@@ -150,8 +150,6 @@ describe('Test the Checkout page', () => {
       userEvent.click(submitButton);
 
       await waitFor(() => {
-        // localStorage.setItem('user', JSON.stringify(loginMocks.loginData));
-
         expect(history.location.pathname).toBe('/customer/orders/1');
       });
     },
