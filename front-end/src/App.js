@@ -9,7 +9,7 @@ import CustomerProducts from './pages/Customer.Products';
 import CustomerOrders from './pages/Customer.Orders';
 import CustomerOrderDatails from './pages/Customer.Order.Details';
 import SellerOrders from './pages/Seller.Orders';
-
+import SellerOrderDetails from './pages/Seller.Order.Details';
 
 function App() {
   return (
@@ -23,7 +23,7 @@ function App() {
         <Route exact path="/customer/orders" component={ CustomerOrders } />
         <Route exact path="/customer/orders/:id" component={ CustomerOrderDatails } />
         <Route exact path="/seller/orders" component={ SellerOrders } />
-        <Route exact path="/seller/orders/:id" />
+        <Route exact path="/seller/orders/:id" component={ SellerOrderDetails } />
       </Switch>
     </DeliveryAppProvider>
   );
