@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import browserStorage from 'store';
+import api from '../services/requests';
 
 export default (props, setAuthState) => {
   useEffect(() => {
@@ -11,6 +12,7 @@ export default (props, setAuthState) => {
       history.push('/login');
     }
 
+    api.setToken(data.token);
     setAuthState(true);
   }, []);
 };
