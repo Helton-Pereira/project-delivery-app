@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import api from '../services/requests';
 
 function OrderHeaderSeller({ id, status, saleDate }) {
   const ID_PAD_START = 4;
@@ -9,9 +10,10 @@ function OrderHeaderSeller({ id, status, saleDate }) {
     return date.toLocaleDateString('pt-br');
   }
 
-  const handleClickStatusOrder = async () => {
-    // console.log('update order' + id);
-    // await api.requestData('UPDATE / PATCH', 'Entregue');
+  const handleClickStatusOrder = async (newStatus) => {
+    console.log(`update order${id}`);
+    await api.updateOrderStatus(`seller/orders/update/${id}`, { status: newStatus });
+    window.location.reload(true);
   };
 
   return (
@@ -45,8 +47,8 @@ function OrderHeaderSeller({ id, status, saleDate }) {
             name="preparing-check"
             data-testid="seller_order_details__button-preparing-check"
             type="button"
-            disabled={ status !== /Preparar Pedido/i }
-            onClick={ handleClickStatusOrder }
+            disabled={ status !== 'Pendente' }
+            onClick={ () => handleClickStatusOrder('Preparando') }
           >
             Preparar Pedido
           </button>
@@ -56,8 +58,8 @@ function OrderHeaderSeller({ id, status, saleDate }) {
             name="dispatch-check"
             data-testid="seller_order_details__button-dispatch-check"
             type="button"
-            disabled={ status !== /Saiu para entrega/i }
-            onClick={ handleClickStatusOrder }
+            disabled={ status !== 'Preparando' }
+            onClick={ () => handleClickStatusOrder('Em Trânsito') }
           >
             Saiu para entrega
           </button>

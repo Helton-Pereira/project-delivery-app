@@ -14,7 +14,6 @@ function TableOrderDatailsSeller({ productsArray }) {
       let {
         price,
       } = element;
-      totalCart += (quantity * price);
 
       price = Number(price, 2);
       totalCart += (SaleProduct.quantity * price);
