@@ -24,4 +24,16 @@ const requestNewOrder = async (endpoint, body, token) => {
   return data;
 };
 
-export default { api, requestLogin, setToken, requestData, requestNewOrder };
+const updateOrderStatus = async (endpoint, body) => {
+  const { data } = await api.patch(endpoint, body);
+  return data;
+};
+
+export default {
+  api,
+  requestLogin,
+  setToken,
+  requestData,
+  requestNewOrder,
+  updateOrderStatus,
+};
