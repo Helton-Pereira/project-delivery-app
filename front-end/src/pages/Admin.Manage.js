@@ -1,16 +1,16 @@
-import { useState } from 'react';
+// import { useState } from 'react';
 import PropTypes from 'prop-types';
 import NavBarAdmin from '../components/NavBar.Admin';
 // import api from '../services/requests';
-import useValidateAuth from '../hooks/useValidateAuth';
+// import useValidateAuth from '../hooks/useValidateAuth';
 import FormNewUser from '../components/FormNewUser';
 
-function AdminManage(props) {
-  const [auth, setAuth] = useState(false);
-  useValidateAuth(props, setAuth);
+function AdminManage() {
+  // const [auth, setAuth] = useState(false);
+  // useValidateAuth(props, setAuth);
 
-  // const { history } = props;
-  console.log(auth);
+  // // const { history } = props;
+  // console.log(auth);
 
   // useEffect(() => {
   //   const getUsers = async () => {

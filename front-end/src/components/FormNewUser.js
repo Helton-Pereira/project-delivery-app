@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 // import PropTypes from 'prop-types';
-// import api from '../services/requests';
+import api from '../services/requests';
 import roles from '../utils/constants';
 import isValidEmail from '../utils/validations';
 
@@ -25,15 +25,14 @@ function FormNewUser() {
     event.preventDefault();
 
     try {
-      // await api
-      //   .requestLogin('/register', newUser);
+      await api.requestLogin('/admin/manage', newUser);
       console.log('USUÁRIO ADICONADO');
       console.log(newUser);
       setErrorMessage('');
       setSucessMessage(`USUÁRIO: ${newUser.name} ADICONADO COM SUCESSO!`);
       setNewUser(INITIAL_STATE);
     } catch (error) {
-      console.log(error.response.data.message);
+      console.log(error);
       setErrorMessage(error.response.data.message);
     }
   };
