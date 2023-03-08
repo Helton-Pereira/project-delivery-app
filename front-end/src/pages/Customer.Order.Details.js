@@ -24,7 +24,7 @@ function CustomerOrderDatails(props) {
     getOrder();
     console.log(auth);
   }, []);
-
+  //
   return (
     <div>
       <NavBarCustomer />
