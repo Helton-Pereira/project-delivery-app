@@ -46,7 +46,7 @@ function Login(props) {
       setCart([]);
       api.setToken(token);
 
-      history.push('/customer/products');
+      history.push(redirects[role]);
     } catch (error) {
       console.log(error.response.data.message);
       setErrorMessage(error.response.data.message);

@@ -10,7 +10,7 @@ function SellerOrders(props) {
   const { history } = props;
   const [orders, setOrders] = useState([]);
   const [auth, setAuth] = useState(false);
-  //
+
   useValidateAuth(props, setAuth);
 
   useEffect(() => {
