@@ -22,4 +22,8 @@ const getSalesByUserId = async (email) => {
   return sale;
 };
 
-module.exports = { getSales, getSaleDetails, getSalesByUserId };
+const updateSaleStatus = async (saleId, newStatus) => {
+  await Sale.update({ status: newStatus }, { where: { id: saleId } });
+};
+
+module.exports = { getSales, getSaleDetails, getSalesByUserId, updateSaleStatus };

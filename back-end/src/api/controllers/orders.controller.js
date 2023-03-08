@@ -35,4 +35,16 @@ const getSalesByUserId = async (req, res) => {
   }
 };
 
-module.exports = { getSales, getSaleDetails, getSalesByUserId };
+const updateSaleStatus = async (req, res) => {
+  const { status } = req.body;
+  const { id } = req.params;
+
+  try {
+    await ordersService.updateSaleStatus(id, status);
+    return res.status(200).json({ message: 'Status updated' });
+  } catch (error) {
+    res.status(500).json({ message: errorMessage });
+  }
+};
+
+module.exports = { getSales, getSaleDetails, getSalesByUserId, updateSaleStatus };
