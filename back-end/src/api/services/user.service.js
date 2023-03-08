@@ -19,8 +19,8 @@ const login = async (_email, password) => {
 
   const { name, email, role, id } = user.dataValues;
 
-  const token = generateToken({ _email, role });
-  // 
+  const token = generateToken({ email, role });
+
   if (hashPassword === user.dataValues.password) {
     return { status: 200, id, name, email, role, token };
   }
