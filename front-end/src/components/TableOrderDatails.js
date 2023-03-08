@@ -1,24 +1,24 @@
-import { useContext } from 'react';
-import DeliveryAppContext from '../context/DeliveryAppContext';
-// import orderDatailsMock from '../utils/orderDetailsMock';
+import PropTypes from 'prop-types';
 
-function TableOrderDatails() {
+function TableOrderDatails({ productsArray }) {
   let totalCart = 0;
-
-  const { cart } = useContext(DeliveryAppContext);
 
   const convertPrice = (price) => price.toFixed(Number(2)).toString().replace(/\./, ',');
 
   const fillTableDescription = () => {
     // const { products } = this.props;
-    const products = cart;
+    const products = productsArray;
     const tableElement = products.map((element, i) => {
       const {
         name,
-        price,
-        quantity,
+        SaleProduct,
       } = element;
-      totalCart += (quantity * price);
+      let {
+        price,
+      } = element;
+
+      price = Number(price, 2);
+      totalCart += (SaleProduct.quantity * price);
       return (
         <tr key={ i }>
           <td
@@ -32,7 +32,7 @@ function TableOrderDatails() {
             { name }
           </td>
           <td data-testid={ `customer_order_details__element-order-table-quantity-${i}` }>
-            { quantity }
+            { SaleProduct.quantity }
           </td>
           <td
             data-testid={
@@ -46,7 +46,7 @@ function TableOrderDatails() {
               `customer_order_details__element-order-table-sub-total-${i}`
             }
           >
-            { convertPrice(quantity * price) }
+            { convertPrice(SaleProduct.quantity * price) }
           </td>
         </tr>
       );
@@ -68,12 +68,25 @@ function TableOrderDatails() {
         </thead>
         <tbody>{fillTableDescription()}</tbody>
       </table>
-      <h2 data-testid="customer_checkout__element-order-total-price">
+      <h2 data-testid="customer_order_details__element-order-total-price">
         Total:
         { `${convertPrice(totalCart)}` }
       </h2>
     </div>
   );
 }
+
+TableOrderDatails.propTypes = {
+  productsArray: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      price: PropTypes.string.isRequired,
+      SaleProduct: PropTypes.shape({
+        quantity: PropTypes.number.isRequired,
+      }),
+    }),
+  ).isRequired,
+};
 
 export default TableOrderDatails;
