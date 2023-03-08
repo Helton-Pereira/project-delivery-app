@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 // import PropTypes from 'prop-types';
 // import api from '../services/requests';
 import roles from '../utils/constants';
+import isValidEmail from '../utils/validations';
+
+const MIN_PASSWORD_LENGTH = 6;
+const MIN_NAME_LENGTH = 12;
 
 function FormNewUser() {
   const INITIAL_STATE = {
@@ -12,11 +16,26 @@ function FormNewUser() {
   };
   const [newUser, setNewUser] = useState(INITIAL_STATE);
 
+  const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true);
+
+  const [errorMessage, setErrorMessage] = useState('');
+  const [sucessMessage, setSucessMessage] = useState('');
+
   const handleSubmitNewUser = async (event) => {
     event.preventDefault();
-    // const data = await api.requestData('/user/newUser');
-    console.log('Adicona new User: ');
-    console.log(newUser);
+
+    try {
+      // await api
+      //   .requestLogin('/register', newUser);
+      console.log('USUÁRIO ADICONADO');
+      console.log(newUser);
+      setErrorMessage('');
+      setSucessMessage(`USUÁRIO: ${newUser.name} ADICONADO COM SUCESSO!`);
+      setNewUser(INITIAL_STATE);
+    } catch (error) {
+      console.log(error.response.data.message);
+      setErrorMessage(error.response.data.message);
+    }
   };
 
   const creatRolesSelect = () => {
@@ -28,19 +47,36 @@ function FormNewUser() {
   };
 
   const handleChanges = ({ target }) => {
+    setSucessMessage('');
     const { name, value } = target;
-    setNewUser((prevNewUser) => ({
-      ...prevNewUser,
-      [name]: value,
-    }));
     setNewUser((prevNewUser) => ({
       ...prevNewUser,
       [name]: value,
     }));
   };
 
+  useEffect(() => {
+    const verifyNewUserRequest = () => {
+      const { name, email, password } = newUser;
+      if (isValidEmail(email)
+      && password.length >= MIN_PASSWORD_LENGTH
+      && name.length >= MIN_NAME_LENGTH) {
+        setIsSubmitButtonDisabled(false);
+      } else {
+        setIsSubmitButtonDisabled(true);
+      }
+    };
+    verifyNewUserRequest();
+  }, [newUser]);
+
   return (
     <div>
+      { errorMessage.length > 0
+          && (
+            <span data-testid="admin_manage__element-invalid-register">
+              {errorMessage}
+            </span>
+          ) }
       Form:
       <form onSubmit={ (event) => handleSubmitNewUser(event) }>
         <label htmlFor="name">
@@ -90,9 +126,16 @@ function FormNewUser() {
         <button
           type="submit"
           data-testid="admin_manage__button-register"
+          disabled={ isSubmitButtonDisabled }
         >
           CADASTRAR
         </button>
+        { sucessMessage.length > 0
+          && (
+            <span>
+              {sucessMessage}
+            </span>
+          ) }
       </form>
     </div>
   );

@@ -45,8 +45,7 @@ function Login(props) {
       setUser({ name, email, role, token });
       setCart([]);
       api.setToken(token);
-
-      history.push('/customer/products');
+      console.log(role);
     } catch (error) {
       console.log(error.response.data.message);
       setErrorMessage(error.response.data.message);

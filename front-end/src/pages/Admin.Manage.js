@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import NavBarAdmin from '../components/NavBar.Admin';
-
 // import api from '../services/requests';
 import useValidateAuth from '../hooks/useValidateAuth';
 import FormNewUser from '../components/FormNewUser';
