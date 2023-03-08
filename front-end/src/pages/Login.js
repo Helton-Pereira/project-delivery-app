@@ -45,8 +45,22 @@ function Login(props) {
       setUser({ name, email, role, token });
       setCart([]);
       api.setToken(token);
+      console.log(role);
+      switch (role) {
+      case 'administrator':
+        history.push('/admin/manage');
+        break;
+      case 'customer':
+        history.push('/customer/products');
+        break;
 
-      history.push('/customer/products');
+      case 'seller':
+        history.push('/seller/orders');
+        break;
+
+      default:
+        throw new Error('TIPO DE USUÁRIO INEXISTENTE');
+      }
     } catch (error) {
       console.log(error.response.data.message);
       setErrorMessage(error.response.data.message);

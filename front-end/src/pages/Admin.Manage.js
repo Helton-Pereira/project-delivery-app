@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import NavBarCustomer from '../components/NavBar.Customer';
+import NavBarAdmin from '../components/NavBar.Admin';
 
 // import api from '../services/requests';
 import useValidateAuth from '../hooks/useValidateAuth';
@@ -25,7 +25,7 @@ function AdminManage(props) {
   return (
     <main>
 
-      <NavBarCustomer /* navBarTittle="GERENCIAR USUÁRIOS" */ />
+      <NavBarAdmin />
 
       {/* {users.map((user, index) => (
         <table
