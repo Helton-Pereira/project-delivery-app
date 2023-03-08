@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import CardSellerOrder from '../components/Card.Seller.Order';
-import NavBarCustomer from '../components/NavBar.Customer';
+import NavBarSeller from '../components/NavBar.Seller';
 // import api from '../services/requests';
 import useValidateAuth from '../hooks/useValidateAuth';
 import mockedOrders from '../utils/sellerOrdersMocks';
@@ -25,7 +25,7 @@ function SellerOrders(props) {
   return (
     <main>
 
-      <NavBarCustomer />
+      <NavBarSeller />
 
       {orders.map((order) => (
         <CardSellerOrder
