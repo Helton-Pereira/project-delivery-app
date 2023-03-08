@@ -5,6 +5,7 @@ const productRouter = require('./productRoute');
 const customerOrdersRouter = require('./customerOrdersRoute');
 const sellersRouter = require('./sellersRoute');
 const sellerOrdersRoute = require('./sellerOrdersRoute');
+const adminRouter = require('./adminRoute');
 
 const checkoutRoute = require('./checkoutRoute');
 const { validateToken } = require('../middlewares/validateToken');
@@ -18,5 +19,6 @@ routers.use('/customer/checkout', validateToken, checkoutRoute);
 routers.use('/customer/orders', customerOrdersRouter);
 routers.use('/sellers', sellersRouter);
 routers.use('/seller/orders', sellerOrdersRoute);
+routers.use('/admin/manage', adminRouter);
 
 module.exports = routers;
