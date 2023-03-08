@@ -34,6 +34,7 @@ function Register(props) {
       const response = await api.requestLogin('/register', user);
       console.log(response);
       setErrorMessage('');
+      //
       history.push('/customer/products');
     } catch (error) {
       console.log(error.response.data.message);
