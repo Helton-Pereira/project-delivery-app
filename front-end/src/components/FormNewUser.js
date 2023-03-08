@@ -8,7 +8,7 @@ function FormNewUser() {
     name: '',
     email: '',
     password: '',
-    role: '',
+    role: roles[0],
   };
   const [newUser, setNewUser] = useState(INITIAL_STATE);
 
@@ -20,21 +20,21 @@ function FormNewUser() {
   };
 
   const creatRolesSelect = () => {
-    // const sellers = await api.requestData('/seller');
     const option = roles.map((role) => (
-      <option key={ role } value={ role }>{seller}</option>
+      <option key={ role } value={ role }>{role}</option>
     ));
-    return option;
+    console.log(option);
+    return (option);
   };
 
   const handleChanges = ({ target }) => {
     const { name, value } = target;
-    setNewUser((prevOrderDetails) => ({
-      ...prevOrderDetails,
+    setNewUser((prevNewUser) => ({
+      ...prevNewUser,
       [name]: value,
     }));
-    setNewUser((prevOrderDetails) => ({
-      ...prevOrderDetails,
+    setNewUser((prevNewUser) => ({
+      ...prevNewUser,
       [name]: value,
     }));
   };
@@ -68,7 +68,7 @@ function FormNewUser() {
         <label htmlFor="deliveryAddress">
           Senha
           <input
-            type="email"
+            type="password"
             name="password"
             data-testid="admin_manage__input-password"
             onChange={ handleChanges }
@@ -81,7 +81,7 @@ function FormNewUser() {
           <select
             name="role"
             data-testid="admin_manage__select-role"
-            value={ orderDetails.seller }
+            value={ newUser.role }
             onChange={ handleChanges }
           >
             { creatRolesSelect() }
