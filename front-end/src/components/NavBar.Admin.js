@@ -18,7 +18,7 @@ function NavBarAdmin() {
       <nav>
         <div>
           <Link
-            to="/seller/orders"
+            to="/admin/manage"
             data-testid="customer_products__element-navbar-link-orders"
           >
             Gerenciar Usuários

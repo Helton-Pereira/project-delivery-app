@@ -14,7 +14,7 @@ function FormNewUser() {
 
   const handleSubmitNewUser = async (event) => {
     event.preventDefault();
-    // const data = await api.requestData('/sellers');
+    // const data = await api.requestData('/user/newUser');
     console.log('Adicona new User: ');
     console.log(newUser);
   };
