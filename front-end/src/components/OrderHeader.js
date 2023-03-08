@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import api from '../services/requests';
 
 function orderHeader({ id, sellerName, status, saleDate }) {
   const ID_PAD_START = 4;
@@ -10,8 +11,9 @@ function orderHeader({ id, sellerName, status, saleDate }) {
   }
 
   const handleClickStatusOrder = async () => {
-    // console.log('update order' + id);
-    // await api.requestData('UPDATE / PATCH', '{ STATUS: Entregue }'); // FALTA APENAS A ROTA DE UPDATE DO STATUS DA ORDER.
+    console.log(`update order${id}`);
+    await api.updateOrderStatus(`customer/orders/update/${id}`, { status: 'Entregue' });
+    window.location.reload(true);
   };
 
   return (
@@ -58,7 +60,7 @@ function orderHeader({ id, sellerName, status, saleDate }) {
             name="finish-button"
             data-testid="customer_order_details__button-delivery-check"
             type="button"
-            disabled={ status !== /Em Trânsito/i }
+            disabled={ status !== 'Em Trânsito' }
             onClick={ handleClickStatusOrder }
           >
             Marcar como entregue
