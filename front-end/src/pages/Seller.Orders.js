@@ -2,9 +2,8 @@ import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import CardSellerOrder from '../components/Card.Seller.Order';
 import NavBarSeller from '../components/NavBar.Seller';
-// import api from '../services/requests';
+import api from '../services/requests';
 import useValidateAuth from '../hooks/useValidateAuth';
-import mockedOrders from '../utils/sellerOrdersMocks';
 
 function SellerOrders(props) {
   const { history } = props;
@@ -15,8 +14,8 @@ function SellerOrders(props) {
 
   useEffect(() => {
     const getOrders = async () => {
-      // const data = await api.requestData('/seller/orders'); // Aguardando implementação da rota. Após isso, não esquecer de apagar o mock.
-      setOrders(mockedOrders);
+      const data = await api.requestData('/seller/orders');
+      setOrders(data);
     };
     getOrders();
     console.log(auth); // Provisório, só para não dar erro no linter | auth será utilizado na tela de Loading
