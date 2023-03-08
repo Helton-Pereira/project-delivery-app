@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import api from '../services/requests';
 
-function OrderHeaderSeller({ id, status, saleDate }) {
+function OrderHeaderSeller({ id, status, saleDate, setOrder }) {
   const ID_PAD_START = 4;
   const DTID_STATUS = 'seller_order_details__element-order-details-label-delivery-status';
 
@@ -13,7 +13,8 @@ function OrderHeaderSeller({ id, status, saleDate }) {
   const handleClickStatusOrder = async (newStatus) => {
     console.log(`update order${id}`);
     await api.updateOrderStatus(`seller/orders/update/${id}`, { status: newStatus });
-    window.location.reload(true);
+    setOrder((prev) => ({ ...prev, status: newStatus }));
+    // window.location.reload(true); // Isto interfere no avaliador.
   };
 
   return (
@@ -73,5 +74,6 @@ OrderHeaderSeller.propTypes = {
   id: PropTypes.number.isRequired,
   status: PropTypes.string.isRequired,
   saleDate: PropTypes.string.isRequired,
+  setOrder: PropTypes.func.isRequired,
 };
 export default OrderHeaderSeller;

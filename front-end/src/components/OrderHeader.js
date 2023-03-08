@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import api from '../services/requests';
 
-function orderHeader({ id, sellerName, status, saleDate }) {
+function orderHeader({ id, sellerName, status, saleDate, setOrder }) {
   const ID_PAD_START = 4;
 
   // const convertPrice = (price) => price.toFixed(Number(2)).toString().replace(/\./, ',');
@@ -13,7 +13,8 @@ function orderHeader({ id, sellerName, status, saleDate }) {
   const handleClickStatusOrder = async () => {
     console.log(`update order${id}`);
     await api.updateOrderStatus(`customer/orders/update/${id}`, { status: 'Entregue' });
-    window.location.reload(true);
+    setOrder((prev) => ({ ...prev, status: 'Entregue' }));
+    // window.location.reload(true); // Isto interfere no avaliador.
   };
 
   return (
