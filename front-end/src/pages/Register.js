@@ -1,27 +1,23 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
-// import DeliveryAppContext from '../context/DeliveryAppContext';
+import DeliveryAppContext from '../context/DeliveryAppContext';
 import api from '../services/requests';
 import isValidEmail from '../utils/validations';
+import { REGISTER_INITIAL_STATE } from '../utils/initialStates';
 
 const MIN_PASSWORD_LENGTH = 6;
 const MIN_NAME_LENGTH = 12;
 
 function Register(props) {
-  const INITIAL_STATE = {
-    name: '',
-    email: '',
-    password: '',
-  };
-  const [user, setUser] = useState(INITIAL_STATE);
+  const [registerData, setRegisterData] = useState(REGISTER_INITIAL_STATE);
   const [isLoginButtonDisabled, setIsLoginButtonDisabled] = useState(true);
   const [errorMessage, setErrorMessage] = useState('');
-  // const { userDispatch } = useContext(DeliveryAppContext);
+  const { setUser, setCart } = useContext(DeliveryAppContext);
 
   const handleChanges = ({ target }) => {
     const { name, value } = target;
-    setUser((prevUser) => ({
-      ...prevUser,
+    setRegisterData((prev) => ({
+      ...prev,
       [name]: value,
     }));
   };
@@ -31,10 +27,13 @@ function Register(props) {
     const { history } = props;
 
     try {
-      const response = await api.requestLogin('/register', user);
-      console.log(response);
+      const { name, email, role, token } = await api
+        .requestLogin('/register', registerData);
+
       setErrorMessage('');
-      //
+      setUser({ name, email, role, token });
+      setCart([]);
+
       history.push('/customer/products');
     } catch (error) {
       console.log(error.response.data.message);
@@ -44,7 +43,7 @@ function Register(props) {
 
   useEffect(() => {
     const verifyRegisterRequest = () => {
-      const { name, email, password } = user;
+      const { name, email, password } = registerData;
       if (isValidEmail(email)
       && password.length >= MIN_PASSWORD_LENGTH
       && name.length >= MIN_NAME_LENGTH) {
@@ -54,7 +53,7 @@ function Register(props) {
       }
     };
     verifyRegisterRequest();
-  }, [user]);
+  }, [registerData]);
 
   return (
     <main>
@@ -67,7 +66,7 @@ function Register(props) {
               id="name"
               type="name"
               name="name"
-              value={ user.name }
+              value={ registerData.name }
               data-testid="common_register__input-name"
               onChange={ handleChanges }
               placeholder="name"
@@ -79,7 +78,7 @@ function Register(props) {
               id="email"
               type="email"
               name="email"
-              value={ user.email }
+              value={ registerData.email }
               data-testid="common_register__input-email"
               onChange={ handleChanges }
               placeholder="email"
@@ -91,7 +90,7 @@ function Register(props) {
               id="password"
               type="password"
               name="password"
-              value={ user.password }
+              value={ registerData.password }
               data-testid="common_register__input-password"
               onChange={ handleChanges }
               placeholder="password"
