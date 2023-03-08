@@ -44,6 +44,7 @@ function Login(props) {
       setErrorMessage('');
       setUser({ name, email, role, token });
       setCart([]);
+      //
 
       history.push('/customer/products');
     } catch (error) {
