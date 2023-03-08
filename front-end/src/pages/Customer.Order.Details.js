@@ -24,7 +24,7 @@ function CustomerOrderDatails(props) {
     getOrder();
     console.log(auth);
   }, []);
-
+  //
   return (
     <div>
       <NavBarCustomer />
@@ -37,6 +37,7 @@ function CustomerOrderDatails(props) {
           status={ order.status }
           saleDate={ order.saleDate }
           totalPrice={ Number(order.totalPrice) }
+          setOrder={ setOrder }
         />
       )}
       <h2> Produtos </h2>
