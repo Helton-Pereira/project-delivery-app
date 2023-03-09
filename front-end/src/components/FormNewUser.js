@@ -32,7 +32,7 @@ function FormNewUser() {
       setSucessMessage(`USUÁRIO: ${newUser.name} ADICONADO COM SUCESSO!`);
       setNewUser(INITIAL_STATE);
     } catch (error) {
-      console.log(error.response.data.message);
+      console.log(error);
       setErrorMessage(error.response.data.message);
     }
   };
@@ -41,7 +41,6 @@ function FormNewUser() {
     const option = roles.map((role) => (
       <option key={ role } value={ role }>{role}</option>
     ));
-    console.log(option);
     return (option);
   };
 
