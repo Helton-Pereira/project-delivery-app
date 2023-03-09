@@ -17,6 +17,13 @@ const loginData = {
   token: 'mockedToken',
 };
 
+const sellerLoginData = {
+  email: 'fulana@deliveryapp.com',
+  name: 'Fulana Pereira',
+  role: 'seller',
+  token: 'mockedToken',
+};
+
 export default {
   emailInput,
   passwordInput,
@@ -28,4 +35,5 @@ export default {
   invalidEmail,
   invalidPassword,
   loginData,
+  sellerLoginData,
 };
