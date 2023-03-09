@@ -1,14 +1,40 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
+import { useState } from 'react';
+import api from '../services/requests';
 
-function TableAdmin({ usersArray }) {
+function TableAdmin() {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    const getUsers = async () => {
+      const { data } = await api.requestData('/admin/manage/users', newUser);
+      setUsers(data);
+    };
+    getUsers();
+  }, []);
+
+  const removeUserFromArray = (id) => {
+    const newArray = users.filter((user) => user.id !== id);
+    setUsers(newArray);
+  };
+
+  const handleClickRemoveUser = async (id) => {
+    try {
+      await api.deleteById('/admin/manage/users', { id });
+      removeUserFromArray(id);
+    } catch (error) {
+      console.log(error.response.data.message);
+    }
+  };
+
   const fillTableDescription = () => {
-    const users = usersArray;
-    const tableElement = users.map((element, i) => {
+    const tableElement = users.map((user, i) => {
       const {
+        id,
         name,
         email,
         role,
-      } = element;
+      } = user;
 
       return (
         <tr key={ i }>
@@ -19,7 +45,7 @@ function TableAdmin({ usersArray }) {
           >
             { (i + 1) }
           </td>
-          <td data-testid={ `admin_manage__input-email-${i}` }>
+          <td data-testid={ `admin_manage__element-user-table-name-${i}` }>
             { name }
           </td>
           <td data-testid={ `admin_manage__element-user-table-email-${i}` }>
@@ -33,7 +59,7 @@ function TableAdmin({ usersArray }) {
               name="remove"
               data-testid={ `admin_manage__element-user-table-remove-${i}` }
               type="button"
-              onClick={ handleClickRemove }
+              onClick={ () => handleClickRemoveUser(id) }
             >
               Excluir
             </button>
@@ -46,6 +72,7 @@ function TableAdmin({ usersArray }) {
 
   return (
     <div>
+      Lista de Usuários
       <table>
         <thead>
           <tr>
@@ -58,23 +85,19 @@ function TableAdmin({ usersArray }) {
         </thead>
         <tbody>{fillTableDescription()}</tbody>
       </table>
-      <h2 data-testid="customer_order_details__element-order-total-price">
-        Total:
-        { `${convertPrice(totalCart)}` }
-      </h2>
     </div>
   );
 }
 
-TableAdmin.propTypes = {
-  usersArray: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      email: PropTypes.string.isRequired,
-      role: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
-};
+// TableAdmin.propTypes = {
+//   usersArray: PropTypes.arrayOf(
+//     PropTypes.shape({
+//       id: PropTypes.number.isRequired,
+//       name: PropTypes.string.isRequired,
+//       email: PropTypes.string.isRequired,
+//       role: PropTypes.string.isRequired,
+//     }),
+//   ).isRequired,
+// };
 
 export default TableAdmin;

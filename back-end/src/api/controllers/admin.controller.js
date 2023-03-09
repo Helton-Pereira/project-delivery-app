@@ -6,7 +6,7 @@ const createUserByAdmin = async (req, res) => {
 
   const token = req.headers.authorization;
 
-  const checkToken = verifyToken(token);
+  const checkToken = await verifyToken(token);
 
   if (checkToken.data.role !== 'administrator') {
     return res.status(400).json({ message: 'User is not an admin' });
