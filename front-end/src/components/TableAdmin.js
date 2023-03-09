@@ -1,5 +1,5 @@
 // import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import api from '../services/requests';
 
 function TableAdmin() {
@@ -7,7 +7,8 @@ function TableAdmin() {
 
   useEffect(() => {
     const getUsers = async () => {
-      const { data } = await api.requestData('/admin/manage/users', newUser);
+      const data = await api.requestData('admin/manage/users');
+      console.log(data);
       setUsers(data);
     };
     getUsers();
@@ -20,9 +21,10 @@ function TableAdmin() {
 
   const handleClickRemoveUser = async (id) => {
     try {
-      await api.deleteById('/admin/manage/users', { id });
+      await api.deleteById('admin/manage/users', { id });
       removeUserFromArray(id);
     } catch (error) {
+      console.log(error);
       console.log(error.response.data.message);
     }
   };

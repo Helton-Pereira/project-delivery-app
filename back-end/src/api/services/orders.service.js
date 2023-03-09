@@ -16,7 +16,6 @@ const getSaleDetails = async (saleId) => {
 
 const getSalesByUserId = async (email) => {
   const user = await User.findOne({ where: { email } });
-  console.log(user);
   const { id } = user.dataValues;
   const sale = await Sale.findAll({ where: { userId: id } });
   return sale;

@@ -32,7 +32,7 @@ function FormNewUser() {
       setSucessMessage(`USUÁRIO: ${newUser.name} ADICONADO COM SUCESSO!`);
       setNewUser(INITIAL_STATE);
     } catch (error) {
-      console.log(error);
+      console.log(error.response.data.message);
       setErrorMessage(error.response.data.message);
     }
   };
