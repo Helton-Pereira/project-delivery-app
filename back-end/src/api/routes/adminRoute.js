@@ -6,6 +6,14 @@ const { validatePassword } = require('../middlewares/validatePassword');
 
 const router = express.Router();
 
-router.post('/', validateEmail, validateName, validatePassword, adminController.createUserByAdmin);
+router.post('/manage',
+    validateEmail,
+    validateName,
+    validatePassword,
+    adminController.createUserByAdmin);
+
+router.get('/users', adminController.getAllUsers);
+
+router.delete('/users/delete/:id', adminController.deleteUser);
 
 module.exports = router;
