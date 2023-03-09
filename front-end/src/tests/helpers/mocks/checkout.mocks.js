@@ -22,15 +22,15 @@ const entries = {
 
 const sellers = [
   {
-    email: 'fulana@deliveryapp.com',
     id: 2,
     name: 'Fulana Pereira',
+    email: 'fulana@deliveryapp.com',
     role: 'seller',
   },
   {
-    email: 'batman@deliveryapp.com',
     id: 4,
     name: 'Batman',
+    email: 'batman@deliveryapp.com',
     role: 'seller',
   },
 ];
@@ -50,10 +50,46 @@ const cart = [
   },
 ];
 
+const orderDetails = {
+  id: 1,
+  userId: 3,
+  sellerId: 2,
+  totalPrice: '9.70',
+  deliveryAddress: entries.address,
+  deliveryNumber: entries.addressNumber,
+  saleDate: '2023-03-08T13:17:29.000Z',
+  status: 'Pendente',
+  seller: {
+    id: 2,
+    name: 'Fulana Pereira',
+  },
+  products: [
+    {
+      id: 1,
+      name: 'Skol Lata 250ml',
+      price: '2.20',
+      urlImage: 'http://localhost:3001/images/skol_lata_350ml.jpg',
+      SaleProduct: {
+        quantity: 1,
+      },
+    },
+    {
+      id: 2,
+      name: 'Heineken 600ml',
+      price: '7.50',
+      urlImage: 'http://localhost:3001/images/heineken_600ml.jpg',
+      SaleProduct: {
+        quantity: 1,
+      },
+    },
+  ],
+};
+
 export default {
   formElements,
   tableElements,
   entries,
   sellers,
   cart,
+  orderDetails,
 };
