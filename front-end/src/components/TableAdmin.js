@@ -21,10 +21,10 @@ function TableAdmin() {
 
   const handleClickRemoveUser = async (id) => {
     try {
-      await api.deleteById('admin/manage/users', { id });
+      console.log(id);
+      await api.deleteById(`admin/manage/users/${id}`);
       removeUserFromArray(id);
     } catch (error) {
-      console.log(error);
       console.log(error.response.data.message);
     }
   };

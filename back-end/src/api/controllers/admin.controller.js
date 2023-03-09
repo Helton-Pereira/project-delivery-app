@@ -31,7 +31,7 @@ const getAllUsers = async (_req, res) => {
 };
 
 const deleteUser = async (req, res) => {
-  const { id } = req.body;
+  const { id } = req.params;
   const token = req.headers.authorization;
 
   const checkToken = await verifyToken(token);

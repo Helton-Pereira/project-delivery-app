@@ -29,8 +29,8 @@ const updateOrderStatus = async (endpoint, body) => {
   return data;
 };
 
-const deleteById = async (endpoint, body) => {
-  const { data } = await api.delete(endpoint, body);
+const deleteById = async (endpoint) => {
+  const { data } = await api.delete(endpoint);
   return data;
 };
 
