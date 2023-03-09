@@ -7,3 +7,7 @@
 // // - 3: common_login__button-login
 // // - 4: common_login__button-register
 // // - 5: common_login__element-invalid-email [Elemento oculto (Mensagens de erro)]
+
+const roles = ['customer', 'seller', 'administrator'];
+
+export default roles;
