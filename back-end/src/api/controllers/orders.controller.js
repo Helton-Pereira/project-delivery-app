@@ -27,7 +27,7 @@ const getSalesByUserId = async (req, res) => {
   const checkToken = await verifyToken(token);
   
   try {
-    const sales = await ordersService.getSalesByUserId(checkToken.email);
+    const sales = await ordersService.getSalesByUserId(checkToken.data.email);
     return res.status(200).json(sales);
   } catch (error) {
     res.status(500).json({ message: errorMessage });
