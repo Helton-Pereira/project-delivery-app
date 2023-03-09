@@ -1,41 +1,14 @@
-// import { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import NavBarAdmin from '../components/NavBar.Admin';
-// import api from '../services/requests';
-// import useValidateAuth from '../hooks/useValidateAuth';
+import useValidateAuth from '../hooks/useValidateAuth';
 import FormNewUser from '../components/FormNewUser';
 import TableAdmin from '../components/TableAdmin';
 
-function AdminManage() {
-  // const [auth, setAuth] = useState(false);
-  // useValidateAuth(props, setAuth);
-
-  // const userArrayMock = [
-  //   {
-  //     id: 1,
-  //     name: 'Shaolin',
-  //     email: 'email1',
-  //     role: 'seller',
-  //   },
-  //   {
-  //     id: 2,
-  //     name: 'Zezin',
-  //     email: 'email1',
-  //     role: 'seller',
-  //   },
-  //   {
-  //     id: 3,
-  //     name: 'Doidin',
-  //     email: 'email1',
-  //     role: 'seller',
-  //   },
-  //   {
-  //     id: 4,
-  //     name: 'Cuphead',
-  //     email: 'email1',
-  //     role: 'seller',
-  //   },
-  // ];
+function AdminManage(props) {
+  const [auth, setAuth] = useState(false);
+  console.log(auth); // Provisório, só para não dar erro no linter | auth será utilizado na tela de Loading
+  useValidateAuth(props, setAuth);
 
   return (
     <main>
