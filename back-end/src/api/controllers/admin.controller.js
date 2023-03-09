@@ -6,7 +6,7 @@ const createUserByAdmin = async (req, res) => {
 
   const token = req.headers.authorization;
 
-  const checkToken = verifyToken(token);
+  const checkToken = await verifyToken(token);
 
   if (checkToken.data.role !== 'administrator') {
     return res.status(400).json({ message: 'User is not an admin' });
@@ -25,4 +25,24 @@ const createUserByAdmin = async (req, res) => {
   return res.status(status).json({ message });
 };
 
-module.exports = { createUserByAdmin };
+const getAllUsers = async (_req, res) => {
+  const users = await adminService.getAllUsers();
+  return res.status(200).json(users);
+};
+
+const deleteUser = async (req, res) => {
+  const { id } = req.body;
+  const token = req.headers.authorization;
+
+  const checkToken = await verifyToken(token);
+
+  if (checkToken.data.role !== 'administrator') {
+    return res.status(400).json({ message: 'User is not an admin' });
+  }
+
+  const userDeleted = await adminService.deleteUser(id);
+
+  return res.status(204).json(userDeleted);
+};
+
+module.exports = { createUserByAdmin, getAllUsers, deleteUser };

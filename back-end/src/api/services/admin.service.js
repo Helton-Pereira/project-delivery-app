@@ -1,4 +1,5 @@
 const md5 = require('md5');
+const { Op } = require('sequelize');
 const { User } = require('../../database/models');
 const { generateToken } = require('../utils/token');
 
@@ -35,4 +36,15 @@ const createUserByAdmin = async ({ name, email, newPassword, role }) => {
   return login(email, newPassword);
 };
 
-module.exports = { login, createUserByAdmin };
+const getAllUsers = async () => {
+  const users = await User.findAll(
+    { where: { role: { [Op.ne]: 'administrator' } }, attributes: { exclude: 'password' } },
+  );
+  return users;
+};
+
+const deleteUser = async (id) => {
+  await User.destroy({ where: { id } });
+};
+
+module.exports = { login, createUserByAdmin, getAllUsers, deleteUser };
