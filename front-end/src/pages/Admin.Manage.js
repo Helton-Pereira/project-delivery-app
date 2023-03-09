@@ -9,9 +9,6 @@ function AdminManage() {
   // const [auth, setAuth] = useState(false);
   // useValidateAuth(props, setAuth);
 
-  // // const { history } = props;
-  // console.log(auth);
-
   // useEffect(() => {
   //   const getUsers = async () => {
   //     // const data = await api.requestData('/users'); // Aguardando implementação da rota.
