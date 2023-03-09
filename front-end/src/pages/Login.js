@@ -38,8 +38,6 @@ function Login(props) {
     event.preventDefault();
     const { history } = props;
 
-    history.push('/admin/manage');
-
     try {
       const { name, email, role, token } = await api.requestLogin('/login', loginData);
 
