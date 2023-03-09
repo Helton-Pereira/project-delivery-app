@@ -19,6 +19,6 @@ routers.use('/customer/checkout', validateToken, checkoutRoute);
 routers.use('/customer/orders', customerOrdersRouter);
 routers.use('/sellers', sellersRouter);
 routers.use('/seller/orders', sellerOrdersRoute);
-routers.use('/admin', adminRouter);
+routers.use('/admin/manage', adminRouter);
 
 module.exports = routers;
