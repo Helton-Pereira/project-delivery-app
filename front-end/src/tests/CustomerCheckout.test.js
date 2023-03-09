@@ -6,7 +6,7 @@ import renderWithRouter from './helpers/renderWithRouter';
 import loginMocks from './helpers/mocks/login.mocks';
 import checkoutMocks from './helpers/mocks/checkout.mocks';
 import api from '../services/requests';
-import conversions from '../utils/conversions'
+import conversions from '../utils/conversions';
 
 describe('Test the Checkout page', () => {
   let history;
@@ -28,8 +28,8 @@ describe('Test the Checkout page', () => {
   });
 
   test('Checks if the form elements exist', async () => {
-    await waitFor(() => {})
-    
+    await waitFor(() => {});
+
     renderWithRouter(<App />);
 
     const sellersSelect = screen.getByTestId(checkoutMocks.formElements.sellers);
@@ -47,7 +47,7 @@ describe('Test the Checkout page', () => {
     await waitFor(() => {});
 
     const totalSingleEl = screen.getByTestId(checkoutMocks.tableElements.total);
-    expect(totalSingleEl).toBeInTheDocument();  
+    expect(totalSingleEl).toBeInTheDocument();
 
     checkoutMocks.cart.forEach((cart, index) => {
       const numberEl = screen.getByTestId(`${checkoutMocks.tableElements.number}${index}`);
@@ -77,7 +77,7 @@ describe('Test the Checkout page', () => {
   });
 
   test('Checks if the user can type in address inputs and use sellers select', async () => {
-    await waitFor(() => {})
+    await waitFor(() => {});
 
     const sellersSelect = screen.getByTestId(checkoutMocks.formElements.sellers);
     const addressInput = screen.getByTestId(checkoutMocks.formElements.address);
@@ -88,35 +88,35 @@ describe('Test the Checkout page', () => {
     userEvent.type(addressNumberInput, checkoutMocks.entries.addressNumber);
 
     expect(sellersSelect).toHaveValue(checkoutMocks.sellers[1].name);
-    expect(screen.getByRole('option', {name: checkoutMocks.sellers[1].name}).selected).toBe(true)
+    expect(screen.getByRole('option', { name: checkoutMocks.sellers[1].name }).selected).toBe(true);
     expect(addressInput).toHaveValue(checkoutMocks.entries.address);
     expect(addressNumberInput).toHaveValue(Number(checkoutMocks.entries.addressNumber));
   });
 
   test('Checks if remove button delete order items', async () => {
-    await waitFor(() => {})
+    await waitFor(() => {});
 
     let tableRows = screen.getAllByRole('row');
     expect(tableRows).toHaveLength(3); // Head row + 2 items rows
 
     userEvent.click(screen.getByTestId(`${checkoutMocks.tableElements.rmButton}0`)); // Removes first item row
     expect(screen.getByTestId(`${checkoutMocks.tableElements.name}0`)).not.toBe(checkoutMocks.cart[0].name); // Checks if the current first element name is different from the previous one
-    
+
     tableRows = screen.getAllByRole('row');
     expect(tableRows).toHaveLength(2); // Head row + 1 item row
-  })
+  });
 
   test('Checks if remove button change order`s total price', async () => {
-    await waitFor(() => {})
+    await waitFor(() => {});
 
     const REGEX = /customer_checkout__element-order-table-sub-total-/i;
-    const calculateOrderTotalPrice = (array) => array.reduce((acc , curr) => acc += Number(curr.innerHTML.replace(/\,/, '.')), 0)
+    const calculateOrderTotalPrice = (array) => array.reduce((acc, curr) => acc += Number(curr.innerHTML.replace(/\,/, '.')), 0);
 
     const totalPriceElement = screen.getByTestId(checkoutMocks.tableElements.total);
     let subtotalElements = screen.getAllByTestId(REGEX);
     let orderTotalPrice = calculateOrderTotalPrice(subtotalElements);
 
-    expect(totalPriceElement.innerHTML).toContain(conversions.convertPrice(orderTotalPrice))
+    expect(totalPriceElement.innerHTML).toContain(conversions.convertPrice(orderTotalPrice));
 
     userEvent.click(screen.getByTestId(`${checkoutMocks.tableElements.rmButton}1`)); // Removes second item row
 
@@ -124,20 +124,19 @@ describe('Test the Checkout page', () => {
     subtotalElements = screen.getAllByTestId(REGEX);
     orderTotalPrice = calculateOrderTotalPrice(subtotalElements);
 
-    expect(totalPriceElement.innerHTML).toContain(conversions.convertPrice(orderTotalPrice))
-  })
+    expect(totalPriceElement.innerHTML).toContain(conversions.convertPrice(orderTotalPrice));
+  });
 
   test(
     'Checks user redirection to order details page after clicking submit button',
     async () => {
-      jest.spyOn(api, 'requestNewOrder')
-        .mockImplementation(() => (
-          {
-            status: 201,
-            id: 1 }
-        ));
+      jest.spyOn(api, 'requestNewOrder').mockImplementation(() => ({ status: 201, id: 1 })); // Mocks order creation (Checkout page)
+      
+      jest.spyOn(api, 'requestData')
+        .mockImplementationOnce(() => (checkoutMocks.sellers)) // Mocks api response that returns all sellers (Checkout page)
+        .mockImplementationOnce(() => (checkoutMocks.orderDetails)); // Mocks api response that returns order details (Order details page)
 
-      await waitFor(() => {})
+      await waitFor(() => {});
 
       const sellersSelect = screen.getByTestId(checkoutMocks.formElements.sellers);
       const addressInput = screen.getByTestId(checkoutMocks.formElements.address);
@@ -148,6 +147,8 @@ describe('Test the Checkout page', () => {
       userEvent.type(addressInput, checkoutMocks.entries.address);
       userEvent.type(addressNumberInput, checkoutMocks.entries.addressNumber);
       userEvent.click(submitButton);
+
+
 
       await waitFor(() => {
         expect(history.location.pathname).toBe('/customer/orders/1');

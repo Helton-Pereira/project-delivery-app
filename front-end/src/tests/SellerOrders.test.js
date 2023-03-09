@@ -11,12 +11,9 @@ describe('Test the Seller Orders page', () => {
   let history;
 
   beforeEach(() => {
-    jest.spyOn(api, 'requestData').mockImplementation(() => ordersMocks.allOrders);
-
     history = renderWithRouter(<App />).history;
 
     localStorage.setItem('user', JSON.stringify(loginMocks.loginData));
-    // localStorage.setItem('cart', []);
 
     history.push('/seller/orders');
   });
@@ -26,6 +23,8 @@ describe('Test the Seller Orders page', () => {
   const ID_PAD_START = 4;
 
   test('Checks seller orders cards', async () => {
+    jest.spyOn(api, 'requestData').mockImplementation(() => ordersMocks.allOrders);
+
     await waitFor(() => {});
 
     ordersMocks.allOrders.forEach((order) => {
@@ -55,14 +54,18 @@ describe('Test the Seller Orders page', () => {
   test(
     'Checks user redirection to seller order details page after clicking order card',
     async () => {
+      jest.spyOn(api, 'requestData')
+        .mockImplementationOnce(() => ordersMocks.allOrders) // Mocks api response that returns all orders (Orders page)
+        .mockImplementationOnce(() => (ordersMocks.orderDetails)); // Mocks api response that returns order details (Order details page)
+
       await waitFor(() => {});
 
-      const orderCard = screen.getByTestId(`${ordersMocks.idElement}${ordersMocks.allOrders[0].id}`);
+      const orderCard = screen.getByTestId(`${ordersMocks.idElement}${ordersMocks.orderDetails.id}`);
 
       userEvent.click(orderCard);
 
       await waitFor(() => {
-        expect(history.location.pathname).toBe(`/seller/orders/${ordersMocks.allOrders[0].id}`);
+        expect(history.location.pathname).toBe(`/seller/orders/${ordersMocks.orderDetails.id}`);
       });
     },
   );

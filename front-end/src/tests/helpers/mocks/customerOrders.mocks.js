@@ -1,35 +1,26 @@
-const idElement = 'seller_orders__element-order-id-';
-const statusElement = 'seller_orders__element-delivery-status-';
-const dateElement = 'seller_orders__element-order-date-';
-const priceElement = 'seller_orders__element-card-price-';
-const addressElement = 'seller_orders__element-card-address-';
+const idElement = 'customer_orders__element-order-id-';
+const statusElement = 'customer_orders__element-delivery-status-';
+const dateElement = 'customer_orders__element-order-date-';
+const priceElement = 'customer_orders__element-card-price-';
 
 const allOrders = [
   {
     id: 1,
     totalPrice: '9.70',
-    saleDate: '08/04/21',
+    saleDate: '2023-03-06T21:00:00.000Z',
     status: 'Entregue',
-    deliveryAddress: 'Rua Irmãos Monteiro, Bairo Pedras',
-    deliveryNumber: '851',
   },
   {
     id: 2,
     totalPrice: '14.20',
-    saleDate: '08/04/21',
+    saleDate: '2023-03-07T10:30:00.000Z',
     status: 'Pendente',
-    deliveryAddress: 'Rua Vila Bela,  Bairro Gurupi',
-    deliveryNumber: '670',
-
   },
   {
     id: 3,
     totalPrice: '28.46',
-    saleDate: '07/04/21',
+    saleDate: '2023-03-08T15:20:00.000Z',
     status: 'Pendente',
-    deliveryAddress: 'Rua Sessenta e Dois, Bairro Maranguape II',
-    deliveryNumber: '533',
-
   },
 ];
 
@@ -37,6 +28,8 @@ const orderDetails = {
   ...allOrders[0],
   userId: 3,
   sellerId: 2,
+  deliveryAddress: 'Rua Um',
+  deliveryNumber: '2',
   seller: {
     id: 2,
     name: 'Fulana Pereira',
@@ -68,7 +61,6 @@ export default {
   statusElement,
   dateElement,
   priceElement,
-  addressElement,
   allOrders,
   orderDetails,
 };
