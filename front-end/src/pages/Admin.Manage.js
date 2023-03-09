@@ -4,6 +4,7 @@ import NavBarAdmin from '../components/NavBar.Admin';
 // import api from '../services/requests';
 // import useValidateAuth from '../hooks/useValidateAuth';
 import FormNewUser from '../components/FormNewUser';
+import TableAdmin from '../components/TableAdmin';
 
 function AdminManage() {
   // const [auth, setAuth] = useState(false);
@@ -33,6 +34,7 @@ function AdminManage() {
         />
       ))} */}
       <FormNewUser />
+      <TableAdmin />
     </main>
   );
 }
