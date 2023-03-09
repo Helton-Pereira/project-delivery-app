@@ -7,8 +7,8 @@ import renderWithRouter from './helpers/renderWithRouter';
 import productsMocks from './helpers/mocks/products.mocks';
 import navBarMocks from './helpers/mocks/navbar.mocks';
 import loginMocks from './helpers/mocks/login.mocks';
-//
-describe('Test the NavBar component', () => {
+
+describe('Test the Customer NavBar component', () => {
   let history;
 
   beforeEach(() => {
