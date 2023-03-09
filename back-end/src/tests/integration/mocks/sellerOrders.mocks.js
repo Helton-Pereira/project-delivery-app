@@ -23,6 +23,6 @@ const allOrders = [
 
 const token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTY3NDUwODQ0MCwiZXhwIjoxNjc0NTMwMDQwfQ.1snol1cy5G6-3E3PZ7m9NPwhy4kQOcrwWiz677V_n98"
 
-const tokenPayload = { email: 'fulana@deliveryapp.com', role: 'seller', iat: 1674516494, exp: 1674538094 }
+const tokenPayload = { data: { email: 'fulana@deliveryapp.com', role: 'seller' }, iat: 1674516494, exp: 1674538094 }
 
 module.exports = { allOrders, token, tokenPayload };

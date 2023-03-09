@@ -12,7 +12,7 @@ function generateToken(data) {
   const token = Jwt.sign({ data }, secret, jwtConfig);
   return token;
 }
-
+// 
 async function verifyToken(token) {
   const tokenDecoded = await Jwt.verify(token, secret);
   return tokenDecoded;
