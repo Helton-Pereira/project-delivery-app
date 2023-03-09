@@ -136,7 +136,6 @@ describe('Test the Checkout page', () => {
         .mockImplementationOnce(() => (checkoutMocks.sellers)) // Mocks api response that returns all sellers (Checkout page)
         .mockImplementationOnce(() => (checkoutMocks.orderDetails)); // Mocks api response that returns order details (Order details page)
 
-
       await waitFor(() => {});
 
       const sellersSelect = screen.getByTestId(checkoutMocks.formElements.sellers);
