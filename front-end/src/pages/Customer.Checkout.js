@@ -6,6 +6,7 @@ import NavBarCustomer from '../components/NavBar.Customer';
 import TableCheckout from '../components/Table.Checkout';
 import DeliveryAppContext from '../context/DeliveryAppContext';
 import api from '../services/requests';
+import useValidateAuth from '../hooks/useValidateAuth';
 
 function CostumerCheckout(props) {
   const INITIAL_STATE = {
@@ -15,6 +16,8 @@ function CostumerCheckout(props) {
   };
   const [newOrder, setNewOrder] = useState(INITIAL_STATE);
   const { cart, user } = useContext(DeliveryAppContext);
+
+  useValidateAuth(props);
 
   const { history } = props;
 

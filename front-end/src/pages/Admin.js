@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import NavBarAdmin from '../components/NavBar.Admin';
 import FormAdmin from '../components/Form.Admin';
 import useValidateAuth from '../hooks/useValidateAuth';
-import TableAdmin from '../components/TableAdmin';
+import TableAdmin from '../components/Table.Admin';
 
 function AdminManage(props) {
   const [auth, setAuth] = useState(false);
