@@ -11,6 +11,7 @@ import CustomerOrderDatails from './pages/Customer.OrderDetails';
 import SellerOrders from './pages/Seller.Orders';
 import Admin from './pages/Admin';
 import SellerOrderDetails from './pages/Seller.OrderDetails';
+import PrivateRoute from './utils/PrivateRoute';
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
         <Route exact path="/login" component={ Login } />
         <Redirect exact from="/" to="/login" />
         <Route exact path="/register" component={ Register } />
-        <Route exact path="/customer/checkout" component={ CostumerCheckout } />
+        <PrivateRoute exact path="/customer/checkout" component={ CostumerCheckout } />
         <Route exact path="/customer/products" component={ CustomerProducts } />
         <Route exact path="/customer/orders" component={ CustomerOrders } />
         <Route exact path="/customer/orders/:id" component={ CustomerOrderDatails } />
