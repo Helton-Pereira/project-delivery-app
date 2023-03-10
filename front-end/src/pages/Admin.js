@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 import NavBarAdmin from '../components/NavBar.Admin';
 import FormAdmin from '../components/Form.Admin';
 import useValidateAuth from '../hooks/useValidateAuth';
@@ -19,13 +18,5 @@ function AdminManage(props) {
     </main>
   );
 }
-
-AdminManage.propTypes = {
-  history: PropTypes.shape({
-    location: PropTypes.shape({
-      pathname: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
-};
 
 export default AdminManage;
