@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 import api from '../services/requests';
 import roles from '../utils/constants';
 import isValidEmail from '../utils/validations';
@@ -7,7 +7,7 @@ import isValidEmail from '../utils/validations';
 const MIN_PASSWORD_LENGTH = 6;
 const MIN_NAME_LENGTH = 12;
 
-function FormAdmin() {
+function FormAdmin({ users, setUsers }) {
   const INITIAL_STATE = {
     name: '',
     email: '',
@@ -25,12 +25,12 @@ function FormAdmin() {
     event.preventDefault();
 
     try {
-      await api.requestLogin('/admin/manage', newUser);
-      console.log('USUÁRIO ADICONADO');
-      console.log(newUser);
+      const userCreated = await api.requestLogin('/admin/manage', newUser);
       setErrorMessage('');
       setSucessMessage(`USUÁRIO: ${newUser.name} ADICONADO COM SUCESSO!`);
       setNewUser(INITIAL_STATE);
+      setUsers((prev) => ([...prev, userCreated]));
+      console.log(users);
     } catch (error) {
       console.log(error);
       setErrorMessage(error.response.data.message);
@@ -41,7 +41,6 @@ function FormAdmin() {
     const option = roles.map((role) => (
       <option key={ role } value={ role }>{role}</option>
     ));
-    console.log(option);
     return (option);
   };
 
@@ -140,9 +139,16 @@ function FormAdmin() {
   );
 }
 
-// FormAdmin.propTypes = {
-//   handleSubmitOrder: PropTypes.func.isRequired,
-//   setNewOrder: PropTypes.func.isRequired,
-// };
+FormAdmin.propTypes = {
+  users: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
+      role: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  setUsers: PropTypes.func.isRequired,
+};
 
 export default FormAdmin;

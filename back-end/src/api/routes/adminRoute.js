@@ -14,6 +14,6 @@ router.post('/',
 
 router.get('/users', adminController.getAllUsers);
 
-router.delete('/users', adminController.deleteUser);
+router.delete('/users/:id', adminController.deleteUser);
 
 module.exports = router;

@@ -17,8 +17,8 @@ module.exports = {
           model: 'users',
           key: 'id',
         },
-        // onDelete: 'CASCADE',
-        // onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       },
       sellerId: {
         allowNull: false,
@@ -28,8 +28,8 @@ module.exports = {
           model: 'users',
           key: 'id',
         },
-        // onDelete: 'CASCADE',
-        // onUpdate: 'CASCADE',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE',
       },
       totalPrice: {
         allowNull: false,
