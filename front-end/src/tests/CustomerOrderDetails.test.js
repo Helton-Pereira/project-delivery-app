@@ -71,7 +71,7 @@ describe('Test the Customer Order Details page', () => {
     });
   });
 
-  test('Checks if delivery button is disable if status is not "Em Trânsito"', async () => {
+  test('Checks if delivery button is disabled if status is not "Em Trânsito"', async () => {
     await waitFor(() => {});
 
     const statusEl = screen.getByTestId(orderMocks.headerElements.status);
@@ -81,7 +81,7 @@ describe('Test the Customer Order Details page', () => {
     expect(button).toBeDisabled();
   });
 
-  test('Checks if delivery button is not disable if status is "Em Trânsito"', async () => {
+  test('Checks if delivery button is not disabled if status is "Em Trânsito"', async () => {
     jest.spyOn(api, 'requestData').mockImplementation(() => orderMocks.inTransitOrder);
     jest.spyOn(api, 'updateOrderStatus');
 

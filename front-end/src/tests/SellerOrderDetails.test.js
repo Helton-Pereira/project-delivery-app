@@ -71,7 +71,7 @@ describe('Test the Seller Order Details page', () => {
     });
   });
 
-  test('Checks if only preparing button is not disable if status is "Pendente"', async () => {
+  test('Checks if only preparing button is not disabled if status is "Pendente"', async () => {
     jest.spyOn(api, 'updateOrderStatus');
 
     let statusEl;
@@ -101,7 +101,7 @@ describe('Test the Seller Order Details page', () => {
     });
   });
 
-  test('Checks if only dispatch button is not disable if status is "Preparando"', async () => {
+  test('Checks if only dispatch button is not disabled if status is "Preparando"', async () => {
     jest.spyOn(api, 'requestData').mockImplementation(() => orderMocks.inPreparationOrder);
     jest.spyOn(api, 'updateOrderStatus');
 
@@ -132,7 +132,7 @@ describe('Test the Seller Order Details page', () => {
     });
   });
 
-  test('Checks if both buttons are disable if status is "Em Trânsito"', async () => {
+  test('Checks if both buttons are disabled if status is "Em Trânsito"', async () => {
     jest.spyOn(api, 'requestData').mockImplementation(() => orderMocks.inTransitOrder);
     jest.spyOn(api, 'updateOrderStatus');
 
