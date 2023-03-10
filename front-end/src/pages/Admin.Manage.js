@@ -7,14 +7,15 @@ import TableAdmin from '../components/TableAdmin';
 
 function AdminManage(props) {
   const [auth, setAuth] = useState(false);
+  const [users, setUsers] = useState([]);
   console.log(auth); // Provisório, só para não dar erro no linter | auth será utilizado na tela de Loading
   useValidateAuth(props, setAuth);
 
   return (
     <main>
       <NavBarAdmin />
-      <FormNewUser />
-      <TableAdmin />
+      <FormNewUser setUsers={ setUsers } />
+      <TableAdmin users={ users } setUsers={ setUsers } />
     </main>
   );
 }

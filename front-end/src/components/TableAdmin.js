@@ -1,9 +1,9 @@
-// import PropTypes from 'prop-types';
-import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { useEffect } from 'react';
 import api from '../services/requests';
 
-function TableAdmin() {
-  const [users, setUsers] = useState([]);
+function TableAdmin({ users, setUsers }) {
+  // const [users, setUsers] = useState([]);
 
   useEffect(() => {
     const getUsers = async () => {
@@ -91,15 +91,16 @@ function TableAdmin() {
   );
 }
 
-// TableAdmin.propTypes = {
-//   usersArray: PropTypes.arrayOf(
-//     PropTypes.shape({
-//       id: PropTypes.number.isRequired,
-//       name: PropTypes.string.isRequired,
-//       email: PropTypes.string.isRequired,
-//       role: PropTypes.string.isRequired,
-//     }),
-//   ).isRequired,
-// };
+TableAdmin.propTypes = {
+  users: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      name: PropTypes.string.isRequired,
+      email: PropTypes.string.isRequired,
+      role: PropTypes.string.isRequired,
+    }),
+  ).isRequired,
+  setUsers: PropTypes.func.isRequired,
+};
 
 export default TableAdmin;
