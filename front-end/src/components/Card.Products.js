@@ -1,13 +1,11 @@
 import PropTypes from 'prop-types';
 import { useState, useEffect, useContext } from 'react';
 import DeliveryAppContext from '../context/DeliveryAppContext';
+import conversions from '../utils/conversions';
 
 function CardProducts({ id, name, price, urlImage }) {
   const [quantity, setQuantity] = useState(0);
 
-  const priceFloat = price.toFixed(Number(2));
-  const priceString = priceFloat.toString();
-  const priceProduct = priceString.replace(/\./, ',');
   const { cart, setCart } = useContext(DeliveryAppContext);
 
   useEffect(() => {
@@ -24,14 +22,11 @@ function CardProducts({ id, name, price, urlImage }) {
   const increaseQuantity = (increase) => {
     const value = quantity + increase;
     setQuantity(value);
-    // const storage = browserStorage.get('cart') || [];
     if (quantity === 0) {
       const newCart = [...cart, { id, name, price, quantity: 1 }];
-      // storage.push({ id, name, price, quantity: 1 });
       setCart(newCart);
     } else {
       const newCart = updateQuantityItem(value);
-      // item.quantity = quantity + increase;
       setCart(newCart);
     }
   };
@@ -40,13 +35,10 @@ function CardProducts({ id, name, price, urlImage }) {
     const value = !quantity ? 0 : quantity - decrease;
     setQuantity(value);
     if (quantity) {
-      // let storage = browserStorage.get('cart') || [];
-      // const item = storage.find((items) => items.id === id);
       if (quantity > 1) {
         const newCart = updateQuantityItem(value);
         setCart(newCart);
       } else {
-        // storage = storage.filter((items) => items.id !== id);
         const newCart = cart.filter((items) => items.id !== id);
         setCart(newCart);
       }
@@ -78,7 +70,7 @@ function CardProducts({ id, name, price, urlImage }) {
         <span
           data-testid={ `customer_products__element-card-price-${id}` }
         >
-          {`R$  ${priceProduct}`}
+          {`R$  ${conversions.convertPrice(price)}`}
         </span>
       </div>
 
