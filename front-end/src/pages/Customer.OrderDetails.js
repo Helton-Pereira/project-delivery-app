@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
+import { useHistory } from 'react-router-dom';
 import HeaderCustomerOrderDetails from '../components/Header.CustomerOrderDetails';
 import NavBarCustomer from '../components/NavBar.Customer';
 import TableCustomerOrderDetails from '../components/Table.CustomerOrderDetails';
 import useValidateAuth from '../hooks/useValidateAuth';
-// import orderHeaderMock from '../utils/orderHeaderMock';
 import api from '../services/requests';
 
-function CustomerOrderDetails(props) {
+function CustomerOrderDetails() {
   const [order, setOrder] = useState(null);
-  const { history } = props;
+  const history = useHistory;
   const [auth, setAuth] = useState(false);
 
   useValidateAuth(props, setAuth);
@@ -45,13 +44,5 @@ function CustomerOrderDetails(props) {
     </div>
   );
 }
-
-CustomerOrderDetails.propTypes = {
-  history: PropTypes.shape({
-    location: PropTypes.shape({
-      pathname: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
-};
 
 export default CustomerOrderDetails;
