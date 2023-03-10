@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-function TableOrderDatailsSeller({ productsArray }) {
+function TableSellerOrderDetails({ productsArray }) {
   let totalCart = 0;
   const convertPrice = (price) => price.toFixed(Number(2)).toString().replace(/\./, ',');
 
@@ -73,7 +73,7 @@ function TableOrderDatailsSeller({ productsArray }) {
   );
 }
 
-TableOrderDatailsSeller.propTypes = {
+TableSellerOrderDetails.propTypes = {
   productsArray: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -86,4 +86,4 @@ TableOrderDatailsSeller.propTypes = {
   ).isRequired,
 };
 
-export default TableOrderDatailsSeller;
+export default TableSellerOrderDetails;

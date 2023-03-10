@@ -1,9 +1,9 @@
 // import NavbarCustomer from '../components/Navbar.Custumer';
 import PropTypes from 'prop-types';
 import { useState, useContext } from 'react';
-import FormOrderCheckout from '../components/FormOrderCheckout';
+import FormCheckout from '../components/Form.Checkout';
 import NavBarCustomer from '../components/NavBar.Customer';
-import TableOrderCheckout from '../components/TableOrderCheckout';
+import TableCheckout from '../components/Table.Checkout';
 import DeliveryAppContext from '../context/DeliveryAppContext';
 import api from '../services/requests';
 
@@ -72,10 +72,10 @@ function CostumerCheckout(props) {
       <h2>NavbarCustomer</h2>
       <div className="Checkout-container">
         <h2>Finalizar Pedido</h2>
-        <TableOrderCheckout setNewOrder={ setNewOrder } />
+        <TableCheckout setNewOrder={ setNewOrder } />
         <div>
           <h2>Detalhes e Endereço para Entrega</h2>
-          <FormOrderCheckout
+          <FormCheckout
             handleSubmitOrder={ handleSubmitOrder }
             setNewOrder={ setNewOrder }
           />

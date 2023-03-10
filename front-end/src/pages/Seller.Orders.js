@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import CardSellerOrder from '../components/Card.Seller.Order';
+import CardSellerOrder from '../components/Card.SellerOrder';
 import NavBarSeller from '../components/NavBar.Seller';
 import api from '../services/requests';
 import useValidateAuth from '../hooks/useValidateAuth';

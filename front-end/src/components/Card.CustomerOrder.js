@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import conversions from '../utils/conversions';
 
-function CardOrders({ history, id, status, saleDate, totalPrice }) {
+function CardCustomerOrder({ history, id, status, saleDate, totalPrice }) {
   const { location: { pathname } } = history;
 
   return (
@@ -47,7 +47,7 @@ function CardOrders({ history, id, status, saleDate, totalPrice }) {
   );
 }
 
-CardOrders.propTypes = {
+CardCustomerOrder.propTypes = {
   history: PropTypes.shape({
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
@@ -59,4 +59,4 @@ CardOrders.propTypes = {
   totalPrice: PropTypes.number.isRequired,
 };
 
-export default CardOrders;
+export default CardCustomerOrder;

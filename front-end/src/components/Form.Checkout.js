@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import api from '../services/requests';
 
-function FormOrderCheckout({ handleSubmitOrder, setNewOrder }) {
+function FormCheckout({ handleSubmitOrder, setNewOrder }) {
   const INITIAL_STATE = {
     seller: '',
     deliveryAddress: '',
@@ -89,9 +89,9 @@ function FormOrderCheckout({ handleSubmitOrder, setNewOrder }) {
   );
 }
 
-FormOrderCheckout.propTypes = {
+FormCheckout.propTypes = {
   handleSubmitOrder: PropTypes.func.isRequired,
   setNewOrder: PropTypes.func.isRequired,
 };
 
-export default FormOrderCheckout;
+export default FormCheckout;

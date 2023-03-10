@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import OrderHeader from '../components/OrderHeader';
+import HeaderCustomerOrderDetails from '../components/Header.CustomerOrderDetails';
 import NavBarCustomer from '../components/NavBar.Customer';
-import TableOrderDatails from '../components/TableOrderDatails';
+import TableCustomerOrderDetails from '../components/Table.CustomerOrderDetails';
 import useValidateAuth from '../hooks/useValidateAuth';
 // import orderHeaderMock from '../utils/orderHeaderMock';
 import api from '../services/requests';
@@ -30,7 +30,7 @@ function CustomerOrderDatails(props) {
       <NavBarCustomer />
       <h2> Detalhes do pedido </h2>
       {order && (
-        <OrderHeader
+        <HeaderCustomerOrderDetails
           key={ order.id }
           id={ order.id }
           sellerName={ order.seller.name }
@@ -41,7 +41,7 @@ function CustomerOrderDatails(props) {
         />
       )}
       <h2> Produtos </h2>
-      {order && (<TableOrderDatails productsArray={ order.products } />) }
+      {order && (<TableCustomerOrderDetails productsArray={ order.products } />) }
     </div>
   );
 }

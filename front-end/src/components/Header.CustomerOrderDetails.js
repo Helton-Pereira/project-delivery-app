@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import api from '../services/requests';
 
-function orderHeader({ id, sellerName, status, saleDate, setOrder }) {
+function HeaderCustomerOrderDetails({ id, sellerName, status, saleDate, setOrder }) {
   const ID_PAD_START = 4;
 
   // const convertPrice = (price) => price.toFixed(Number(2)).toString().replace(/\./, ',');
@@ -75,12 +75,12 @@ function orderHeader({ id, sellerName, status, saleDate, setOrder }) {
   );
 }
 
-orderHeader.propTypes = {
+HeaderCustomerOrderDetails.propTypes = {
   id: PropTypes.number.isRequired,
   sellerName: PropTypes.string.isRequired,
   status: PropTypes.string.isRequired,
   saleDate: PropTypes.string.isRequired,
-  totalPrice: PropTypes.number.isRequired,
+  setOrder: PropTypes.func.isRequired,
 };
 
-export default orderHeader;
+export default HeaderCustomerOrderDetails;

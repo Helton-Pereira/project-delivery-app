@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import api from '../services/requests';
 
-function OrderHeaderSeller({ id, status, saleDate, setOrder }) {
+function HeaderSellerOrderDetails({ id, status, saleDate, setOrder }) {
   const ID_PAD_START = 4;
   const DTID_STATUS = 'seller_order_details__element-order-details-label-delivery-status';
 
@@ -70,10 +70,10 @@ function OrderHeaderSeller({ id, status, saleDate, setOrder }) {
     </div>
   );
 }
-OrderHeaderSeller.propTypes = {
+HeaderSellerOrderDetails.propTypes = {
   id: PropTypes.number.isRequired,
   status: PropTypes.string.isRequired,
   saleDate: PropTypes.string.isRequired,
   setOrder: PropTypes.func.isRequired,
 };
-export default OrderHeaderSeller;
+export default HeaderSellerOrderDetails;

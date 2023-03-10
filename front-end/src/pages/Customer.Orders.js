@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import CardOrders from '../components/Card.Orders';
+import CardCustomerOrder from '../components/Card.CustomerOrder';
 import NavBarCustomer from '../components/NavBar.Customer';
 import api from '../services/requests';
 import useValidateAuth from '../hooks/useValidateAuth';
@@ -27,7 +27,7 @@ function CustomerOrders(props) {
       <NavBarCustomer />
 
       {orders.map((order) => (
-        <CardOrders
+        <CardCustomerOrder
           history={ history }
           key={ order.id }
           id={ order.id }

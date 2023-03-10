@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import DeliveryAppContext from '../context/DeliveryAppContext';
 
-function TableOrderCheckout() {
+function TableCheckout() {
   let totalCart = 0;
 
   const { cart, setCart } = useContext(DeliveryAppContext);
@@ -80,8 +80,8 @@ function TableOrderCheckout() {
   );
 }
 
-// TableOrderCheckout.propTypes = {
+// TableCheckout.propTypes = {
 //   setNewOrder: PropTypes.func.isRequired,
 // };
 
-export default TableOrderCheckout;
+export default TableCheckout;
