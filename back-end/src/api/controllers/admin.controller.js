@@ -16,10 +16,11 @@ const createUserByAdmin = async (req, res) => {
   const {
     message,
     status,
+    id,
   } = await adminService.createUserByAdmin({ name, email, newPassword, role });
 
   if (status === 200) {
-    return res.status(201).json({ token, name, role });
+    return res.status(201).json({ id, name, email, role });
   }
 
   return res.status(status).json({ message });
