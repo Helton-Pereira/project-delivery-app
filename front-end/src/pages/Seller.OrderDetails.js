@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-// import useValidateAuth from '../hooks/useValidateAuth';
+import useValidateAuth from '../hooks/useValidateAuth';
 import api from '../services/requests';
 import HeaderSellerOrderDetails from '../components/Header.SellerOrderDetails';
 import TableSellerOrderDetails from '../components/Table.SellerOrderDetails';
@@ -17,7 +17,6 @@ function SellerOrderDetails(props) {
     const getOrder = async () => {
       const url = history.location.pathname;
       const data = await api.requestData(url);
-      console.log(data);
       setOrder(data);
     };
     getOrder();
