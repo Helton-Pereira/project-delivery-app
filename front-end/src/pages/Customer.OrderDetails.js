@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import HeaderCustomerOrderDetails from '../components/Header.CustomerOrderDetails';
+import NavBarCustomer from '../components/NavBar.Customer';
+import TableCustomerOrderDetails from '../components/Table.CustomerOrderDetails';
 import useValidateAuth from '../hooks/useValidateAuth';
+// import orderHeaderMock from '../utils/orderHeaderMock';
 import api from '../services/requests';
-import HeaderSellerOrderDetails from '../components/Header.SellerOrderDetails';
-import TableSellerOrderDetails from '../components/Table.SellerOrderDetails';
-import NavBarSeller from '../components/NavBar.Seller';
 
-function SellerOrderDatails(props) {
+function CustomerOrderDetails(props) {
   const [order, setOrder] = useState(null);
   const { history } = props;
   const [auth, setAuth] = useState(false);
@@ -23,15 +24,16 @@ function SellerOrderDatails(props) {
     getOrder();
     console.log(auth);
   }, []);
-
+  //
   return (
     <div>
-      <NavBarSeller />
+      <NavBarCustomer />
       <h2> Detalhes do pedido </h2>
       {order && (
-        <HeaderSellerOrderDetails
+        <HeaderCustomerOrderDetails
           key={ order.id }
           id={ order.id }
+          sellerName={ order.seller.name }
           status={ order.status }
           saleDate={ order.saleDate }
           totalPrice={ Number(order.totalPrice) }
@@ -39,12 +41,12 @@ function SellerOrderDatails(props) {
         />
       )}
       <h2> Produtos </h2>
-      {order && (<TableSellerOrderDetails productsArray={ order.products } />) }
+      {order && (<TableCustomerOrderDetails productsArray={ order.products } />) }
     </div>
   );
 }
 
-SellerOrderDatails.propTypes = {
+CustomerOrderDetails.propTypes = {
   history: PropTypes.shape({
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
@@ -52,4 +54,4 @@ SellerOrderDatails.propTypes = {
   }).isRequired,
 };
 
-export default SellerOrderDatails;
+export default CustomerOrderDetails;

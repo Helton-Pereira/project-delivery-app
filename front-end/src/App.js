@@ -7,10 +7,10 @@ import Register from './pages/Register';
 import CostumerCheckout from './pages/Customer.Checkout';
 import CustomerProducts from './pages/Customer.Products';
 import CustomerOrders from './pages/Customer.Orders';
-import CustomerOrderDatails from './pages/Customer.Order.Details';
+import CustomerOrderDatails from './pages/Customer.OrderDetails';
 import SellerOrders from './pages/Seller.Orders';
-import AdminManage from './pages/Admin.Manage';
-import SellerOrderDetails from './pages/Seller.Order.Details';
+import Admin from './pages/Admin';
+import SellerOrderDetails from './pages/Seller.OrderDetails';
 
 function App() {
   return (
@@ -25,7 +25,7 @@ function App() {
         <Route exact path="/customer/orders/:id" component={ CustomerOrderDatails } />
         <Route exact path="/seller/orders" component={ SellerOrders } />
         <Route exact path="/seller/orders/:id" component={ SellerOrderDetails } />
-        <Route exact path="/admin/manage" component={ AdminManage } />
+        <Route exact path="/admin/manage" component={ Admin } />
       </Switch>
     </DeliveryAppProvider>
   );
