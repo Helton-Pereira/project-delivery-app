@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import DeliveryAppContext from '../context/DeliveryAppContext';
-import convertPrice from '../utils/conversions';
+import conversions from '../utils/conversions';
 
 function TableCheckout() {
   let totalCart = 0;
@@ -34,10 +34,10 @@ function TableCheckout() {
             { quantity }
           </td>
           <td data-testid={ `customer_checkout__element-order-table-unit-price-${i}` }>
-            { convertPrice(price) }
+            { conversions.convertPrice(price) }
           </td>
           <td data-testid={ `customer_checkout__element-order-table-sub-total-${i}` }>
-            { convertPrice(quantity * price) }
+            { conversions.convertPrice(quantity * price) }
           </td>
           <td>
             <button
@@ -71,7 +71,7 @@ function TableCheckout() {
       </table>
       <h1 data-testid="customer_checkout__element-order-total-price">
         Total:
-        { `${convertPrice(totalCart)}` }
+        { `${conversions.convertPrice(totalCart)}` }
       </h1>
     </div>
   );

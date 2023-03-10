@@ -27,3 +27,9 @@ export const COSTUMER_CHECKOUT_INITIAL_STATE = {
   deliveryAddress: '',
   deliveryNumber: '',
 };
+
+export const FORM_CHECKOUT_INITIAL_STATE = {
+  seller: '',
+  deliveryAddress: '',
+  deliveryNumber: '',
+};

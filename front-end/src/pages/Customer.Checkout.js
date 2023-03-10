@@ -69,7 +69,7 @@ function CostumerCheckout(props) {
         <h2>Finalizar Pedido</h2>
         <TableCheckout />
         <div>
-          <h2>Detalhes e Endereço para Entrega</h2>
+          <h2>Detalhes e Endereço para Entrega:</h2>
           <FormCheckout
             handleSubmitOrder={ handleSubmitOrder }
             setNewOrder={ setNewOrder }
