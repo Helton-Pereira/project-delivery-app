@@ -1,20 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import api from '../services/requests';
-import roles from '../utils/constants';
 import isValidEmail from '../utils/validations';
+import { MIN_PASSWORD_LENGTH, roles, MIN_NAME_LENGTH } from '../utils/constants';
+import { FORM_ADMIN_INITIAL_STATE } from '../utils/initialStates';
 
-const MIN_PASSWORD_LENGTH = 6;
-const MIN_NAME_LENGTH = 12;
-
-function FormAdmin({ users, setUsers }) {
-  const INITIAL_STATE = {
-    name: '',
-    email: '',
-    password: '',
-    role: roles[0],
-  };
-  const [newUser, setNewUser] = useState(INITIAL_STATE);
+function FormAdmin({ setUsers }) {
+  const [newUser, setNewUser] = useState({ ...FORM_ADMIN_INITIAL_STATE, role: roles[0] });
 
   const [isSubmitButtonDisabled, setIsSubmitButtonDisabled] = useState(true);
 
@@ -28,11 +20,9 @@ function FormAdmin({ users, setUsers }) {
       const userCreated = await api.requestLogin('/admin/manage', newUser);
       setErrorMessage('');
       setSucessMessage(`USUÁRIO: ${newUser.name} ADICONADO COM SUCESSO!`);
-      setNewUser(INITIAL_STATE);
+      setNewUser({ ...FORM_ADMIN_INITIAL_STATE, role: roles[0] });
       setUsers((prev) => ([...prev, userCreated]));
-      console.log(users);
     } catch (error) {
-      console.log(error);
       setErrorMessage(error.response.data.message);
     }
   };
@@ -75,7 +65,7 @@ function FormAdmin({ users, setUsers }) {
               {errorMessage}
             </span>
           ) }
-      Form:
+      Adicionar novo Usuário:
       <form onSubmit={ (event) => handleSubmitNewUser(event) }>
         <label htmlFor="name">
           Nome
@@ -140,14 +130,6 @@ function FormAdmin({ users, setUsers }) {
 }
 
 FormAdmin.propTypes = {
-  users: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.number.isRequired,
-      name: PropTypes.string.isRequired,
-      email: PropTypes.string.isRequired,
-      role: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
   setUsers: PropTypes.func.isRequired,
 };
 

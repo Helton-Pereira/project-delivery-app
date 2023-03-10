@@ -10,4 +10,7 @@
 
 const roles = ['customer', 'seller', 'administrator'];
 
-export default roles;
+const MIN_PASSWORD_LENGTH = 6;
+const MIN_NAME_LENGTH = 12;
+
+export { roles, MIN_PASSWORD_LENGTH, MIN_NAME_LENGTH };

@@ -14,3 +14,10 @@ export const USER_INITIAL_STATE = {
   role: '',
   token: '',
 };
+
+export const FORM_ADMIN_INITIAL_STATE = {
+  name: '',
+  email: '',
+  password: '',
+  role: [],
+};
