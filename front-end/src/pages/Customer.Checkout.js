@@ -67,7 +67,7 @@ function CostumerCheckout(props) {
       <h2>NavbarCustomer</h2>
       <div className="Checkout-container">
         <h2>Finalizar Pedido</h2>
-        <TableCheckout setNewOrder={ setNewOrder } />
+        <TableCheckout />
         <div>
           <h2>Detalhes e Endereço para Entrega</h2>
           <FormCheckout

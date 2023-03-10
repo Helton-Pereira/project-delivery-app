@@ -1,21 +1,18 @@
 import { useContext } from 'react';
 import DeliveryAppContext from '../context/DeliveryAppContext';
+import convertPrice from '../utils/conversions';
 
 function TableCheckout() {
   let totalCart = 0;
 
   const { cart, setCart } = useContext(DeliveryAppContext);
 
-  const convertPrice = (price) => price.toFixed(Number(2)).toString().replace(/\./, ',');
-
   const handleRemoveButton = (id) => {
-    console.log(`REMOVE: ${id}`);
     const newCart = cart.filter((items) => items.id !== id);
     setCart(newCart);
   };
 
   const fillTableDescription = () => {
-    // const { products } = this.props;
     const products = cart;
     const tableElement = products.map((element, i) => {
       const {
