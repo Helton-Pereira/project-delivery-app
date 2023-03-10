@@ -1,9 +1,8 @@
 import PropTypes from 'prop-types';
+import conversions from '../utils/conversions';
 
 function TableSellerOrderDetails({ productsArray }) {
   let totalCart = 0;
-  const convertPrice = (price) => price.toFixed(Number(2)).toString().replace(/\./, ',');
-
   const fillTableDescription = () => {
     const products = productsArray;
     const tableElement = products.map((element, i) => {
@@ -37,14 +36,14 @@ function TableSellerOrderDetails({ productsArray }) {
               `seller_order_details__element-order-table-unit-price-${i}`
             }
           >
-            { convertPrice(price) }
+            { conversions.convertPrice(price) }
           </td>
           <td
             data-testid={
               `seller_order_details__element-order-table-sub-total-${i}`
             }
           >
-            { convertPrice(SaleProduct.quantity * price) }
+            { conversions.convertPrice(SaleProduct.quantity * price) }
           </td>
         </tr>
       );
@@ -67,7 +66,7 @@ function TableSellerOrderDetails({ productsArray }) {
       </table>
       <h2 data-testid="seller_order_details__element-order-total-price">
         Total:
-        { `${convertPrice(totalCart)}` }
+        { `${conversions.convertPrice(totalCart)}` }
       </h2>
     </div>
   );

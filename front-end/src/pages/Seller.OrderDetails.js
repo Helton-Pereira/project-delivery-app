@@ -5,6 +5,7 @@ import api from '../services/requests';
 import HeaderSellerOrderDetails from '../components/Header.SellerOrderDetails';
 import TableSellerOrderDetails from '../components/Table.SellerOrderDetails';
 import NavBarSeller from '../components/NavBar.Seller';
+import conversions from '../utils/conversions';
 
 function SellerOrderDetails(props) {
   const [order, setOrder] = useState(null);
