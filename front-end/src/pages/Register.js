@@ -4,9 +4,7 @@ import DeliveryAppContext from '../context/DeliveryAppContext';
 import api from '../services/requests';
 import isValidEmail from '../utils/validations';
 import { REGISTER_INITIAL_STATE } from '../utils/initialStates';
-
-const MIN_PASSWORD_LENGTH = 6;
-const MIN_NAME_LENGTH = 12;
+import { MIN_PASSWORD_LENGTH, MIN_NAME_LENGTH } from '../utils/constants';
 
 function Register(props) {
   const [registerData, setRegisterData] = useState(REGISTER_INITIAL_STATE);
