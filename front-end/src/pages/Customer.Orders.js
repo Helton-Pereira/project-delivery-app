@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import CardOrders from '../components/Card.Orders';
+import { useHistory } from 'react-router-dom';
+import CardCustomerOrder from '../components/Card.CustomerOrder';
 import NavBarCustomer from '../components/NavBar.Customer';
 import api from '../services/requests';
 import useValidateAuth from '../hooks/useValidateAuth';
 
 function CustomerOrders(props) {
-  const { history } = props;
+  const history = useHistory();
   const [orders, setOrders] = useState([]);
   const [auth, setAuth] = useState(false);
 
@@ -23,11 +23,9 @@ function CustomerOrders(props) {
 
   return (
     <main>
-
       <NavBarCustomer />
-
       {orders.map((order) => (
-        <CardOrders
+        <CardCustomerOrder
           history={ history }
           key={ order.id }
           id={ order.id }
@@ -40,13 +38,5 @@ function CustomerOrders(props) {
     </main>
   );
 }
-
-CustomerOrders.propTypes = {
-  history: PropTypes.shape({
-    location: PropTypes.shape({
-      pathname: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
-};
 
 export default CustomerOrders;

@@ -14,3 +14,22 @@ export const USER_INITIAL_STATE = {
   role: '',
   token: '',
 };
+
+export const FORM_ADMIN_INITIAL_STATE = {
+  name: '',
+  email: '',
+  password: '',
+  role: [],
+};
+
+export const COSTUMER_CHECKOUT_INITIAL_STATE = {
+  seller: '',
+  deliveryAddress: '',
+  deliveryNumber: '',
+};
+
+export const FORM_CHECKOUT_INITIAL_STATE = {
+  seller: '',
+  deliveryAddress: '',
+  deliveryNumber: '',
+};

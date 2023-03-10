@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import useValidateAuth from '../hooks/useValidateAuth';
 import api from '../services/requests';
-import OrderHeaderSeller from '../components/OrderHeaderSeller';
-import TableOrderDatailsSeller from '../components/TableOrderDetailsSeller';
+import HeaderSellerOrderDetails from '../components/Header.SellerOrderDetails';
+import TableSellerOrderDetails from '../components/Table.SellerOrderDetails';
 import NavBarSeller from '../components/NavBar.Seller';
 
-function SellerOrderDatails(props) {
+function SellerOrderDetails(props) {
   const [order, setOrder] = useState(null);
   const { history } = props;
   const [auth, setAuth] = useState(false);
@@ -17,7 +17,6 @@ function SellerOrderDatails(props) {
     const getOrder = async () => {
       const url = history.location.pathname;
       const data = await api.requestData(url);
-      console.log(data);
       setOrder(data);
     };
     getOrder();
@@ -29,7 +28,7 @@ function SellerOrderDatails(props) {
       <NavBarSeller />
       <h2> Detalhes do pedido </h2>
       {order && (
-        <OrderHeaderSeller
+        <HeaderSellerOrderDetails
           key={ order.id }
           id={ order.id }
           status={ order.status }
@@ -39,12 +38,12 @@ function SellerOrderDatails(props) {
         />
       )}
       <h2> Produtos </h2>
-      {order && (<TableOrderDatailsSeller productsArray={ order.products } />) }
+      {order && (<TableSellerOrderDetails productsArray={ order.products } />) }
     </div>
   );
 }
 
-SellerOrderDatails.propTypes = {
+SellerOrderDetails.propTypes = {
   history: PropTypes.shape({
     location: PropTypes.shape({
       pathname: PropTypes.string.isRequired,
@@ -52,4 +51,4 @@ SellerOrderDatails.propTypes = {
   }).isRequired,
 };
 
-export default SellerOrderDatails;
+export default SellerOrderDetails;

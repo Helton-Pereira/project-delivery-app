@@ -5,6 +5,7 @@ import NavBarCustomer from '../components/NavBar.Customer';
 import api from '../services/requests';
 import useValidateAuth from '../hooks/useValidateAuth';
 import DeliveryAppContext from '../context/DeliveryAppContext';
+import conversions from '../utils/conversions';
 
 function CustomerProducts(props) {
   const [products, setProducts] = useState([]);
@@ -20,8 +21,7 @@ function CustomerProducts(props) {
       (acc, curr) => acc + (curr.price * curr.quantity),
       0,
     );
-    const convertedValue = total.toFixed(Number(2)).toString().replace(/\./, ',');
-    setTotalValue(convertedValue);
+    setTotalValue(conversions.convertPrice(total));
   }, [cart]);
 
   const handleClickCart = (event) => {

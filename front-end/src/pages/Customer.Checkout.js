@@ -1,19 +1,18 @@
 // import NavbarCustomer from '../components/Navbar.Custumer';
 import PropTypes from 'prop-types';
 import { useState, useContext } from 'react';
-import FormOrderCheckout from '../components/FormOrderCheckout';
+import FormCheckout from '../components/Form.Checkout';
 import NavBarCustomer from '../components/NavBar.Customer';
-import TableOrderCheckout from '../components/TableOrderCheckout';
+import TableCheckout from '../components/Table.Checkout';
 import DeliveryAppContext from '../context/DeliveryAppContext';
 import api from '../services/requests';
+import { COSTUMER_CHECKOUT_INITIAL_STATE } from '../utils/initialStates';
+// import useValidateAuth from '../hooks/useValidateAuth';
 
 function CostumerCheckout(props) {
-  const INITIAL_STATE = {
-    seller: '',
-    deliveryAddress: '',
-    deliveryNumber: '',
-  };
-  const [newOrder, setNewOrder] = useState(INITIAL_STATE);
+  // useValidateAuth(props);
+
+  const [newOrder, setNewOrder] = useState(COSTUMER_CHECKOUT_INITIAL_STATE);
   const { cart, user } = useContext(DeliveryAppContext);
 
   const { history } = props;
@@ -24,7 +23,7 @@ function CostumerCheckout(props) {
 
   const makeObjPost = () => ({
     name: user.name,
-    seller: 'fulana pereira',
+    seller: 'Fulana Pereira',
     totalPrice,
     deliveryAddress: newOrder.deliveryAddress,
     deliveryNumber: newOrder.deliveryNumber,
@@ -33,7 +32,6 @@ function CostumerCheckout(props) {
   });
 
   const handleCartData = () => {
-    // const { products } = this.props;
     const products = cart;
     products.forEach((product) => {
       const {
@@ -53,14 +51,11 @@ function CostumerCheckout(props) {
     event.preventDefault();
     try {
       handleCartData();
-      // const id = '0011177778888';
       const body = makeObjPost();
+      console.log(body);
       const { id } = await api.requestNewOrder('/customer/checkout', body, user.token);
-      console.log(id);
       history.push(`/customer/orders/${id}`);
     } catch (error) {
-      // handleCartData();
-      // console.log(makeObjPost());
       console.log(error);
     }
   };
@@ -72,10 +67,10 @@ function CostumerCheckout(props) {
       <h2>NavbarCustomer</h2>
       <div className="Checkout-container">
         <h2>Finalizar Pedido</h2>
-        <TableOrderCheckout setNewOrder={ setNewOrder } />
+        <TableCheckout />
         <div>
-          <h2>Detalhes e Endereço para Entrega</h2>
-          <FormOrderCheckout
+          <h2>Detalhes e Endereço para Entrega:</h2>
+          <FormCheckout
             handleSubmitOrder={ handleSubmitOrder }
             setNewOrder={ setNewOrder }
           />

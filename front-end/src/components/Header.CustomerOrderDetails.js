@@ -1,20 +1,12 @@
 import PropTypes from 'prop-types';
 import api from '../services/requests';
+import { ID_PAD_START } from '../utils/constants';
+import conversions from '../utils/conversions';
 
-function orderHeader({ id, sellerName, status, saleDate, setOrder }) {
-  const ID_PAD_START = 4;
-
-  // const convertPrice = (price) => price.toFixed(Number(2)).toString().replace(/\./, ',');
-  function formatDate(dateOrder) {
-    const date = new Date(dateOrder);
-    return date.toLocaleDateString('pt-br');
-  }
-
+function HeaderCustomerOrderDetails({ id, sellerName, status, saleDate, setOrder }) {
   const handleClickStatusOrder = async () => {
-    console.log(`update order${id}`);
     await api.updateOrderStatus(`customer/orders/update/${id}`, { status: 'Entregue' });
     setOrder((prev) => ({ ...prev, status: 'Entregue' }));
-    // window.location.reload(true); // Isto interfere no avaliador.
   };
 
   return (
@@ -42,7 +34,7 @@ function orderHeader({ id, sellerName, status, saleDate, setOrder }) {
           <span
             data-testid="customer_order_details__element-order-details-label-order-date"
           >
-            {formatDate(saleDate)}
+            {conversions.convertDate(saleDate)}
           </span>
         </div>
 
@@ -75,12 +67,12 @@ function orderHeader({ id, sellerName, status, saleDate, setOrder }) {
   );
 }
 
-orderHeader.propTypes = {
+HeaderCustomerOrderDetails.propTypes = {
   id: PropTypes.number.isRequired,
   sellerName: PropTypes.string.isRequired,
   status: PropTypes.string.isRequired,
   saleDate: PropTypes.string.isRequired,
-  totalPrice: PropTypes.number.isRequired,
+  setOrder: PropTypes.func.isRequired,
 };
 
-export default orderHeader;
+export default HeaderCustomerOrderDetails;

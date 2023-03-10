@@ -1,15 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import api from '../services/requests';
+import { FORM_CHECKOUT_INITIAL_STATE } from '../utils/initialStates';
 
-function FormOrderCheckout({ handleSubmitOrder, setNewOrder }) {
-  const INITIAL_STATE = {
-    seller: '',
-    deliveryAddress: '',
-    deliveryNumber: '',
-  };
-
-  const [orderDetails, setOrderDetails] = useState(INITIAL_STATE);
+function FormCheckout({ handleSubmitOrder, setNewOrder }) {
+  const [orderDetails, setOrderDetails] = useState(FORM_CHECKOUT_INITIAL_STATE);
 
   const [sellers, setSellers] = useState([]);
 
@@ -22,7 +17,6 @@ function FormOrderCheckout({ handleSubmitOrder, setNewOrder }) {
   }, []);
 
   const creatSelerSelect = () => {
-    // const sellers = await api.requestData('/seller');
     const option = sellers.map((seller) => (
       <option key={ seller.name } value={ seller.name }>{seller.name}</option>
     ));
@@ -46,7 +40,7 @@ function FormOrderCheckout({ handleSubmitOrder, setNewOrder }) {
       Form:
       <form onSubmit={ (event) => handleSubmitOrder(event) }>
         <label htmlFor="seller">
-          P. Vendedora Responsável:
+          P. Vendedor(a) Responsável:
           <select
             name="seller"
             data-testid="customer_checkout__select-seller"
@@ -89,9 +83,9 @@ function FormOrderCheckout({ handleSubmitOrder, setNewOrder }) {
   );
 }
 
-FormOrderCheckout.propTypes = {
+FormCheckout.propTypes = {
   handleSubmitOrder: PropTypes.func.isRequired,
   setNewOrder: PropTypes.func.isRequired,
 };
 
-export default FormOrderCheckout;
+export default FormCheckout;

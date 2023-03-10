@@ -1,12 +1,9 @@
 import PropTypes from 'prop-types';
+import conversions from '../utils/conversions';
 
-function TableOrderDatails({ productsArray }) {
+function TableSellerOrderDetails({ productsArray }) {
   let totalCart = 0;
-
-  const convertPrice = (price) => price.toFixed(Number(2)).toString().replace(/\./, ',');
-
   const fillTableDescription = () => {
-    // const { products } = this.props;
     const products = productsArray;
     const tableElement = products.map((element, i) => {
       const {
@@ -23,37 +20,36 @@ function TableOrderDatails({ productsArray }) {
         <tr key={ i }>
           <td
             data-testid={
-              `customer_order_details__element-order-table-item-number-${i}`
+              `seller_order_details__element-order-table-item-number-${i}`
             }
           >
             { (i + 1) }
           </td>
-          <td data-testid={ `customer_order_details__element-order-table-name-${i}` }>
+          <td data-testid={ `seller_order_details__element-order-table-name-${i}` }>
             { name }
           </td>
-          <td data-testid={ `customer_order_details__element-order-table-quantity-${i}` }>
+          <td data-testid={ `seller_order_details__element-order-table-quantity-${i}` }>
             { SaleProduct.quantity }
           </td>
           <td
             data-testid={
-              `customer_order_details__element-order-table-unit-price-${i}`
+              `seller_order_details__element-order-table-unit-price-${i}`
             }
           >
-            { convertPrice(price) }
+            { conversions.convertPrice(price) }
           </td>
           <td
             data-testid={
-              `customer_order_details__element-order-table-sub-total-${i}`
+              `seller_order_details__element-order-table-sub-total-${i}`
             }
           >
-            { convertPrice(SaleProduct.quantity * price) }
+            { conversions.convertPrice(SaleProduct.quantity * price) }
           </td>
         </tr>
       );
     });
     return tableElement;
   };
-
   return (
     <div>
       <table>
@@ -68,15 +64,15 @@ function TableOrderDatails({ productsArray }) {
         </thead>
         <tbody>{fillTableDescription()}</tbody>
       </table>
-      <h2 data-testid="customer_order_details__element-order-total-price">
+      <h2 data-testid="seller_order_details__element-order-total-price">
         Total:
-        { `${convertPrice(totalCart)}` }
+        { `${conversions.convertPrice(totalCart)}` }
       </h2>
     </div>
   );
 }
 
-TableOrderDatails.propTypes = {
+TableSellerOrderDetails.propTypes = {
   productsArray: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -89,4 +85,4 @@ TableOrderDatails.propTypes = {
   ).isRequired,
 };
 
-export default TableOrderDatails;
+export default TableSellerOrderDetails;

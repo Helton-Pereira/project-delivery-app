@@ -4,22 +4,22 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import api from '../services/requests';
 import renderWithRouter from './helpers/renderWithRouter';
-import productsMocks from './helpers/mocks/products.mocks';
-import navBarMocks from './helpers/mocks/customerNavBar.mocks';
+import ordersMocks from './helpers/mocks/seller.orders.mocks';
+import navBarMocks from './helpers/mocks/seller.navbar.mocks';
 import loginMocks from './helpers/mocks/login.mocks';
 
-describe('Test the Customer NavBar component', () => {
+describe('Test the Seller NavBar component', () => {
   let history;
 
   beforeEach(() => {
-    jest.spyOn(api, 'requestData').mockImplementation(() => productsMocks.allProducts);
+    jest.spyOn(api, 'requestData').mockImplementation(() => ordersMocks.allOrders);
 
     history = renderWithRouter(<App />).history;
 
     localStorage.setItem('user', JSON
-      .stringify(loginMocks.loginData));
+      .stringify(loginMocks.sellerLoginData));
 
-    history.push('/customer/products');
+    history.push('/seller/orders');
   });
 
   afterEach(() => jest.clearAllMocks());
@@ -27,31 +27,14 @@ describe('Test the Customer NavBar component', () => {
   test('Checks if the elements exist', async () => {
     await waitFor(() => {});
 
-    const productsLink = screen.getByTestId(navBarMocks.productsLink);
     const ordersLink = screen.getByTestId(navBarMocks.ordersLink);
     const userNameElement = screen.getByTestId(navBarMocks.userNameElement);
     const checkoutButton = screen.getByTestId(navBarMocks.checkoutButton);
 
-    expect(productsLink).toBeInTheDocument();
     expect(ordersLink).toBeInTheDocument();
     expect(userNameElement).toBeInTheDocument();
     expect(checkoutButton).toBeInTheDocument();
   });
-
-  test(
-    'Checks user redirection to products page after clicking products link',
-    async () => {
-      await waitFor(() => {});
-
-      const productsLink = screen.getByTestId(navBarMocks.productsLink);
-
-      userEvent.click(productsLink);
-
-      await waitFor(() => {
-        expect(history.location.pathname).toBe('/customer/products');
-      });
-    },
-  );
 
   test(
     'Checks user redirection to orders page after clicking orders link',
@@ -63,7 +46,7 @@ describe('Test the Customer NavBar component', () => {
       userEvent.click(ordersLink);
 
       await waitFor(() => {
-        expect(history.location.pathname).toBe('/customer/orders');
+        expect(history.location.pathname).toBe('/seller/orders');
       });
     },
   );
@@ -73,7 +56,7 @@ describe('Test the Customer NavBar component', () => {
 
     const userNameElement = screen.getByTestId(navBarMocks.userNameElement);
 
-    expect(userNameElement.innerHTML).toContain(loginMocks.loginData.name);
+    expect(userNameElement.innerHTML).toContain(loginMocks.sellerLoginData.name);
   });
 
   test(

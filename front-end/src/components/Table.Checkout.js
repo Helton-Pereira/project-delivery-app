@@ -1,21 +1,18 @@
 import { useContext } from 'react';
 import DeliveryAppContext from '../context/DeliveryAppContext';
+import conversions from '../utils/conversions';
 
-function TableOrderCheckout() {
+function TableCheckout() {
   let totalCart = 0;
 
   const { cart, setCart } = useContext(DeliveryAppContext);
 
-  const convertPrice = (price) => price.toFixed(Number(2)).toString().replace(/\./, ',');
-
   const handleRemoveButton = (id) => {
-    console.log(`REMOVE: ${id}`);
     const newCart = cart.filter((items) => items.id !== id);
     setCart(newCart);
   };
 
   const fillTableDescription = () => {
-    // const { products } = this.props;
     const products = cart;
     const tableElement = products.map((element, i) => {
       const {
@@ -37,10 +34,10 @@ function TableOrderCheckout() {
             { quantity }
           </td>
           <td data-testid={ `customer_checkout__element-order-table-unit-price-${i}` }>
-            { convertPrice(price) }
+            { conversions.convertPrice(price) }
           </td>
           <td data-testid={ `customer_checkout__element-order-table-sub-total-${i}` }>
-            { convertPrice(quantity * price) }
+            { conversions.convertPrice(quantity * price) }
           </td>
           <td>
             <button
@@ -74,14 +71,10 @@ function TableOrderCheckout() {
       </table>
       <h1 data-testid="customer_checkout__element-order-total-price">
         Total:
-        { `${convertPrice(totalCart)}` }
+        { `${conversions.convertPrice(totalCart)}` }
       </h1>
     </div>
   );
 }
 
-// TableOrderCheckout.propTypes = {
-//   setNewOrder: PropTypes.func.isRequired,
-// };
-
-export default TableOrderCheckout;
+export default TableCheckout;

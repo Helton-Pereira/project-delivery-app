@@ -1,9 +1,8 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 import NavBarAdmin from '../components/NavBar.Admin';
+import FormAdmin from '../components/Form.Admin';
 import useValidateAuth from '../hooks/useValidateAuth';
-import FormNewUser from '../components/FormNewUser';
-import TableAdmin from '../components/TableAdmin';
+import TableAdmin from '../components/Table.Admin';
 
 function AdminManage(props) {
   const [auth, setAuth] = useState(false);
@@ -14,18 +13,10 @@ function AdminManage(props) {
   return (
     <main>
       <NavBarAdmin />
-      <FormNewUser setUsers={ setUsers } />
+      <FormAdmin setUsers={ setUsers } />
       <TableAdmin users={ users } setUsers={ setUsers } />
     </main>
   );
 }
-
-AdminManage.propTypes = {
-  history: PropTypes.shape({
-    location: PropTypes.shape({
-      pathname: PropTypes.string.isRequired,
-    }).isRequired,
-  }).isRequired,
-};
 
 export default AdminManage;
