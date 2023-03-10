@@ -23,7 +23,7 @@ function CostumerCheckout(props) {
 
   const makeObjPost = () => ({
     name: user.name,
-    seller: newOrder.seller,
+    seller: 'Fulana Pereira',
     totalPrice,
     deliveryAddress: newOrder.deliveryAddress,
     deliveryNumber: newOrder.deliveryNumber,
@@ -52,11 +52,11 @@ function CostumerCheckout(props) {
     try {
       handleCartData();
       const body = makeObjPost();
+      console.log(body);
       const { id } = await api.requestNewOrder('/customer/checkout', body, user.token);
-      console.log(id);
       history.push(`/customer/orders/${id}`);
     } catch (error) {
-      console.log(error.response.data.message);
+      console.log(error);
     }
   };
 

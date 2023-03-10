@@ -6,9 +6,9 @@ import TableCustomerOrderDetails from '../components/Table.CustomerOrderDetails'
 import useValidateAuth from '../hooks/useValidateAuth';
 import api from '../services/requests';
 
-function CustomerOrderDetails() {
+function CustomerOrderDetails(props) {
   const [order, setOrder] = useState(null);
-  const history = useHistory;
+  const history = useHistory();
   const [auth, setAuth] = useState(false);
 
   useValidateAuth(props, setAuth);
@@ -17,7 +17,6 @@ function CustomerOrderDetails() {
     const getOrder = async () => {
       const url = history.location.pathname;
       const data = await api.requestData(url);
-      console.log(data);
       setOrder(data);
     };
     getOrder();

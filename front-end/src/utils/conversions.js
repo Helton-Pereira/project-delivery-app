@@ -1,5 +1,5 @@
 const ID_PAD_START = 4;
-const DATE_PAD_START = 2;
+// const DATE_PAD_START = 2;
 
 const convertId = (id) => {
   const convertedId = id.toString();
@@ -12,12 +12,17 @@ const convertPrice = (price) => {
   return convertedPrice.replace(/\./, ',');
 };
 
-const convertDate = (date) => {
-  const convertedDate = new Date(date);
-  const day = convertedDate.getDate().toString().padStart(DATE_PAD_START, '0');
-  const month = (convertedDate.getMonth() + 1).toString().padStart(DATE_PAD_START, '0');
-  const year = convertedDate.getFullYear().toString();
-  return `${day}/${month}/${year}`;
-};
+function convertDate(dateOrder) {
+  const date = new Date(dateOrder);
+  return date.toLocaleDateString('pt-br');
+}
+
+// const convertDate = (date) => {
+//   const convertedDate = new Date(date);
+//   const day = convertedDate.getDate().toString().padStart(DATE_PAD_START, '0');
+//   const month = (convertedDate.getMonth() + 1).toString().padStart(DATE_PAD_START, '0');
+//   const year = convertedDate.getFullYear().toString();
+//   return `${day}/${month}/${year}`;
+// };
 
 export default { convertId, convertPrice, convertDate };
