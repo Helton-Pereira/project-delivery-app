@@ -21,3 +21,9 @@ export const FORM_ADMIN_INITIAL_STATE = {
   password: '',
   role: [],
 };
+
+export const COSTUMER_CHECKOUT_INITIAL_STATE = {
+  seller: '',
+  deliveryAddress: '',
+  deliveryNumber: '',
+};

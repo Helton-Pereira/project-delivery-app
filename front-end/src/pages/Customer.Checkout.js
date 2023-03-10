@@ -6,16 +6,13 @@ import NavBarCustomer from '../components/NavBar.Customer';
 import TableCheckout from '../components/Table.Checkout';
 import DeliveryAppContext from '../context/DeliveryAppContext';
 import api from '../services/requests';
+import { COSTUMER_CHECKOUT_INITIAL_STATE } from '../utils/initialStates';
 // import useValidateAuth from '../hooks/useValidateAuth';
 
 function CostumerCheckout(props) {
   // useValidateAuth(props);
-  const INITIAL_STATE = {
-    seller: '',
-    deliveryAddress: '',
-    deliveryNumber: '',
-  };
-  const [newOrder, setNewOrder] = useState(INITIAL_STATE);
+
+  const [newOrder, setNewOrder] = useState(COSTUMER_CHECKOUT_INITIAL_STATE);
   const { cart, user } = useContext(DeliveryAppContext);
 
   const { history } = props;
@@ -26,7 +23,7 @@ function CostumerCheckout(props) {
 
   const makeObjPost = () => ({
     name: user.name,
-    seller: 'fulana pereira',
+    seller: newOrder.seller,
     totalPrice,
     deliveryAddress: newOrder.deliveryAddress,
     deliveryNumber: newOrder.deliveryNumber,
@@ -35,7 +32,6 @@ function CostumerCheckout(props) {
   });
 
   const handleCartData = () => {
-    // const { products } = this.props;
     const products = cart;
     products.forEach((product) => {
       const {
@@ -55,15 +51,12 @@ function CostumerCheckout(props) {
     event.preventDefault();
     try {
       handleCartData();
-      // const id = '0011177778888';
       const body = makeObjPost();
       const { id } = await api.requestNewOrder('/customer/checkout', body, user.token);
       console.log(id);
       history.push(`/customer/orders/${id}`);
     } catch (error) {
-      // handleCartData();
-      // console.log(makeObjPost());
-      console.log(error);
+      console.log(error.response.data.message);
     }
   };
 

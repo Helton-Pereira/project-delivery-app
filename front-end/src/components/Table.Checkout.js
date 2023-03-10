@@ -80,8 +80,4 @@ function TableCheckout() {
   );
 }
 
-// TableCheckout.propTypes = {
-//   setNewOrder: PropTypes.func.isRequired,
-// };
-
 export default TableCheckout;
