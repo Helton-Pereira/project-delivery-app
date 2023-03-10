@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './helpers/renderWithRouter';
 import loginMocks from './helpers/mocks/login.mocks';
-import checkoutMocks from './helpers/mocks/checkout.mocks';
+import checkoutMocks from './helpers/mocks/customer.checkout.mocks';
 import api from '../services/requests';
 import conversions from '../utils/conversions';
 
@@ -131,7 +131,7 @@ describe('Test the Checkout page', () => {
     'Checks user redirection to order details page after clicking submit button',
     async () => {
       jest.spyOn(api, 'requestNewOrder').mockImplementation(() => ({ status: 201, id: 1 })); // Mocks order creation (Checkout page)
-      
+
       jest.spyOn(api, 'requestData')
         .mockImplementationOnce(() => (checkoutMocks.sellers)) // Mocks api response that returns all sellers (Checkout page)
         .mockImplementationOnce(() => (checkoutMocks.orderDetails)); // Mocks api response that returns order details (Order details page)
@@ -147,8 +147,6 @@ describe('Test the Checkout page', () => {
       userEvent.type(addressInput, checkoutMocks.entries.address);
       userEvent.type(addressNumberInput, checkoutMocks.entries.addressNumber);
       userEvent.click(submitButton);
-
-
 
       await waitFor(() => {
         expect(history.location.pathname).toBe('/customer/orders/1');

@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './helpers/renderWithRouter';
 import loginMocks from './helpers/mocks/login.mocks';
-import ordersMocks from './helpers/mocks/sellerOrders.mocks';
+import ordersMocks from './helpers/mocks/seller.orders.mocks';
 import api from '../services/requests';
 
 describe('Test the Seller Orders page', () => {
@@ -32,7 +32,7 @@ describe('Test the Seller Orders page', () => {
       const statusEl = screen.getByTestId(`${ordersMocks.statusElement}${order.id}`);
       const dateEl = screen.getByTestId(`${ordersMocks.dateElement}${order.id}`);
       const priceEl = screen.getByTestId(`${ordersMocks.priceElement}${order.id}`);
-      const addressElement = screen.getByTestId(`${ordersMocks.addressElement}${order.id}`);;
+      const addressElement = screen.getByTestId(`${ordersMocks.addressElement}${order.id}`);
 
       expect(idEl).toBeInTheDocument();
       expect(idEl.innerHTML).toBe(order.id.toString().padStart(ID_PAD_START, '0'));

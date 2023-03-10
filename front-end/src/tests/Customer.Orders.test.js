@@ -4,9 +4,9 @@ import userEvent from '@testing-library/user-event';
 import App from '../App';
 import renderWithRouter from './helpers/renderWithRouter';
 import loginMocks from './helpers/mocks/login.mocks';
-import ordersMocks from './helpers/mocks/customerOrders.mocks';
+import ordersMocks from './helpers/mocks/customer.orders.mocks';
 import api from '../services/requests';
-import conversions from '../utils/conversions'
+import conversions from '../utils/conversions';
 
 describe('Test the Customer Orders page', () => {
   let history;
@@ -56,9 +56,9 @@ describe('Test the Customer Orders page', () => {
         .mockImplementationOnce(() => (ordersMocks.orderDetails)); // Mocks api response that returns order details (Order details page)
 
       await waitFor(() => {});
-      
+
       const orderCard = screen.getByTestId(`${ordersMocks.idElement}${ordersMocks.orderDetails.id}`);
-      
+
       userEvent.click(orderCard);
 
       await waitFor(() => {
