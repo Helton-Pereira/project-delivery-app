@@ -7,7 +7,6 @@ import loginMocks from './helpers/mocks/login.mocks';
 import orderMocks from './helpers/mocks/customerOrderDetails.mocks';
 import api from '../services/requests';
 import conversions from '../utils/conversions';
-import productsMock from './helpers/mocks/products.mocks'
 
 describe('Test the Customer Order Details page', () => {
   let history;
@@ -19,10 +18,10 @@ describe('Test the Customer Order Details page', () => {
 
     localStorage.setItem('user', JSON.stringify(loginMocks.loginData));
 
-    history.push(`/customer/orders/1`);
+    history.push(`/customer/orders/${orderMocks.order.id}`);
   });
 
-  afterEach(() => jest.clearAllMocks() );
+  afterEach(() => jest.clearAllMocks());
 
   test('Checks if the header elements exist', async () => {
     await waitFor(() => {});
@@ -53,7 +52,7 @@ describe('Test the Customer Order Details page', () => {
       const priceEl = screen.getByTestId(`${orderMocks.tableElements.price}${index}`);
       const subtotalEl = screen.getByTestId(`${orderMocks.tableElements.subtotal}${index}`);
 
-      const {SaleProduct: {quantity}} = product
+      const { SaleProduct: { quantity } } = product;
 
       expect(numberEl).toBeInTheDocument();
       expect(numberEl.innerHTML).toBe((index + 1).toString());
@@ -77,7 +76,7 @@ describe('Test the Customer Order Details page', () => {
 
     const statusEl = screen.getByTestId(orderMocks.headerElements.status);
     const button = screen.getByTestId(orderMocks.headerElements.button);
-    
+
     expect(statusEl.innerHTML).not.toBe('Em Trânsito');
     expect(button).toBeDisabled();
   });
@@ -86,14 +85,14 @@ describe('Test the Customer Order Details page', () => {
     jest.spyOn(api, 'requestData').mockImplementation(() => orderMocks.inTransitOrder);
     jest.spyOn(api, 'updateOrderStatus');
 
-    let statusEl
-    let button
+    let statusEl;
+    let button;
 
     await waitFor(() => {});
-    
+
     statusEl = screen.getByTestId(orderMocks.headerElements.status);
     button = screen.getByTestId(orderMocks.headerElements.button);
-    
+
     expect(statusEl.innerHTML).toBe('Em Trânsito');
     expect(button).not.toBeDisabled();
     userEvent.click(button);
