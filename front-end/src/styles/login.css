@@ -1,0 +1,86 @@
+* {
+  box-sizing: border-box;
+  font-family: Roboto , sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.login-main {
+  display: flex;
+  flex-direction: column;
+  margin: 100px auto 0;
+}
+
+.login-main .error-message {
+  color: red;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.app-logo-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 312px;
+  justify-content: center;
+  margin: auto;
+  width: 425px;
+}
+
+.login-form {
+  align-items: center;
+  background-color: var(--background-color);
+  border: 1px solid var(--background-border-color);
+  box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+  display: flex;
+  flex-direction: column;
+  height: 444px;
+  justify-content: center;
+  margin: auto;
+  width: 425px;
+}
+
+.login-form .form-label {
+  font-size: 18px;
+  font-weight: 800;
+  height: 112px;
+  margin-bottom: 10px;
+  text-indent: 16px;
+  width: 371px;
+}
+
+.login-form .form-control {
+  font-size: 18px;
+  height: 70px;
+  margin-top: 2.5px;
+  text-indent: 8px;
+  width: 100%;
+}
+
+.login-form .form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+}
+
+.login-form button {
+  font-size: 18px;
+  height: 59px;
+  width: 370px;
+}
+
+.login-form button:first-of-type {
+  margin-bottom: 10px;
+}
+
+.login-form .btn-primary {
+  background-color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.login-form .btn-primary:disabled {
+  background-color: #036b53;
+}
+
+.login-form .btn-primary:hover {
+  background-color: #025a45;
+}

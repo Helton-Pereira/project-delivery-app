@@ -7,6 +7,7 @@ import isValidEmail from '../utils/validations';
 import redirects from '../utils/redirects';
 import { LOGIN_INITIAL_STATE } from '../utils/initialStates';
 import { MIN_PASSWORD_LENGTH } from '../utils/constants';
+import '../styles/login.css';
 
 function Login(props) {
   const [loginData, setLoginData] = useState(LOGIN_INITIAL_STATE);
@@ -69,55 +70,70 @@ function Login(props) {
   }, [loginData]);
 
   return (
-    <main>
-      <h1>login</h1>
-      <div className="login-container">
-        <form onSubmit={ (event) => handleLogin(event) } className="login-form">
-          <img src="../images/rockGlass.svg" alt="logo_app" />
-          <label htmlFor="email">
-            Login
-            <input
-              id="email"
-              type="email"
-              name="email"
-              value={ loginData.email }
-              data-testid="common_login__input-email"
-              onChange={ handleChanges }
-              placeholder="email"
-            />
-          </label>
-          <label htmlFor="password">
-            Senha
-            <input
-              id="password"
-              type="password"
-              name="password"
-              value={ loginData.password }
-              data-testid="common_login__input-password"
-              onChange={ handleChanges }
-              placeholder="password"
-            />
-          </label>
-          <button
-            type="submit"
-            disabled={ isLoginButtonDisabled }
-            data-testid="common_login__button-login"
-          >
-            Login
-          </button>
-          <button
-            type="button"
-            data-testid="common_login__button-register"
-            onClick={ handleRegisterButton }
-          >
-            Ainda não tenho conta
-          </button>
-          { errorMessage.length > 0
-          && (
-            <span data-testid="common_login__element-invalid-email">{errorMessage}</span>
-          ) }
-        </form>
-      </div>
+    <main className="login-main">
+
+      <section className="app-logo-container">
+        <img src="../images/rockGlass.svg" alt="logo_app" />
+        <h1>NOME DO APP</h1>
+      </section>
+
+      <form onSubmit={ (event) => handleLogin(event) } className="login-form">
+        <label htmlFor="email" className="form-label">
+          Login
+          <input
+            className="form-control"
+            id="email"
+            type="email"
+            name="email"
+            value={ loginData.email }
+            data-testid="common_login__input-email"
+            onChange={ handleChanges }
+            placeholder="user@mail.com"
+          />
+        </label>
+
+        <label htmlFor="password" className="form-label">
+          Senha
+          <input
+            className="form-control"
+            id="password"
+            type="password"
+            name="password"
+            value={ loginData.password }
+            data-testid="common_login__input-password"
+            onChange={ handleChanges }
+            placeholder="***************"
+          />
+        </label>
+
+        <button
+          className="btn btn-primary"
+          type="submit"
+          disabled={ isLoginButtonDisabled }
+          data-testid="common_login__button-login"
+        >
+          LOGIN
+        </button>
+
+        <button
+          className="btn btn-secondary"
+          type="button"
+          data-testid="common_login__button-register"
+          onClick={ handleRegisterButton }
+        >
+          Ainda não tenho conta
+        </button>
+      </form>
+
+      { errorMessage.length > 0 && (
+        <span
+          className="error-message"
+          data-testid="common_login__element-invalid-email"
+        >
+          {`Erro: ${errorMessage}`}
+        </span>
+      ) }
+
     </main>
   );
 }
