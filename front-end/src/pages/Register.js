@@ -5,6 +5,7 @@ import api from '../services/requests';
 import isValidEmail from '../utils/validations';
 import { REGISTER_INITIAL_STATE } from '../utils/initialStates';
 import { MIN_PASSWORD_LENGTH, MIN_NAME_LENGTH } from '../utils/constants';
+import '../styles/register.css';
 
 function Register(props) {
   const [registerData, setRegisterData] = useState(REGISTER_INITIAL_STATE);
@@ -54,62 +55,72 @@ function Register(props) {
   }, [registerData]);
 
   return (
-    <main>
-      <h1>Cadastro</h1>
-      <div className="register-container">
-        <form onSubmit={ (event) => handleRegister(event) }>
-          <label htmlFor="name">
-            Nome
-            <input
-              id="name"
-              type="name"
-              name="name"
-              value={ registerData.name }
-              data-testid="common_register__input-name"
-              onChange={ handleChanges }
-              placeholder="name"
-            />
-          </label>
-          <label htmlFor="email">
-            Email
-            <input
-              id="email"
-              type="email"
-              name="email"
-              value={ registerData.email }
-              data-testid="common_register__input-email"
-              onChange={ handleChanges }
-              placeholder="email"
-            />
-          </label>
-          <label htmlFor="password">
-            Senha
-            <input
-              id="password"
-              type="password"
-              name="password"
-              value={ registerData.password }
-              data-testid="common_register__input-password"
-              onChange={ handleChanges }
-              placeholder="password"
-            />
-          </label>
-          <button
-            type="submit"
-            disabled={ isLoginButtonDisabled }
-            data-testid="common_register__button-register"
-          >
-            Cadastrar
-          </button>
+    <main className="register-main">
 
-          { errorMessage.length > 0
-          && (
-            <span data-testid="common_register__element-invalid_register">
-              {errorMessage}
-            </span>
-          ) }
-        </form>
-      </div>
+      <h1>Cadastro</h1>
+
+      <form onSubmit={ (event) => handleRegister(event) } className="register-form">
+        <label htmlFor="name" className="form-label">
+          Nome
+          <input
+            className="form-control"
+            id="name"
+            type="name"
+            name="name"
+            value={ registerData.name }
+            data-testid="common_register__input-name"
+            onChange={ handleChanges }
+            placeholder="Seu nome"
+          />
+        </label>
+
+        <label htmlFor="email" className="form-label">
+          Email
+          <input
+            className="form-control"
+            id="email"
+            type="email"
+            name="email"
+            value={ registerData.email }
+            data-testid="common_register__input-email"
+            onChange={ handleChanges }
+            placeholder="user@mail.com"
+          />
+        </label>
+
+        <label htmlFor="password" className="form-label">
+          Senha
+          <input
+            className="form-control"
+            id="password"
+            type="password"
+            name="password"
+            value={ registerData.password }
+            data-testid="common_register__input-password"
+            onChange={ handleChanges }
+            placeholder="***************"
+          />
+        </label>
+
+        <button
+          className="btn btn-primary"
+          type="submit"
+          disabled={ isLoginButtonDisabled }
+          data-testid="common_register__button-register"
+        >
+          CADASTRAR
+        </button>
+      </form>
+
+      { errorMessage.length > 0 && (
+        <span
+          className="error-message"
+          data-testid="common_register__element-invalid_register"
+        >
+          {`Erro: ${errorMessage}`}
+        </span>
+      ) }
+
     </main>
   );
 }
