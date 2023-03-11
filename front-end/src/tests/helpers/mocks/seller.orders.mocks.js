@@ -8,7 +8,7 @@ const allOrders = [
   {
     id: 1,
     totalPrice: '9.70',
-    saleDate: '08/04/21',
+    saleDate: '08/04/2021',
     status: 'Entregue',
     deliveryAddress: 'Rua Irmãos Monteiro, Bairo Pedras',
     deliveryNumber: '851',
@@ -16,7 +16,7 @@ const allOrders = [
   {
     id: 2,
     totalPrice: '14.20',
-    saleDate: '08/04/21',
+    saleDate: '08/04/2021',
     status: 'Pendente',
     deliveryAddress: 'Rua Vila Bela,  Bairro Gurupi',
     deliveryNumber: '670',
@@ -25,7 +25,7 @@ const allOrders = [
   {
     id: 3,
     totalPrice: '28.46',
-    saleDate: '07/04/21',
+    saleDate: '07/04/2021',
     status: 'Pendente',
     deliveryAddress: 'Rua Sessenta e Dois, Bairro Maranguape II',
     deliveryNumber: '533',

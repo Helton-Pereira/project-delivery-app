@@ -6,6 +6,7 @@ import renderWithRouter from './helpers/renderWithRouter';
 import loginMocks from './helpers/mocks/login.mocks';
 import ordersMocks from './helpers/mocks/seller.orders.mocks';
 import api from '../services/requests';
+import conversions from '../utils/conversions';
 
 describe('Test the Seller Orders page', () => {
   let history;
@@ -41,7 +42,7 @@ describe('Test the Seller Orders page', () => {
       expect(statusEl.innerHTML).toBe(order.status);
 
       expect(dateEl).toBeInTheDocument();
-      expect(dateEl.innerHTML).toBe(order.saleDate);
+      expect(dateEl.innerHTML).toBe(conversions.convertDate(order.saleDate));
 
       expect(priceEl).toBeInTheDocument();
       expect(priceEl.innerHTML).toBe(`R$ ${order.totalPrice.replace(/\./, ',')}`);
