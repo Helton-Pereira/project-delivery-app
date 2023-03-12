@@ -49,7 +49,7 @@ function NavBarCustomer() {
           data-testid="customer_products__element-navbar-link-logout"
           onClick={ handleLogout }
         >
-          <i className="material-icons">person</i>
+          <i className="material-icons">logout</i>
           SAIR
         </button>
       </section>
