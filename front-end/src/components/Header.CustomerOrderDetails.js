@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import api from '../services/requests';
-import { ID_PAD_START } from '../utils/constants';
+import { ID_PAD_START, statusColors } from '../utils/constants';
 import conversions from '../utils/conversions';
 
 function HeaderCustomerOrderDetails({ id, sellerName, status, saleDate, setOrder }) {
@@ -10,60 +10,54 @@ function HeaderCustomerOrderDetails({ id, sellerName, status, saleDate, setOrder
   };
 
   return (
-    <div key={ id }>
+    <section key={ id } className="order-details-header">
 
-      <div>
-        <div>
-          <span>Pedido</span>
-          <span
-            data-testid="customer_order_details__element-order-details-label-order-id"
-          >
-            {id.toString().padStart(ID_PAD_START, '0')}
-          </span>
-        </div>
+      <span
+        className="order-details-id"
+        data-testid="customer_order_details__element-order-details-label-order-id"
+      >
+        {`Pedido ${id.toString().padStart(ID_PAD_START, '0')}`}
+      </span>
 
-        <div>
-          <span
-            data-testid="customer_order_details__element-order-details-label-seller-name"
-          >
-            {sellerName}
-          </span>
-        </div>
-
-        <div>
-          <span
-            data-testid="customer_order_details__element-order-details-label-order-date"
-          >
-            {conversions.convertDate(saleDate)}
-          </span>
-        </div>
-
-        <div>
-          <span
-            data-testid={
-              `customer_order_details__element-order-details-label-delivery-status-${id}`
-            }
-          >
-            {status}
-          </span>
-        </div>
-
-        <div>
-          <button
-            name="finish-button"
-            data-testid="customer_order_details__button-delivery-check"
-            type="button"
-            disabled={ status !== 'Em Trânsito' }
-            onClick={ handleClickStatusOrder }
-          >
-            Marcar como entregue
-          </button>
-        </div>
-
+      <div className="order-details-seller">
+        <span>Pessoa Vendedora: </span>
+        <span
+          className="seller-name"
+          data-testid="customer_order_details__element-order-details-label-seller-name"
+        >
+          {sellerName}
+        </span>
       </div>
-      <br />
 
-    </div>
+      <span
+        className="order-details-date"
+        data-testid="customer_order_details__element-order-details-label-order-date"
+      >
+        {conversions.convertDate(saleDate)}
+      </span>
+
+      <span
+        className="order-details-status"
+        style={ { backgroundColor: `${statusColors[status]}` } }
+        data-testid={
+          `customer_order_details__element-order-details-label-delivery-status-${id}`
+        }
+      >
+        {status}
+      </span>
+
+      <button
+        className="order-details-finish-button"
+        name="finish-button"
+        data-testid="customer_order_details__button-delivery-check"
+        type="button"
+        disabled={ status !== 'Em Trânsito' }
+        onClick={ handleClickStatusOrder }
+      >
+        Marcar como entregue
+      </button>
+
+    </section>
   );
 }
 
