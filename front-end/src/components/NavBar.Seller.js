@@ -14,35 +14,36 @@ function NavBarSeller() {
   };
 
   return (
-    <main>
-      <nav>
-        <div>
-          <Link
-            to="/seller/orders"
-            data-testid="customer_products__element-navbar-link-orders"
-          >
-            Pedidos
-          </Link>
-        </div>
-        <div>
-          <span
-            data-testid="customer_products__element-navbar-user-full-name"
-          >
-            Nome
-            { name }
-          </span>
-        </div>
-        <div>
-          <button
-            type="submit"
-            data-testid="customer_products__element-navbar-link-logout"
-            onClick={ handleLogout }
-          >
-            Sair
-          </button>
-        </div>
-      </nav>
-    </main>
+    <nav className="navbar-seller">
+      <section className="links-section">
+        <Link
+          to="/seller/orders"
+          data-testid="customer_products__element-navbar-link-orders"
+          className="orders-link"
+        >
+          <i className="material-icons">delivery_dining</i>
+          PEDIDOS
+        </Link>
+      </section>
+
+      <section className="user-section">
+        <span
+          data-testid="customer_products__element-navbar-user-full-name"
+          className="name-element"
+        >
+          <i className="material-icons">person</i>
+          { name }
+        </span>
+        <button
+          type="submit"
+          data-testid="customer_products__element-navbar-link-logout"
+          onClick={ handleLogout }
+        >
+          <i className="material-icons">logout</i>
+          SAIR
+        </button>
+      </section>
+    </nav>
   );
 }
 

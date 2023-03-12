@@ -4,6 +4,7 @@ import CardSellerOrder from '../components/Card.SellerOrder';
 import NavBarSeller from '../components/NavBar.Seller';
 import api from '../services/requests';
 import useValidateAuth from '../hooks/useValidateAuth';
+import '../styles/seller.navbar.css';
 
 function SellerOrders(props) {
   const { history } = props;
