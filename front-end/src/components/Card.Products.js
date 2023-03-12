@@ -64,37 +64,32 @@ function CardProducts({ id, name, price, urlImage }) {
   };
 
   return (
-    <div key={ id }>
+    <section key={ id } className="product-card">
 
-      <div>
-        <span
-          data-testid={ `customer_products__element-card-price-${id}` }
-        >
-          {`R$  ${conversions.convertPrice(price)}`}
-        </span>
-      </div>
+      <span
+        className="product-price"
+        data-testid={ `customer_products__element-card-price-${id}` }
+      >
+        {`R$  ${conversions.convertPrice(price)}`}
+      </span>
 
-      <div>
-        <img
-          data-testid={ `customer_products__img-card-bg-image-${id}` }
-          src={ urlImage }
-          alt={ `Bebida:  ${name}` }
-          style={ { width: '100px' } }
-        />
-      </div>
+      <img
+        data-testid={ `customer_products__img-card-bg-image-${id}` }
+        src={ urlImage }
+        alt={ `Bebida:  ${name}` }
+      />
 
-      <div>
-        <span
-          data-testid={ `customer_products__element-card-title-${id}` }
-        >
-          Name
-          { name }
-        </span>
-      </div>
+      <span
+        className="product-name"
+        data-testid={ `customer_products__element-card-title-${id}` }
+      >
+        { name }
+      </span>
 
-      <div>
+      <div className="product-quantity">
         <button
           type="button"
+          className="btn btn-primary"
           data-testid={ `customer_products__button-card-rm-item-${id}` }
           disabled={ false }
           onClick={ () => decreaseQuantity(1) }
@@ -104,6 +99,7 @@ function CardProducts({ id, name, price, urlImage }) {
 
         <input
           type="number"
+          className="form-control"
           data-testid={ `customer_products__input-card-quantity-${id}` }
           value={ quantity }
           onChange={ handleQuantityInput }
@@ -112,6 +108,7 @@ function CardProducts({ id, name, price, urlImage }) {
 
         <button
           type="button"
+          className="btn btn-primary"
           data-testid={ `customer_products__button-card-add-item-${id}` }
           onClick={ () => increaseQuantity(1) }
         >
@@ -119,7 +116,7 @@ function CardProducts({ id, name, price, urlImage }) {
         </button>
       </div>
 
-    </div>
+    </section>
   );
 }
 

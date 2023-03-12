@@ -1,0 +1,31 @@
+* {
+  box-sizing: border-box;
+  font-family: Roboto , sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.products-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 50px auto 0;
+  width: 90%;
+}
+
+.cart-button-section .btn-primary {
+  background-color: var(--primary-color);
+  border: none;
+  bottom: 20px;
+  color: white;
+  font-size: 24px;
+  font-weight: 800;
+  height: 79px;
+  position: fixed;
+  right: 20px;
+  width: 325px;
+}
+
+.cart-button-section .btn-primary:hover {
+  background-color: var(--tertiary-color);
+}

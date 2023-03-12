@@ -86,5 +86,5 @@
 }
 
 .login-form .btn-primary:hover {
-  background-color: #025a45;
+  background-color: var(--primary-color-darken);
 }

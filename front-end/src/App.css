@@ -2,10 +2,12 @@
 
 :root {
   --primary-color: #036B52;
+  --primary-color-darken: #025a45;
   --secondary-color: #2FC18C;
   --tertiary-color: #421981;
   --quaternary-color: #056CF9;
   --background-color: #EAF1EF;
+  --background-color-transparent: #eaf1ef80;
   --background-border-color: #B1C2BE;
 }
 /* .App {
