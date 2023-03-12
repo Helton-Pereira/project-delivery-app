@@ -4,6 +4,8 @@ import CardCustomerOrder from '../components/Card.CustomerOrder';
 import NavBarCustomer from '../components/NavBar.Customer';
 import api from '../services/requests';
 import useValidateAuth from '../hooks/useValidateAuth';
+import '../styles/customer.navbar.css';
+import '../styles/customer.orders.css';
 
 function CustomerOrders(props) {
   const history = useHistory();
@@ -24,16 +26,19 @@ function CustomerOrders(props) {
   return (
     <main>
       <NavBarCustomer />
-      {orders.map((order) => (
-        <CardCustomerOrder
-          history={ history }
-          key={ order.id }
-          id={ order.id }
-          status={ order.status }
-          saleDate={ order.saleDate }
-          totalPrice={ Number(order.totalPrice) }
-        />
-      ))}
+
+      <section className="orders-container">
+        {orders.map((order) => (
+          <CardCustomerOrder
+            history={ history }
+            key={ order.id }
+            id={ order.id }
+            status={ order.status }
+            saleDate={ order.saleDate }
+            totalPrice={ Number(order.totalPrice) }
+          />
+        ))}
+      </section>
 
     </main>
   );

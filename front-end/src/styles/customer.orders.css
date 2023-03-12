@@ -1,0 +1,74 @@
+* {
+  box-sizing: border-box;
+  font-family: Roboto , sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.orders-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 50px auto 0;
+  width: 90%;
+}
+
+.order-card-container {
+  background-color: var(--background-color);
+  border: 1px solid var(--background-border-color);
+  box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+  display: flex;
+  height: 160px;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  text-decoration: none;
+  width: 1100px;
+}
+
+.order-id-container {
+  align-items: center;
+  background-color: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  font-size: 32px;
+  font-weight: 800;
+  justify-content: center;
+  line-height: 1.1;
+  width: 300px;
+}
+
+.order-status-container {
+  align-items: center;
+  background-color: var(--quaternary-color);
+  border-radius: 25px;
+  color: white;
+  display: flex;
+  font-size: 34px;
+  font-weight: 800;
+  justify-content: center;
+  margin: 10px 0;
+  width: 450px;
+}
+
+.date-price-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  width: 300px;
+}
+
+.date-price-container div {
+  align-items: center;
+  background-color: var(--background-border-color);
+  color: black;
+  display: flex;
+  flex-direction: column;
+  font-size: 28px;
+  font-weight: 800;
+  height: 65px;
+  justify-content: center;
+  margin-right: 20px;
+  width: 100%;
+}

@@ -10,8 +10,14 @@
 
 const roles = ['customer', 'seller', 'administrator'];
 
+const statusColors = {
+  Pendente: '#CCB800',
+  Preparando: '#66CC00',
+  Entregue: '#00CC9B',
+};
+
 const MIN_PASSWORD_LENGTH = 6;
 const MIN_NAME_LENGTH = 12;
 const ID_PAD_START = 4;
 
-export { roles, MIN_PASSWORD_LENGTH, MIN_NAME_LENGTH, ID_PAD_START };
+export { roles, statusColors, MIN_PASSWORD_LENGTH, MIN_NAME_LENGTH, ID_PAD_START };
