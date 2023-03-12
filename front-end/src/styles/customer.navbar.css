@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+  font-family: Roboto , sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-customer {
+  background-color: var(--primary-color);
+  border: none;
+  display: flex;
+  font-size: 24px;
+  font-weight: 800;
+  height: 105px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.navbar-customer section {
+  display: flex;
+}
+
+.navbar-customer a {
+  text-decoration: none;
+}
+
+
+.links-section .products-link {
+  background-color: var(--secondary-color);
+  color: black;
+  padding: 35px;
+  text-align: center;
+  width: 367px;
+}
+
+.links-section .orders-link {
+  color: white;
+  padding: 35px;
+  text-align: center;
+  width: 367px;
+}
+
+.user-section .name-element {
+  background-color: var(--tertiary-color);
+  color: white;
+  padding: 35px;
+  text-align: center;
+  width: 367px;
+}
+
+.user-section button {
+  background-color: var(--quaternary-color);
+  border: none;
+  color: white;
+  font-weight: 800;
+  width: 180px;
+}

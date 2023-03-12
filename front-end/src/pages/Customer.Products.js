@@ -6,6 +6,7 @@ import api from '../services/requests';
 import useValidateAuth from '../hooks/useValidateAuth';
 import DeliveryAppContext from '../context/DeliveryAppContext';
 import conversions from '../utils/conversions';
+import '../styles/customer.navbar.css';
 
 function CustomerProducts(props) {
   const [products, setProducts] = useState([]);

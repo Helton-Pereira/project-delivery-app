@@ -2,6 +2,9 @@
 
 :root {
   --primary-color: #036B52;
+  --secondary-color: #2FC18C;
+  --tertiary-color: #421981;
+  --quaternary-color: #056CF9;
   --background-color: #EAF1EF;
   --background-border-color: #B1C2BE;
 }

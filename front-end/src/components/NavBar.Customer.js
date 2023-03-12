@@ -14,43 +14,43 @@ function NavBarCustomer() {
   };
 
   return (
-    <main>
-      <nav>
-        <div>
-          <Link
-            to="/customer/products"
-            data-testid="customer_products__element-navbar-link-products"
-          >
-            Produtos
-          </Link>
-        </div>
-        <div>
-          <Link
-            to="/customer/orders"
-            data-testid="customer_products__element-navbar-link-orders"
-          >
-            Pedidos
-          </Link>
-        </div>
-        <div>
-          <span
-            data-testid="customer_products__element-navbar-user-full-name"
-          >
-            Nome
-            { name }
-          </span>
-        </div>
-        <div>
-          <button
-            type="submit"
-            data-testid="customer_products__element-navbar-link-logout"
-            onClick={ handleLogout }
-          >
-            Sair
-          </button>
-        </div>
-      </nav>
-    </main>
+    <nav className="navbar-customer">
+      <section className="links-section">
+        <Link
+          to="/customer/products"
+          data-testid="customer_products__element-navbar-link-products"
+          className="products-link"
+        >
+          PRODUTOS
+        </Link>
+
+        <Link
+          to="/customer/orders"
+          data-testid="customer_products__element-navbar-link-orders"
+          className="orders-link"
+        >
+          MEUS PEDIDOS
+        </Link>
+      </section>
+
+      <section className="user-section">
+        <span
+          data-testid="customer_products__element-navbar-user-full-name"
+          className="name-element"
+        >
+          { name }
+        </span>
+
+        <button
+          type="submit"
+          data-testid="customer_products__element-navbar-link-logout"
+          onClick={ handleLogout }
+        >
+          SAIR
+        </button>
+      </section>
+
+    </nav>
   );
 }
 
