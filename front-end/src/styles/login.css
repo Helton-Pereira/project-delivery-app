@@ -8,7 +8,7 @@
 .login-main {
   display: flex;
   flex-direction: column;
-  margin: 100px auto 0;
+  margin: 50px auto 0;
 }
 
 .login-main .error-message {
@@ -23,8 +23,12 @@
   flex-direction: column;
   height: 312px;
   justify-content: center;
-  margin: auto;
+  margin: 0 auto 20px;
   width: 425px;
+}
+
+.app-logo-container img {
+  width: 350px;
 }
 
 .login-form {

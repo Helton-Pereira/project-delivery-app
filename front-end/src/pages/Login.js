@@ -8,6 +8,7 @@ import redirects from '../utils/redirects';
 import { LOGIN_INITIAL_STATE } from '../utils/initialStates';
 import { MIN_PASSWORD_LENGTH } from '../utils/constants';
 import '../styles/login.css';
+import logo from '../images/logo.png';
 
 function Login(props) {
   const [loginData, setLoginData] = useState(LOGIN_INITIAL_STATE);
@@ -73,8 +74,8 @@ function Login(props) {
     <main className="login-main">
 
       <section className="app-logo-container">
-        <img src="../images/rockGlass.svg" alt="logo_app" />
-        <h1>NOME DO APP</h1>
+        <img src={ logo } alt="logo_app" />
+        {/* <h1>NOME DO APP</h1> */}
       </section>
 
       <form onSubmit={ (event) => handleLogin(event) } className="login-form">
