@@ -24,34 +24,44 @@
   text-decoration: none;
 }
 
+.navbar-customer i {
+  margin-right: 4px;
+}
 
 .links-section .products-link {
+  align-items: center;
   background-color: var(--secondary-color);
   color: black;
-  padding: 35px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
   width: 367px;
 }
 
 .links-section .orders-link {
+  align-items: center;
+  background-color: var(--primary-color);
   color: white;
-  padding: 35px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
   width: 367px;
 }
 
 .user-section .name-element {
+  align-items: center;
   background-color: var(--tertiary-color);
   color: white;
-  padding: 35px;
-  text-align: center;
+  display: flex;
+  justify-content: center;
   width: 367px;
 }
 
 .user-section button {
+  align-items: center;
   background-color: var(--quaternary-color);
   border: none;
   color: white;
+  display: flex;
   font-weight: 800;
+  justify-content: center;
   width: 180px;
 }

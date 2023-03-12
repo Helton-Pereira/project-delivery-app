@@ -21,6 +21,7 @@ function NavBarCustomer() {
           data-testid="customer_products__element-navbar-link-products"
           className="products-link"
         >
+          <i className="material-icons">sports_bar</i>
           PRODUTOS
         </Link>
 
@@ -29,6 +30,7 @@ function NavBarCustomer() {
           data-testid="customer_products__element-navbar-link-orders"
           className="orders-link"
         >
+          <i className="material-icons">delivery_dining</i>
           MEUS PEDIDOS
         </Link>
       </section>
@@ -38,6 +40,7 @@ function NavBarCustomer() {
           data-testid="customer_products__element-navbar-user-full-name"
           className="name-element"
         >
+          <i className="material-icons">person</i>
           { name }
         </span>
 
@@ -46,6 +49,7 @@ function NavBarCustomer() {
           data-testid="customer_products__element-navbar-link-logout"
           onClick={ handleLogout }
         >
+          <i className="material-icons">person</i>
           SAIR
         </button>
       </section>
