@@ -1,33 +1,36 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import conversions from '../utils/conversions';
-import { ID_PAD_START } from '../utils/constants';
+import { ID_PAD_START, statusColors } from '../utils/constants';
 
 function CardSellerOrder({
   history, id, status, saleDate, totalPrice, deliveryAddress, deliveryNumber }) {
   const { location: { pathname } } = history;
 
   return (
-    <div key={ id } className="seller-order-card-container">
+    <Link
+      to={ `${pathname}/${id}` }
+      key={ id }
+      className="seller-order-card-container"
+    >
 
-      <Link
-        to={ `${pathname}/${id}` }
-        key={ id }
+      <div className="seller-order-id-container">
+        <span>Pedido</span>
+        <span data-testid={ `seller_orders__element-order-id-${id}` }>
+          {id.toString().padStart(ID_PAD_START, '0')}
+        </span>
+      </div>
+
+      <div
+        className="seller-order-status-container"
+        style={ { backgroundColor: `${statusColors[status]}` } }
       >
+        <span data-testid={ `seller_orders__element-delivery-status-${id}` }>
+          {status}
+        </span>
+      </div>
 
-        <div className="seller-order-id-container">
-          <span>Pedido</span>
-          <span data-testid={ `seller_orders__element-order-id-${id}` }>
-            {id.toString().padStart(ID_PAD_START, '0')}
-          </span>
-        </div>
-
-        <div className="seller-order-status-container">
-          <span data-testid={ `seller_orders__element-delivery-status-${id}` }>
-            {status}
-          </span>
-        </div>
-
+      <section className="seller-order-date-price-address">
         <div className="seller-order-date-container">
           <span data-testid={ `seller_orders__element-order-date-${id}` }>
             {conversions.convertDate(saleDate)}
@@ -45,13 +48,9 @@ function CardSellerOrder({
             {`${deliveryAddress}, ${deliveryNumber}`}
           </span>
         </div>
+      </section>
 
-      </Link>
-
-      <br />
-      {/* Elemento acima somente para facilitar a visualização. Apagamos ele durante a estilização. */}
-
-    </div>
+    </Link>
   );
 }
 

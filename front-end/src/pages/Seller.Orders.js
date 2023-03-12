@@ -5,6 +5,8 @@ import NavBarSeller from '../components/NavBar.Seller';
 import api from '../services/requests';
 import useValidateAuth from '../hooks/useValidateAuth';
 import '../styles/seller.navbar.css';
+import '../styles/seller.orders.css';
+import '../styles/seller.order.card.css';
 
 function SellerOrders(props) {
   const { history } = props;
@@ -24,21 +26,22 @@ function SellerOrders(props) {
 
   return (
     <main>
-
       <NavBarSeller />
 
-      {orders.map((order) => (
-        <CardSellerOrder
-          history={ history }
-          key={ order.id }
-          id={ order.id }
-          status={ order.status }
-          saleDate={ order.saleDate }
-          totalPrice={ Number(order.totalPrice) }
-          deliveryAddress={ order.deliveryAddress }
-          deliveryNumber={ order.deliveryNumber }
-        />
-      ))}
+      <section className="seller-orders-container">
+        {orders.map((order) => (
+          <CardSellerOrder
+            history={ history }
+            key={ order.id }
+            id={ order.id }
+            status={ order.status }
+            saleDate={ order.saleDate }
+            totalPrice={ Number(order.totalPrice) }
+            deliveryAddress={ order.deliveryAddress }
+            deliveryNumber={ order.deliveryNumber }
+          />
+        ))}
+      </section>
 
     </main>
   );
