@@ -6,6 +6,7 @@ import api from '../services/requests';
 import useValidateAuth from '../hooks/useValidateAuth';
 import '../styles/customer.navbar.css';
 import '../styles/customer.orders.css';
+import '../styles/customer.order.card.css';
 
 function CustomerOrders(props) {
   const history = useHistory();
