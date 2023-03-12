@@ -24,28 +24,43 @@ function TableCheckout() {
       totalCart += (quantity * price);
       return (
         <tr key={ i }>
-          <td data-testid={ `customer_checkout__element-order-table-item-number-${i}` }>
+          <td
+            className="checkout-table-item-order"
+            data-testid={ `customer_checkout__element-order-table-item-number-${i}` }
+          >
             { (i + 1) }
           </td>
-          <td data-testid={ `customer_checkout__element-order-table-name-${i}` }>
+          <td
+            className="checkout-table-item-name"
+            data-testid={ `customer_checkout__element-order-table-name-${i}` }
+          >
             { name }
           </td>
-          <td data-testid={ `customer_checkout__element-order-table-quantity-${i}` }>
+          <td
+            className="checkout-table-item-quantity"
+            data-testid={ `customer_checkout__element-order-table-quantity-${i}` }
+          >
             { quantity }
           </td>
-          <td data-testid={ `customer_checkout__element-order-table-unit-price-${i}` }>
-            { conversions.convertPrice(price) }
+          <td
+            className="checkout-table-item-price"
+            data-testid={ `customer_checkout__element-order-table-unit-price-${i}` }
+          >
+            { `R$ ${conversions.convertPrice(price)}` }
           </td>
-          <td data-testid={ `customer_checkout__element-order-table-sub-total-${i}` }>
-            { conversions.convertPrice(quantity * price) }
+          <td
+            className="checkout-table-item-subtotal"
+            data-testid={ `customer_checkout__element-order-table-sub-total-${i}` }
+          >
+            { `R$ ${conversions.convertPrice(quantity * price)}` }
           </td>
-          <td>
+          <td className="checkout-table-item-remove">
             <button
               type="button"
               onClick={ () => handleRemoveButton(id) }
               data-testid={ `customer_checkout__element-order-table-remove-${i}` }
             >
-              Excluir
+              Remover
             </button>
           </td>
         </tr>
@@ -55,13 +70,13 @@ function TableCheckout() {
   };
 
   return (
-    <div>
+    <section className="checkout-table">
       <table>
         <thead>
           <tr>
             <th>Item</th>
             <th>Descrição</th>
-            <th>Quantiade</th>
+            <th>Quantidade</th>
             <th>Valor Unitário</th>
             <th>Sub-total</th>
             <th>Remover item</th>
@@ -69,11 +84,10 @@ function TableCheckout() {
         </thead>
         <tbody>{fillTableDescription()}</tbody>
       </table>
-      <h1 data-testid="customer_checkout__element-order-total-price">
-        Total:
-        { `${conversions.convertPrice(totalCart)}` }
-      </h1>
-    </div>
+      <h3 data-testid="customer_checkout__element-order-total-price">
+        { `Total: R$ ${conversions.convertPrice(totalCart)}` }
+      </h3>
+    </section>
   );
 }
 

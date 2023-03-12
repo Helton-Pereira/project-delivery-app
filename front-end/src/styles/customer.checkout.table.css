@@ -1,0 +1,86 @@
+.checkout-table {
+  border: 1px solid var(--background-border-color);
+  box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+  padding: 10px 20px;
+}
+
+.checkout-table h3 {
+  background-color: var(--primary-color);
+  color: white;
+  float: right;
+  font-weight: 800;
+  padding: 10px;
+  text-align: center;
+  width: 250px;
+}
+
+.checkout-table table {
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  margin-bottom: 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.checkout-table thead {
+  font-size: 18px;
+}
+
+.checkout-table tbody tr {
+  height: 62px;
+}
+
+.checkout-table .checkout-table-item-order {
+  background-color: var(--secondary-color);
+  border-radius: 25% 0% 0% 25%;
+  font-size: 20px;
+  font-weight: 800;
+  text-align: center;
+  width: 70px;
+}
+
+.checkout-table .checkout-table-item-name {
+  background-color: var(--background-color);
+  font-size: 20px;
+  text-align: left;
+  text-indent: 20px;
+}
+
+.checkout-table .checkout-table-item-quantity {
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 20px;
+  font-weight: 800;
+  width: 167px;
+}
+
+.checkout-table .checkout-table-item-price {
+  background-color: var(--tertiary-color);
+  color: white;
+  font-size: 20px;
+  font-weight: 800;
+  width: 167px;
+}
+
+.checkout-table .checkout-table-item-subtotal {
+  background-color: var(--quaternary-color);
+  color: white;
+  font-size: 20px;
+  font-weight: 800;
+  width: 167px;
+}
+
+.checkout-table .checkout-table-item-remove {
+  background-color: var(--secondary-color);
+  width: 167px;
+}
+
+.checkout-table .checkout-table-item-remove button {
+  background-color: var(--secondary-color);
+  border: none;
+  color: white;
+  font-size: 20px;
+  font-weight: 800;
+  height: 62px;
+  width: 100%;
+}

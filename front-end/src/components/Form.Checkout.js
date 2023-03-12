@@ -36,12 +36,13 @@ function FormCheckout({ handleSubmitOrder, setNewOrder }) {
   };
 
   return (
-    <div>
-      Form:
-      <form onSubmit={ (event) => handleSubmitOrder(event) }>
-        <label htmlFor="seller">
-          P. Vendedor(a) Responsável:
+    <form onSubmit={ (event) => handleSubmitOrder(event) } className="checkout-form">
+
+      <section className="checkout-user-info">
+        <label htmlFor="seller" className="form-label">
+          Pessoa Vendedora Responsável:
           <select
+            className="form-select checkout-seller"
             name="seller"
             data-testid="customer_checkout__select-seller"
             value={ orderDetails.seller }
@@ -50,36 +51,44 @@ function FormCheckout({ handleSubmitOrder, setNewOrder }) {
             { creatSelerSelect() }
           </select>
         </label>
-        <label htmlFor="deliveryAddress">
-          Endereço
+
+        <label htmlFor="deliveryAddress" className="form-label">
+          Endereço:
           <input
+            className="form-control checkout-address"
             type="text"
             name="deliveryAddress"
             data-testid="customer_checkout__input-address"
             onChange={ handleChanges }
             value={ orderDetails.deliveryAddress }
+            placeholder="Avenida Paulista"
             required
           />
         </label>
-        <label htmlFor="deliveryNumber">
-          Numero
+
+        <label htmlFor="deliveryNumber" className="form-label">
+          Número:
           <input
+            className="form-control checkout-address-number"
             type="number"
             name="deliveryNumber"
             data-testid="customer_checkout__input-address-number"
             onChange={ handleChanges }
             value={ orderDetails.deliveryNumber }
+            placeholder="123"
             required
           />
         </label>
-        <button
-          type="submit"
-          data-testid="customer_checkout__button-submit-order"
-        >
-          FINALIZAR PEDIDO
-        </button>
-      </form>
-    </div>
+      </section>
+
+      <button
+        type="submit"
+        className="btn btn-primary"
+        data-testid="customer_checkout__button-submit-order"
+      >
+        FINALIZAR PEDIDO
+      </button>
+    </form>
   );
 }
 

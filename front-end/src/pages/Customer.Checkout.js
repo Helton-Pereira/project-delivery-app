@@ -7,6 +7,11 @@ import TableCheckout from '../components/Table.Checkout';
 import DeliveryAppContext from '../context/DeliveryAppContext';
 import api from '../services/requests';
 import { COSTUMER_CHECKOUT_INITIAL_STATE } from '../utils/initialStates';
+import '../styles/customer.navbar.css';
+import '../styles/customer.checkout.css';
+import '../styles/customer.checkout.form.css';
+import '../styles/customer.checkout.table.css';
+
 // import useValidateAuth from '../hooks/useValidateAuth';
 
 function CostumerCheckout(props) {
@@ -62,20 +67,16 @@ function CostumerCheckout(props) {
 
   return (
     <main>
-      <h1>Checkout-Page</h1>
       <NavBarCustomer />
-      <h2>NavbarCustomer</h2>
-      <div className="Checkout-container">
+      <section className="checkout-container">
         <h2>Finalizar Pedido</h2>
         <TableCheckout />
-        <div>
-          <h2>Detalhes e Endereço para Entrega:</h2>
-          <FormCheckout
-            handleSubmitOrder={ handleSubmitOrder }
-            setNewOrder={ setNewOrder }
-          />
-        </div>
-      </div>
+        <h2>Detalhes e Endereço para Entrega</h2>
+        <FormCheckout
+          handleSubmitOrder={ handleSubmitOrder }
+          setNewOrder={ setNewOrder }
+        />
+      </section>
     </main>
   );
 }

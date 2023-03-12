@@ -1,0 +1,11 @@
+.checkout-container {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  width: 90%;
+}
+
+.checkout-container h2 {
+  font-weight: 800;
+  margin: 50px 0 10px;
+}

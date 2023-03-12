@@ -1,0 +1,61 @@
+.checkout-form {
+  align-items: center;
+  border: 1px solid var(--background-border-color);
+  box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.checkout-form .btn-primary {
+  background-color: var(--primary-color);
+  border: none;
+  color: white;
+  font-size: 24px;
+  font-weight: 800;
+  height: 70px;
+  margin: 10px 0 0;
+  width: 300px;
+}
+
+.checkout-form .btn-primary:hover {
+  background-color: var(--tertiary-color);
+}
+
+.checkout-user-info {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.checkout-user-info label {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.checkout-user-info .form-control, .form-select {
+  font-size: 18px;
+  height: 50px;
+  margin-top: 10px;
+}
+
+.checkout-user-info .form-select {
+  cursor: pointer;
+}
+
+.checkout-user-info .form-control:focus, .form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+}
+
+.checkout-seller {
+  width: 550px;
+}
+
+.checkout-address {
+  width: 1050px;
+}
+
+.checkout-address-number {
+  width: 550px;
+}
