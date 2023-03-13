@@ -1,0 +1,74 @@
+.admin-manage-form-main {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-manage-form {
+  align-items: center;
+  border: 1px solid var(--background-border-color);
+  box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 50px;
+  padding: 20px;
+}
+
+.admin-manage-form label {
+  font-size: 18px;
+  font-weight: 600;
+  text-indent: 10px;
+}
+
+.admin-manage-form .form-control, .form-select {
+  font-size: 18px;
+  height: 50px;
+  margin-top: 5px;
+}
+
+.admin-manage-form .form-select {
+  cursor: pointer;
+}
+
+.admin-manage-form .form-control:focus, .form-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: rgba(0, 0, 0, 0.24) 0 3px 8px;
+}
+
+.admin-manage-form-name {
+  width: 500px;
+}
+
+.admin-manage-form-email {
+  width: 500px;
+}
+
+.admin-manage-form-password {
+  width: 500px;
+}
+
+.admin-manage-form-role {
+  width: 300px;
+}
+
+.admin-manage-form .btn-primary {
+  background-color: var(--primary-color);
+  border: none;
+  color: white;
+  font-size: 24px;
+  font-weight: 800;
+  height: 70px;
+  margin: 10px 0 0;
+  width: 300px;
+}
+
+.admin-manage-form .btn-primary:hover {
+  background-color: var(--tertiary-color);
+}
+
+.output-message {
+  bottom: 20px;
+  font-size: 18px;
+  font-weight: 800;
+  margin: auto;
+  position: relative;
+}

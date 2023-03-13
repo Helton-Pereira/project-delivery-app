@@ -1,0 +1,11 @@
+.admin-manage-container {
+  display: flex;
+  flex-direction: column;
+  margin: 150px auto 0;
+  width: 90%;
+}
+
+.admin-manage-container h2 {
+  font-weight: 800;
+  margin-bottom: 10px;
+}

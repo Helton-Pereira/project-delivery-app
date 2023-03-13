@@ -19,7 +19,7 @@ function FormAdmin({ setUsers }) {
     try {
       const userCreated = await api.requestLogin('/admin/manage', newUser);
       setErrorMessage('');
-      setSucessMessage(`USUÁRIO: ${newUser.name} ADICONADO COM SUCESSO!`);
+      setSucessMessage('User successfully added!');
       setNewUser({ ...FORM_ADMIN_INITIAL_STATE, role: roles[0] });
       setUsers((prev) => ([...prev, userCreated]));
     } catch (error) {
@@ -58,18 +58,15 @@ function FormAdmin({ setUsers }) {
   }, [newUser]);
 
   return (
-    <div>
-      { errorMessage.length > 0
-          && (
-            <span data-testid="admin_manage__element-invalid-register">
-              {errorMessage}
-            </span>
-          ) }
-      Adicionar novo Usuário:
-      <form onSubmit={ (event) => handleSubmitNewUser(event) }>
-        <label htmlFor="name">
-          Nome
+    <section className="admin-manage-form-main">
+      <form
+        onSubmit={ (event) => handleSubmitNewUser(event) }
+        className="admin-manage-form"
+      >
+        <label htmlFor="name" className="form-label">
+          Nome:
           <input
+            className="form-control admin-manage-form-name"
             type="text"
             name="name"
             data-testid="admin_manage__input-name"
@@ -78,9 +75,11 @@ function FormAdmin({ setUsers }) {
             required
           />
         </label>
-        <label htmlFor="email">
-          Email
+
+        <label htmlFor="email" className="form-label">
+          Email:
           <input
+            className="form-control admin-manage-form-email"
             type="email"
             name="email"
             data-testid="admin_manage__input-email"
@@ -89,9 +88,11 @@ function FormAdmin({ setUsers }) {
             required
           />
         </label>
-        <label htmlFor="deliveryAddress">
-          Senha
+
+        <label htmlFor="password" className="form-label">
+          Senha:
           <input
+            className="form-control admin-manage-form-password"
             type="password"
             name="password"
             data-testid="admin_manage__input-password"
@@ -100,9 +101,11 @@ function FormAdmin({ setUsers }) {
             required
           />
         </label>
-        <label htmlFor="role">
-          P. Vendedora Responsável:
+
+        <label htmlFor="role" className="form-label">
+          Tipo:
           <select
+            className="form-select admin-manage-form-role"
             name="role"
             data-testid="admin_manage__select-role"
             value={ newUser.role }
@@ -111,21 +114,35 @@ function FormAdmin({ setUsers }) {
             { creatRolesSelect() }
           </select>
         </label>
+
         <button
+          className="btn btn-primary"
           type="submit"
           data-testid="admin_manage__button-register"
           disabled={ isSubmitButtonDisabled }
         >
           CADASTRAR
         </button>
-        { sucessMessage.length > 0
+      </form>
+
+      { errorMessage.length > 0
           && (
-            <span>
+            <span
+              className="output-message"
+              data-testid="admin_manage__element-invalid-register"
+            >
+              {errorMessage}
+            </span>
+          ) }
+
+      { sucessMessage.length > 0
+          && (
+            <span className="output-message">
               {sucessMessage}
             </span>
           ) }
-      </form>
-    </div>
+
+    </section>
   );
 }
 

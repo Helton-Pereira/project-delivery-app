@@ -41,22 +41,32 @@ function TableAdmin({ users, setUsers }) {
       return (
         <tr key={ i }>
           <td
+            className="admin-manage-table-item-order"
             data-testid={
               `admin_manage__element-user-table-item-number-${i}`
             }
           >
             { (i + 1) }
           </td>
-          <td data-testid={ `admin_manage__element-user-table-name-${i}` }>
+          <td
+            className="admin-manage-table-user-name"
+            data-testid={ `admin_manage__element-user-table-name-${i}` }
+          >
             { name }
           </td>
-          <td data-testid={ `admin_manage__element-user-table-email-${i}` }>
+          <td
+            className="admin-manage-table-user-email"
+            data-testid={ `admin_manage__element-user-table-email-${i}` }
+          >
             { email }
           </td>
-          <td data-testid={ `admin_manage__element-user-table-role-${i}` }>
+          <td
+            className="admin-manage-table-user-role"
+            data-testid={ `admin_manage__element-user-table-role-${i}` }
+          >
             { role }
           </td>
-          <td>
+          <td className="admin-manage-table-user-remove">
             <button
               name="remove"
               data-testid={ `admin_manage__element-user-table-remove-${i}` }
@@ -73,8 +83,7 @@ function TableAdmin({ users, setUsers }) {
   };
 
   return (
-    <div>
-      Lista de Usuários
+    <section className="admin-manage-table">
       <table>
         <thead>
           <tr>
@@ -87,7 +96,7 @@ function TableAdmin({ users, setUsers }) {
         </thead>
         <tbody>{fillTableDescription()}</tbody>
       </table>
-    </div>
+    </section>
   );
 }
 
