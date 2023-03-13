@@ -14,35 +14,37 @@ function NavBarAdmin() {
   };
 
   return (
-    <main>
-      <nav>
-        <div>
-          <Link
-            to="/admin/manage"
-            data-testid="customer_products__element-navbar-link-orders"
-          >
-            Gerenciar Usuários
-          </Link>
-        </div>
-        <div>
-          <span
-            data-testid="customer_products__element-navbar-user-full-name"
-          >
-            Nome
-            { name }
-          </span>
-        </div>
-        <div>
-          <button
-            type="submit"
-            data-testid="customer_products__element-navbar-link-logout"
-            onClick={ handleLogout }
-          >
-            Sair
-          </button>
-        </div>
-      </nav>
-    </main>
+    <nav className="navbar-admin">
+      <section className="links-section">
+        <Link
+          to="/admin/manage"
+          data-testid="customer_products__element-navbar-link-orders"
+          className="management-link"
+        >
+          <i className="material-icons">groups</i>
+          GERENCIAR USUÁRIOS
+        </Link>
+      </section>
+
+      <section className="user-section">
+        <span
+          data-testid="customer_products__element-navbar-user-full-name"
+          className="name-element"
+        >
+          <i className="material-icons">person</i>
+          { name }
+        </span>
+
+        <button
+          type="submit"
+          data-testid="customer_products__element-navbar-link-logout"
+          onClick={ handleLogout }
+        >
+          <i className="material-icons">logout</i>
+          SAIR
+        </button>
+      </section>
+    </nav>
   );
 }
 

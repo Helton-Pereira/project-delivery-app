@@ -1,0 +1,54 @@
+.navbar-admin {
+  background-color: var(--primary-color);
+  border: none;
+  display: flex;
+  font-size: 24px;
+  font-weight: 800;
+  height: 105px;
+  justify-content: space-between;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.navbar-admin section {
+  display: flex;
+}
+
+.navbar-admin a {
+  text-decoration: none;
+}
+
+.navbar-admin i {
+  margin-right: 4px;
+}
+
+.navbar-admin .links-section .management-link {
+  align-items: center;
+  background-color: var(--secondary-color);
+  color: black;
+  display: flex;
+  justify-content: center;
+  width: 367px;
+}
+
+.navbar-admin .user-section .name-element {
+  align-items: center;
+  background-color: var(--tertiary-color);
+  color: white;
+  display: flex;
+  justify-content: center;
+  width: 367px;
+}
+
+.navbar-admin .user-section button {
+  align-items: center;
+  background-color: var(--quaternary-color);
+  border: none;
+  color: white;
+  display: flex;
+  font-weight: 800;
+  justify-content: center;
+  width: 180px;
+}
