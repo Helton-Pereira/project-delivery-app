@@ -10,6 +10,7 @@
 }
 
 .product-card img {
+  background-color: white;
   height: 357px;
   order: 0;
   width: 100%;
