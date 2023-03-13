@@ -30,7 +30,7 @@
   height: 62px;
 }
 
-.checkout-table .checkout-table-item-order {
+.checkout-table-item-order {
   background-color: var(--secondary-color);
   border-radius: 25% 0% 0% 25%;
   font-size: 20px;
@@ -39,14 +39,14 @@
   width: 70px;
 }
 
-.checkout-table .checkout-table-item-name {
+.checkout-table-item-name {
   background-color: var(--background-color);
   font-size: 20px;
   text-align: left;
   text-indent: 20px;
 }
 
-.checkout-table .checkout-table-item-quantity {
+.checkout-table-item-quantity {
   background-color: var(--primary-color);
   color: white;
   font-size: 20px;
@@ -54,7 +54,7 @@
   width: 167px;
 }
 
-.checkout-table .checkout-table-item-price {
+.checkout-table-item-price {
   background-color: var(--tertiary-color);
   color: white;
   font-size: 20px;
@@ -62,7 +62,7 @@
   width: 167px;
 }
 
-.checkout-table .checkout-table-item-subtotal {
+.checkout-table-item-subtotal {
   background-color: var(--quaternary-color);
   color: white;
   font-size: 20px;
@@ -70,12 +70,12 @@
   width: 167px;
 }
 
-.checkout-table .checkout-table-item-remove {
+.checkout-table-item-remove {
   background-color: var(--secondary-color);
   width: 167px;
 }
 
-.checkout-table .checkout-table-item-remove button {
+.checkout-table-item-remove button {
   background-color: var(--secondary-color);
   border: none;
   color: white;
