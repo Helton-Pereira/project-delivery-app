@@ -5,6 +5,10 @@ import api from '../services/requests';
 import HeaderSellerOrderDetails from '../components/Header.SellerOrderDetails';
 import TableSellerOrderDetails from '../components/Table.SellerOrderDetails';
 import NavBarSeller from '../components/NavBar.Seller';
+import '../styles/seller.navbar.css';
+import '../styles/seller.order-details.css';
+import '../styles/seller.order-details.header.css';
+import '../styles/seller.order-details.table.css';
 
 function SellerOrderDetails(props) {
   const [order, setOrder] = useState(null);
@@ -24,22 +28,24 @@ function SellerOrderDetails(props) {
   }, []);
 
   return (
-    <div>
+    <main className="seller-order-details-main">
       <NavBarSeller />
-      <h2> Detalhes do pedido </h2>
-      {order && (
-        <HeaderSellerOrderDetails
-          key={ order.id }
-          id={ order.id }
-          status={ order.status }
-          saleDate={ order.saleDate }
-          totalPrice={ Number(order.totalPrice) }
-          setOrder={ setOrder }
-        />
-      )}
-      <h2> Produtos </h2>
-      {order && (<TableSellerOrderDetails productsArray={ order.products } />) }
-    </div>
+      <h2>Detalhes do Pedido</h2>
+
+      <section className="seller-order-details-container">
+        {order && (
+          <HeaderSellerOrderDetails
+            key={ order.id }
+            id={ order.id }
+            status={ order.status }
+            saleDate={ order.saleDate }
+            totalPrice={ Number(order.totalPrice) }
+            setOrder={ setOrder }
+          />
+        )}
+        {order && (<TableSellerOrderDetails productsArray={ order.products } />) }
+      </section>
+    </main>
   );
 }
 

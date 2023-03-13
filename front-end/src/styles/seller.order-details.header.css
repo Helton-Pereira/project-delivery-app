@@ -5,7 +5,7 @@
   padding: 0;
 }
 
-.order-details-header {
+.seller-order-details-header {
   align-items: center;
   background-color: var(--background-color);
   display: flex;
@@ -15,24 +15,13 @@
   padding: 0 20px;
 }
 
-.order-details-id {
+.seller-order-details-id {
   font-size: 28px;
   font-weight: 800;
   width: 200px;
 }
 
-.order-details-seller {
-  font-size: 24px;
-  text-align: center;
-  width: 400px;
-
-}
-
-.order-details-seller .seller-name {
-  font-weight: 800;
-}
-
-.order-details-date {
+.seller-order-details-date {
   background-color: var(--background-border-color);
   border-radius: 10px;
   font-size: 28px;
@@ -41,7 +30,7 @@
   width: 300px;
 }
 
-.order-details-status {
+.seller-order-details-status {
   border-radius: 10px;
   color: white;
   font-size: 28px;
@@ -50,9 +39,15 @@
   width: 300px;
 }
 
+.seller-order-details-preparing-button {
+  background-color: var(--secondary-color);
+}
 
-.order-details-finish-button {
+.seller-order-details-dispatch-button {
   background-color: var(--primary-color);
+}
+
+.seller-order-details-preparing-button, .seller-order-details-dispatch-button {
   border: 2px solid var(--background-border-color);
   border-radius: 10px;
   color: white;
@@ -63,12 +58,20 @@
   width: 350px;
 }
 
-.order-details-finish-button:disabled {
-  background-color: var(--primary-color);
+.seller-order-details-preparing-button:disabled {
   opacity: 0.5;
   pointer-events: none;
 }
 
-.order-details-finish-button:hover {
+.seller-order-details-dispatch-button:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.seller-order-details-preparing-button:hover {
+  background-color: var(--tertiary-color);
+}
+
+.seller-order-details-dispatch-button:hover {
   background-color: var(--tertiary-color);
 }

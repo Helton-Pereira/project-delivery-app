@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 import api from '../services/requests';
-import { ID_PAD_START } from '../utils/constants';
+import { ID_PAD_START, statusColors } from '../utils/constants';
 import conversions from '../utils/conversions';
 
 function HeaderSellerOrderDetails({ id, status, saleDate, setOrder }) {
@@ -12,56 +12,53 @@ function HeaderSellerOrderDetails({ id, status, saleDate, setOrder }) {
   };
 
   return (
-    <div key={ id }>
+    <section key={ id } className="seller-order-details-header">
 
-      <div>
-        <div>
-          <span>Pedido</span>
-          <span
-            data-testid="seller_order_details__element-order-details-label-order-id"
-          >
-            {id.toString().padStart(ID_PAD_START, '0')}
-          </span>
-        </div>
-        <div>
-          <span
-            data-testid="seller_order_details__element-order-details-label-order-date"
-          >
-            {conversions.convertDate(saleDate)}
-          </span>
-        </div>
-        <div>
-          <span
-            data-testid={ DTID_STATUS }
-          >
-            {status}
-          </span>
-        </div>
-        <div>
-          <button
-            name="preparing-check"
-            data-testid="seller_order_details__button-preparing-check"
-            type="button"
-            disabled={ status !== 'Pendente' }
-            onClick={ () => handleClickStatusOrder('Preparando') }
-          >
-            Preparar Pedido
-          </button>
-        </div>
-        <div>
-          <button
-            name="dispatch-check"
-            data-testid="seller_order_details__button-dispatch-check"
-            type="button"
-            disabled={ status !== 'Preparando' }
-            onClick={ () => handleClickStatusOrder('Em Trânsito') }
-          >
-            Saiu para entrega
-          </button>
-        </div>
-      </div>
-      <br />
-    </div>
+      <span
+        className="seller-order-details-id"
+        data-testid="seller_order_details__element-order-details-label-order-id"
+      >
+        {`Pedido ${id.toString().padStart(ID_PAD_START, '0')}`}
+      </span>
+
+      <span
+        className="seller-order-details-date"
+        data-testid="seller_order_details__element-order-details-label-order-date"
+      >
+        {conversions.convertDate(saleDate)}
+      </span>
+
+      <span
+        className="seller-order-details-status"
+        style={ { backgroundColor: `${statusColors[status] || '#056CF9'}` } }
+        data-testid={ DTID_STATUS }
+      >
+        {status}
+      </span>
+
+      <button
+        className="seller-order-details-preparing-button"
+        name="preparing-check"
+        data-testid="seller_order_details__button-preparing-check"
+        type="button"
+        disabled={ status !== 'Pendente' }
+        onClick={ () => handleClickStatusOrder('Preparando') }
+      >
+        Preparar Pedido
+      </button>
+
+      <button
+        className="seller-order-details-dispatch-button"
+        name="dispatch-check"
+        data-testid="seller_order_details__button-dispatch-check"
+        type="button"
+        disabled={ status !== 'Preparando' }
+        onClick={ () => handleClickStatusOrder('Em Trânsito') }
+      >
+        Saiu para entrega
+      </button>
+
+    </section>
   );
 }
 HeaderSellerOrderDetails.propTypes = {

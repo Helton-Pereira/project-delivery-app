@@ -38,7 +38,7 @@ function HeaderCustomerOrderDetails({ id, sellerName, status, saleDate, setOrder
 
       <span
         className="order-details-status"
-        style={ { backgroundColor: `${statusColors[status]}` } }
+        style={ { backgroundColor: `${statusColors[status] || '#056CF9'}` } }
         data-testid={
           `customer_order_details__element-order-details-label-delivery-status-${id}`
         }

@@ -45,7 +45,7 @@ function TableCustomerOrderDetails({ productsArray }) {
               `customer_order_details__element-order-table-unit-price-${i}`
             }
           >
-            { conversions.convertPrice(price) }
+            { `R$ ${conversions.convertPrice(price)}` }
           </td>
           <td
             className="order-details-table-item-subtotal"
@@ -53,7 +53,7 @@ function TableCustomerOrderDetails({ productsArray }) {
               `customer_order_details__element-order-table-sub-total-${i}`
             }
           >
-            { conversions.convertPrice(SaleProduct.quantity * price) }
+            { `R$ ${conversions.convertPrice(SaleProduct.quantity * price)}` }
           </td>
         </tr>
       );
