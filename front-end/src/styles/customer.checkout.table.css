@@ -1,6 +1,7 @@
 .checkout-table {
   border: 1px solid var(--background-border-color);
   box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+  margin-bottom: 50px;
   padding: 10px 20px;
 }
 
