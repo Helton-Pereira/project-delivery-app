@@ -28,11 +28,11 @@ function CustomerOrderDetails(props) {
   }, []);
 
   return (
-    <main className="order-details-main">
+    <main className="customer-order-details-main">
       <NavBarCustomer />
       <h2>Detalhes do Pedido</h2>
 
-      <section className="order-details-container">
+      <section className="customer-order-details-container">
         {order && (
           <HeaderCustomerOrderDetails
             key={ order.id }

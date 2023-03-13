@@ -1,11 +1,4 @@
-* {
-  box-sizing: border-box;
-  font-family: Roboto , sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-.order-details-header {
+.customer-order-details-header {
   align-items: center;
   background-color: var(--background-color);
   display: flex;
@@ -15,24 +8,24 @@
   padding: 0 20px;
 }
 
-.order-details-id {
+.customer-order-details-id {
   font-size: 28px;
   font-weight: 800;
   width: 200px;
 }
 
-.order-details-seller {
+.customer-order-details-seller {
   font-size: 24px;
   text-align: center;
   width: 400px;
 
 }
 
-.order-details-seller .seller-name {
+.customer-order-details-seller .seller-name {
   font-weight: 800;
 }
 
-.order-details-date {
+.customer-order-details-date {
   background-color: var(--background-border-color);
   border-radius: 10px;
   font-size: 28px;
@@ -41,7 +34,7 @@
   width: 300px;
 }
 
-.order-details-status {
+.customer-order-details-status {
   border-radius: 10px;
   color: white;
   font-size: 28px;
@@ -50,8 +43,7 @@
   width: 300px;
 }
 
-
-.order-details-finish-button {
+.customer-order-details-finish-button {
   background-color: var(--primary-color);
   border: 2px solid var(--background-border-color);
   border-radius: 10px;
@@ -63,12 +55,12 @@
   width: 350px;
 }
 
-.order-details-finish-button:disabled {
+.customer-order-details-finish-button:disabled {
   background-color: var(--primary-color);
   opacity: 0.5;
   pointer-events: none;
 }
 
-.order-details-finish-button:hover {
+.customer-order-details-finish-button:hover {
   background-color: var(--tertiary-color);
 }

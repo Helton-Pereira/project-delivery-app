@@ -10,16 +10,16 @@ function HeaderCustomerOrderDetails({ id, sellerName, status, saleDate, setOrder
   };
 
   return (
-    <section key={ id } className="order-details-header">
+    <section key={ id } className="customer-order-details-header">
 
       <span
-        className="order-details-id"
+        className="customer-order-details-id"
         data-testid="customer_order_details__element-order-details-label-order-id"
       >
         {`Pedido ${id.toString().padStart(ID_PAD_START, '0')}`}
       </span>
 
-      <div className="order-details-seller">
+      <div className="customer-order-details-seller">
         <span>Pessoa Vendedora: </span>
         <span
           className="seller-name"
@@ -30,14 +30,14 @@ function HeaderCustomerOrderDetails({ id, sellerName, status, saleDate, setOrder
       </div>
 
       <span
-        className="order-details-date"
+        className="customer-order-details-date"
         data-testid="customer_order_details__element-order-details-label-order-date"
       >
         {conversions.convertDate(saleDate)}
       </span>
 
       <span
-        className="order-details-status"
+        className="customer-order-details-status"
         style={ { backgroundColor: `${statusColors[status] || '#056CF9'}` } }
         data-testid={
           `customer_order_details__element-order-details-label-delivery-status-${id}`
@@ -47,7 +47,7 @@ function HeaderCustomerOrderDetails({ id, sellerName, status, saleDate, setOrder
       </span>
 
       <button
-        className="order-details-finish-button"
+        className="customer-order-details-finish-button"
         name="finish-button"
         data-testid="customer_order_details__button-delivery-check"
         type="button"

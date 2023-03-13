@@ -20,7 +20,7 @@ function TableCustomerOrderDetails({ productsArray }) {
       return (
         <tr key={ i }>
           <td
-            className="order-details-table-item-order"
+            className="customer-order-details-table-item-order"
             data-testid={
               `customer_order_details__element-order-table-item-number-${i}`
             }
@@ -28,19 +28,19 @@ function TableCustomerOrderDetails({ productsArray }) {
             { (i + 1) }
           </td>
           <td
-            className="order-details-table-item-name"
+            className="customer-order-details-table-item-name"
             data-testid={ `customer_order_details__element-order-table-name-${i}` }
           >
             { name }
           </td>
           <td
-            className="order-details-table-item-quantity"
+            className="customer-order-details-table-item-quantity"
             data-testid={ `customer_order_details__element-order-table-quantity-${i}` }
           >
             { SaleProduct.quantity }
           </td>
           <td
-            className="order-details-table-item-price"
+            className="customer-order-details-table-item-price"
             data-testid={
               `customer_order_details__element-order-table-unit-price-${i}`
             }
@@ -48,7 +48,7 @@ function TableCustomerOrderDetails({ productsArray }) {
             { `R$ ${conversions.convertPrice(price)}` }
           </td>
           <td
-            className="order-details-table-item-subtotal"
+            className="customer-order-details-table-item-subtotal"
             data-testid={
               `customer_order_details__element-order-table-sub-total-${i}`
             }
@@ -62,7 +62,7 @@ function TableCustomerOrderDetails({ productsArray }) {
   };
 
   return (
-    <section className="order-details-table">
+    <section className="customer-order-details-table">
       <table>
         <thead>
           <tr>

@@ -1,21 +1,14 @@
-* {
-  box-sizing: border-box;
-  font-family: Roboto , sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-.order-details-main {
+.customer-order-details-main {
   margin: 160px auto 0;
   width: 90%;
 }
 
-.order-details-main h2 {
+.customer-order-details-main h2 {
   font-weight: 800;
   margin-bottom: 10px;
 }
 
-.order-details-container {
+.customer-order-details-container {
   border: 1px solid var(--background-border-color);
   box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
   display: flex;
