@@ -10,9 +10,9 @@ function CardCustomerOrder({ history, id, status, saleDate, totalPrice }) {
     <Link
       to={ `${pathname}/${id}` }
       key={ id }
-      className="order-card-container"
+      className="customer-order-card-container"
     >
-      <div className="order-id-container">
+      <div className="customer-order-id-container">
         <span>Pedido</span>
         <span data-testid={ `customer_orders__element-order-id-${id}` }>
           {conversions.convertId(id)}
@@ -20,7 +20,7 @@ function CardCustomerOrder({ history, id, status, saleDate, totalPrice }) {
       </div>
 
       <div
-        className="order-status-container"
+        className="customer-order-status-container"
         style={ { backgroundColor: `${statusColors[status]}` } }
       >
         <span data-testid={ `customer_orders__element-delivery-status-${id}` }>
@@ -28,7 +28,7 @@ function CardCustomerOrder({ history, id, status, saleDate, totalPrice }) {
         </span>
       </div>
 
-      <section className="date-price-container">
+      <section className="customer-order-date-price-container">
         <div>
           <span data-testid={ `customer_orders__element-order-date-${id}` }>
             {conversions.convertDate(saleDate)}

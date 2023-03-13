@@ -1,11 +1,4 @@
-* {
-  box-sizing: border-box;
-  font-family: Roboto , sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-.order-card-container {
+.customer-order-card-container {
   background-color: var(--background-color);
   border: 1px solid var(--background-border-color);
   box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
@@ -18,11 +11,11 @@
   width: 1100px;
 }
 
-.order-card-container:hover {
+.customer-order-card-container:hover {
   box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
 }
 
-.order-id-container {
+.customer-order-id-container {
   align-items: center;
   background-color: white;
   color: black;
@@ -35,7 +28,7 @@
   width: 300px;
 }
 
-.order-status-container {
+.customer-order-status-container {
   align-items: center;
   background-color: var(--quaternary-color);
   border-radius: 25px;
@@ -48,7 +41,7 @@
   width: 450px;
 }
 
-.date-price-container {
+.customer-order-date-price-container {
   align-items: center;
   display: flex;
   flex-direction: column;
@@ -56,7 +49,7 @@
   width: 300px;
 }
 
-.date-price-container div {
+.customer-order-date-price-container div {
   align-items: center;
   background-color: var(--background-border-color);
   color: black;

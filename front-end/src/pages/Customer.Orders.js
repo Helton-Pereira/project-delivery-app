@@ -28,7 +28,7 @@ function CustomerOrders(props) {
     <main>
       <NavBarCustomer />
 
-      <section className="orders-container">
+      <section className="customer-orders-container">
         {orders.map((order) => (
           <CardCustomerOrder
             history={ history }
